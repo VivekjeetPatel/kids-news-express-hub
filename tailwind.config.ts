@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Custom colors for The Flying Bus
+				flyingbus: {
+					purple: '#8B5CF6',
+					yellow: '#FFCA58',
+					blue: '#0EA5E9',
+					red: '#F93827',
+					green: '#10B981',
+					orange: '#F97316',
+					pink: '#D946EF',
+					background: '#F9FAFB',
+					'card-bg': '#FFFFFF',
+					'muted-text': '#64748B',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -70,26 +84,27 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-8px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 5s ease-in-out infinite'
+			},
+			fontFamily: {
+				display: ['var(--font-display)', 'sans-serif'],
+				body: ['var(--font-body)', 'sans-serif'],
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
