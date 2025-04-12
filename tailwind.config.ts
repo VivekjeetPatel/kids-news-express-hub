@@ -102,8 +102,8 @@ export default {
 				'float': 'float 5s ease-in-out infinite'
 			},
 			fontFamily: {
-				display: ['var(--font-display)', 'sans-serif'],
-				body: ['var(--font-body)', 'sans-serif'],
+				display: ['Open Sauce Two', 'sans-serif'],
+				body: ['Open Sauce Two', 'system-ui', 'sans-serif'],
 			},
 		}
 	},
