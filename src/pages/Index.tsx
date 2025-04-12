@@ -2,21 +2,12 @@
 import React from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import FeatureArticle from '@/components/Articles/FeatureArticle';
-import CategorySection from '@/components/Articles/CategorySection';
+import { Blog } from '@/components/ui/blog';
 import DebateVote from '@/components/Articles/DebateVote';
-import { getHeadlineArticle, getCategoryArticles } from '@/data/mockArticles';
+import { getHeadlineArticle } from '@/data/mockArticles';
 
 const Index = () => {
   const headlineArticle = getHeadlineArticle();
-  const categoryMapping = [
-    { title: 'Headliners', slug: 'headliners', color: 'purple' },
-    { title: 'Debates', slug: 'debates', color: 'red' },
-    { title: 'Spice It Up', slug: 'spice-it-up', color: 'orange' },
-    { title: 'Storyboard', slug: 'storyboard', color: 'blue' },
-    { title: 'In the Neighborhood', slug: 'neighborhood', color: 'green' },
-    { title: 'Learning', slug: 'learning', color: 'yellow' },
-    { title: 'School News', slug: 'school', color: 'pink' },
-  ];
 
   return (
     <MainLayout>
@@ -28,16 +19,8 @@ const Index = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          <div className="col-span-1 lg:col-span-2 space-y-12">
-            {categoryMapping.slice(0, 2).map((category) => (
-              <CategorySection
-                key={category.slug}
-                title={category.title}
-                slug={category.slug}
-                articles={getCategoryArticles(category.title)}
-                color={category.color}
-              />
-            ))}
+          <div className="col-span-1 lg:col-span-2">
+            <Blog />
           </div>
           
           <div className="lg:col-span-1">
@@ -49,18 +32,6 @@ const Index = () => {
               />
             </div>
           </div>
-        </div>
-        
-        <div className="space-y-12">
-          {categoryMapping.slice(2).map((category) => (
-            <CategorySection
-              key={category.slug}
-              title={category.title}
-              slug={category.slug}
-              articles={getCategoryArticles(category.title)}
-              color={category.color}
-            />
-          ))}
         </div>
       </div>
     </MainLayout>
