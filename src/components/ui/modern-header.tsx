@@ -72,7 +72,7 @@ const ChevronIcon = () => (
 
 const Navigation: React.FC<{ items: NavItem[] }> = ({ items }) => (
   <nav>
-    <ul className="flex gap-x-6 xl:gap-x-8 lg:hidden [@media(max-width:1070px)]:gap-x-4">
+    <ul className="flex gap-x-6 xl:gap-x-8 md:flex hidden">
       {items.map(({ to, text, items }, index) => {
         return (
           <li
@@ -150,7 +150,7 @@ const MobileMenuButton: React.FC<{ onClick: () => void; isOpen: boolean }> = ({
   isOpen
 }) => (
   <button
-    className="hidden lg:flex items-center justify-center h-10 w-10 rounded-md hover:bg-gray-100 text-gray-700"
+    className="md:hidden flex items-center justify-center h-10 w-10 rounded-md hover:bg-gray-100 text-gray-700"
     onClick={onClick}
   >
     {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -161,7 +161,7 @@ const MobileMenu: React.FC<{ isOpen: boolean; items: NavItem[] }> = ({ isOpen, i
   if (!isOpen) return null;
   
   return (
-    <div className="hidden lg:block fixed inset-0 top-[72px] z-50 bg-white">
+    <div className="md:hidden fixed inset-0 top-[72px] z-50 bg-white">
       <div className="container h-full overflow-y-auto">
         <nav className="py-6">
           <ul className="flex flex-col space-y-4">
