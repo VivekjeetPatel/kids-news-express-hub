@@ -20,11 +20,11 @@ const Index = () => {
 
   return (
     <MainLayout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto">
         <div className="mb-12">
-          <div className="w-full text-center mb-8">
-            <h1 className="newspaper-title">The Flying Bus</h1>
-            <p className="text-xl mt-2">News for Kids, By Kids</p>
+          <div className="text-center mb-10">
+            <h1 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-2">The Flying Bus</h1>
+            <p className="text-lg text-gray-600">News for Kids, By Kids</p>
           </div>
           
           {headlineArticle && (
@@ -32,8 +32,8 @@ const Index = () => {
           )}
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <div className="col-span-1 lg:col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          <div className="col-span-1 lg:col-span-2 space-y-12">
             {categoryMapping.slice(0, 2).map((category) => (
               <CategorySection
                 key={category.slug}
@@ -56,15 +56,17 @@ const Index = () => {
           </div>
         </div>
         
-        {categoryMapping.slice(2).map((category) => (
-          <CategorySection
-            key={category.slug}
-            title={category.title}
-            slug={category.slug}
-            articles={getCategoryArticles(category.title)}
-            color={category.color}
-          />
-        ))}
+        <div className="space-y-12">
+          {categoryMapping.slice(2).map((category) => (
+            <CategorySection
+              key={category.slug}
+              title={category.title}
+              slug={category.slug}
+              articles={getCategoryArticles(category.title)}
+              color={category.color}
+            />
+          ))}
+        </div>
       </div>
     </MainLayout>
   );

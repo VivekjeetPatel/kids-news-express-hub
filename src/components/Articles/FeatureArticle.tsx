@@ -31,47 +31,47 @@ const FeatureArticle = ({
   };
 
   return (
-    <article className="relative rounded-xl overflow-hidden group">
-      <div className="relative aspect-[16/9] md:aspect-[21/9]">
+    <article className="relative rounded-lg overflow-hidden shadow-md group">
+      <div className="relative aspect-[16/9]">
         <img 
           src={imageUrl} 
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
       </div>
       
-      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 text-white">
-        <div className="flex items-center space-x-2 mb-3">
+      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+        <div className="flex items-center space-x-2 mb-2">
           <Badge className={`${getCategoryColor(category)}`}>
             {category}
           </Badge>
           {readingLevel && (
-            <Badge className="bg-white text-flyingbus-purple">
-              Reading Level: {readingLevel}
+            <Badge className="bg-white text-gray-800">
+              Level: {readingLevel}
             </Badge>
           )}
         </div>
         
-        <h2 className="font-display text-2xl md:text-4xl font-bold mb-2 md:mb-4">
+        <h2 className="text-xl md:text-3xl font-medium mb-2 md:mb-3">
           {title}
         </h2>
         
-        <p className="text-white/90 mb-4 max-w-3xl line-clamp-2 md:line-clamp-3">
+        <p className="text-white/90 mb-3 max-w-3xl text-sm md:text-base line-clamp-2">
           {excerpt}
         </p>
         
         <div className="flex justify-between items-center">
           <div>
-            <span className="block text-sm text-white/80">By {author}</span>
+            <span className="block text-sm text-white/90">By {author}</span>
             <span className="flex items-center text-xs text-white/70 mt-1">
-              <CalendarDays size={14} className="mr-1" />
+              <CalendarDays size={12} className="mr-1" />
               {publishDate}
             </span>
           </div>
           
-          <Link to={`/article/${id}`} className="bg-flyingbus-purple hover:bg-purple-700 text-white font-medium rounded-full px-4 py-2 flex items-center transition-colors">
-            Read More <ArrowRight size={16} className="ml-1" />
+          <Link to={`/article/${id}`} className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-sm font-medium rounded-md px-3 py-1.5 flex items-center transition-colors">
+            Read More <ArrowRight size={14} className="ml-1" />
           </Link>
         </div>
       </div>

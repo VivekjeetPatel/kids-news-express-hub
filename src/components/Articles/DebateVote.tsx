@@ -41,75 +41,75 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
   };
 
   return (
-    <div className="bg-white border rounded-xl p-6 shadow-md">
-      <h3 className="text-xl md:text-2xl font-display font-bold text-center mb-6">
+    <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+      <h3 className="text-xl font-medium text-gray-900 text-center mb-4">
         What do you think?
       </h3>
       
-      <div className="text-center mb-8">
-        <div className="inline-block bg-flyingbus-purple/10 text-flyingbus-purple px-4 py-2 rounded-full font-medium">
+      <div className="text-center mb-6">
+        <div className="inline-block bg-flyingbus-purple/10 text-flyingbus-purple px-4 py-2 rounded-md text-sm font-medium">
           {topicTitle}
         </div>
       </div>
       
-      <div className="flex items-center justify-center space-x-8 mb-8">
+      <div className="flex items-center justify-center space-x-4 mb-6">
         <Button
           onClick={() => handleVote('yes')}
           disabled={hasVoted}
           variant="outline"
-          className={`h-auto flex flex-col items-center p-4 rounded-xl border-2 ${
+          className={`h-auto flex flex-col items-center p-3 rounded-lg border ${
             hasVoted && votes.yes > votes.no 
-              ? 'border-flyingbus-green bg-flyingbus-green/10' 
-              : 'hover:border-flyingbus-green hover:bg-flyingbus-green/5'
+              ? 'border-green-500 bg-green-50' 
+              : 'hover:border-green-500 hover:bg-green-50'
           }`}
         >
-          <ThumbsUp size={36} className={`mb-2 ${hasVoted && votes.yes > votes.no ? 'text-flyingbus-green' : ''}`} />
-          <span className="text-lg font-display font-bold">YES</span>
-          {hasVoted && <span className="text-sm mt-1">{yesPercentage}%</span>}
+          <ThumbsUp size={28} className={`mb-2 ${hasVoted && votes.yes > votes.no ? 'text-green-500' : ''}`} />
+          <span className="text-sm font-medium">YES</span>
+          {hasVoted && <span className="text-xs mt-1">{yesPercentage}%</span>}
         </Button>
         
         <Button
           onClick={() => handleVote('no')}
           disabled={hasVoted}
           variant="outline"
-          className={`h-auto flex flex-col items-center p-4 rounded-xl border-2 ${
+          className={`h-auto flex flex-col items-center p-3 rounded-lg border ${
             hasVoted && votes.no > votes.yes 
-              ? 'border-flyingbus-red bg-flyingbus-red/10' 
-              : 'hover:border-flyingbus-red hover:bg-flyingbus-red/5'
+              ? 'border-red-500 bg-red-50' 
+              : 'hover:border-red-500 hover:bg-red-50'
           }`}
         >
-          <ThumbsDown size={36} className={`mb-2 ${hasVoted && votes.no > votes.yes ? 'text-flyingbus-red' : ''}`} />
-          <span className="text-lg font-display font-bold">NO</span>
-          {hasVoted && <span className="text-sm mt-1">{noPercentage}%</span>}
+          <ThumbsDown size={28} className={`mb-2 ${hasVoted && votes.no > votes.yes ? 'text-red-500' : ''}`} />
+          <span className="text-sm font-medium">NO</span>
+          {hasVoted && <span className="text-xs mt-1">{noPercentage}%</span>}
         </Button>
       </div>
       
       {hasVoted && (
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="space-y-1">
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between text-xs text-gray-600">
               <span>Yes ({votes.yes} votes)</span>
               <span>{yesPercentage}%</span>
             </div>
-            <Progress value={yesPercentage} className="h-3 bg-gray-200" indicatorClassName="bg-flyingbus-green" />
+            <Progress value={yesPercentage} className="h-2 bg-gray-100" indicatorClassName="bg-green-500" />
           </div>
           
           <div className="space-y-1">
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between text-xs text-gray-600">
               <span>No ({votes.no} votes)</span>
               <span>{noPercentage}%</span>
             </div>
-            <Progress value={noPercentage} className="h-3 bg-gray-200" indicatorClassName="bg-flyingbus-red" />
+            <Progress value={noPercentage} className="h-2 bg-gray-100" indicatorClassName="bg-red-500" />
           </div>
           
-          <p className="text-center text-sm text-flyingbus-muted-text mt-4">
+          <p className="text-center text-xs text-gray-500 mt-3">
             Total votes: {totalVotes}
           </p>
         </div>
       )}
       
       {!hasVoted && (
-        <p className="text-center text-sm text-flyingbus-muted-text">
+        <p className="text-center text-xs text-gray-500">
           Click on yes or no to cast your vote!
         </p>
       )}
