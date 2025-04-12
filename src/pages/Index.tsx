@@ -22,11 +22,6 @@ const Index = () => {
     <MainLayout>
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
-          <div className="text-center mb-10">
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-2">The Flying Bus</h1>
-            <p className="text-lg text-gray-600">News for Kids, By Kids</p>
-          </div>
-          
           {headlineArticle && (
             <FeatureArticle {...headlineArticle} />
           )}
