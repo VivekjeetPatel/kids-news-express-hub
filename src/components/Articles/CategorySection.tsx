@@ -59,7 +59,7 @@ const CategorySection = ({ title, slug, articles, color }: CategorySectionProps)
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
           {getCategoryIcon()}
-          <h2 className={`category-title border-b-2 ${colorClasses.border}`}>{title}</h2>
+          <h2 className={`category-title border-b-2 ${colorClasses.border} self-center`}>{title}</h2>
         </div>
         <Link 
           to={`/${slug}`} 
