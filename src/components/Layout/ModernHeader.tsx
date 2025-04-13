@@ -1,63 +1,10 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { User, BookOpen } from 'lucide-react';
 import ModernHeader, { NavButton } from '@/components/ui/modern-header';
 import Logo from '@/components/ui/logo';
 import { HeaderButtons } from '@/components/ui/header-buttons';
-
-// Menu items configuration based on The Flying Bus categories
-const menuItems = [
-  {
-    text: "Categories",
-    items: [
-      {
-        text: "Headliners",
-        description: "Top stories of the day",
-        to: "/headliners"
-      },
-      {
-        text: "Debates",
-        description: "Join discussions on important topics",
-        to: "/debates"
-      },
-      {
-        text: "Spice It Up",
-        description: "Fun and interesting stories",
-        to: "/spice-it-up"
-      },
-      {
-        text: "Storyboard", 
-        description: "Creative writing and stories",
-        to: "/storyboard"
-      },
-      {
-        text: "In the Neighborhood",
-        description: "Local news and events",
-        to: "/neighborhood"
-      },
-    ]
-  },
-  {
-    text: "Learning",
-    items: [
-      {
-        text: "Learning Resources",
-        description: "Educational content for kids",
-        to: "/learning"
-      },
-      {
-        text: "School News",
-        description: "Latest updates from schools",
-        to: "/school"
-      }
-    ]
-  },
-  {
-    text: "About",
-    to: "/about"
-  }
-];
+import menuItems from './menuItems';
 
 const HeaderLogo = () => (
   <Logo />
@@ -74,4 +21,3 @@ const Header = () => {
 };
 
 export default Header;
-

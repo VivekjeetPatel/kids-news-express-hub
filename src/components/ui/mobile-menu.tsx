@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { Link } from "react-router-dom"
 import { Menu, X, User, BookOpen } from "lucide-react"
@@ -6,20 +5,7 @@ import { cn } from "@/lib/utils"
 import { HeaderButtons } from "./header-buttons"
 import { NavButton } from "./nav-button"
 import { RainbowButton } from "./rainbow-button"
-
-interface NavItem {
-  to?: string
-  text: string
-  items?: {
-    icon?: {
-      dark: string
-      light: string
-    }
-    text: string
-    description?: string
-    to: string
-  }[]
-}
+import { NavItem } from "@/components/Layout/menuItems"
 
 interface MobileMenuButtonProps {
   onClick: () => void

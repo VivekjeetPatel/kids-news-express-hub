@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -6,20 +5,7 @@ import { cn } from "@/lib/utils"
 import { NavButton } from "./nav-button"
 import { HeaderNavigation } from "./header-navigation"
 import { MobileMenu, MobileMenuButton } from "./mobile-menu"
-
-interface NavItem {
-  to?: string
-  text: string
-  items?: {
-    icon?: {
-      dark: string
-      light: string
-    }
-    text: string
-    description?: string
-    to: string
-  }[]
-}
+import { NavItem } from "@/components/Layout/menuItems"
 
 interface ModernHeaderProps {
   className?: string

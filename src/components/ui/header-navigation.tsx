@@ -1,24 +1,10 @@
-
 import * as React from "react"
 import { Link } from "react-router-dom"
+import { NavItem } from "@/components/Layout/menuItems"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-interface NavItem {
-  to?: string
-  text: string
-  items?: {
-    icon?: {
-      dark: string
-      light: string
-    }
-    text: string
-    description?: string
-    to: string
-  }[]
-}
-
-interface NavigationProps {
+interface HeaderNavigationProps {
   items: NavItem[]
 }
 
@@ -26,7 +12,7 @@ const ChevronIcon = () => (
   <ChevronDown className="h-4 w-4 opacity-60" />
 )
 
-const HeaderNavigation: React.FC<NavigationProps> = ({ items }) => (
+const HeaderNavigation: React.FC<HeaderNavigationProps> = ({ items }) => (
   <nav>
     <ul className="flex gap-x-6 xl:gap-x-8 md:flex hidden">
       {items.map(({ to, text, items }, index) => {
