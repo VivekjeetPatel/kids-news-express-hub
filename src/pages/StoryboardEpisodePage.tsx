@@ -79,36 +79,42 @@ const StoryboardEpisodePage = () => {
             </Badge>
           </div>
           
-          <div className="rounded-xl overflow-hidden shadow-md">
-            <VideoPlayer 
-              videoUrl={currentEpisode.videoUrl} 
-              title={currentEpisode.title}
-              showTitlePanel={false}
-              duration={currentEpisode.duration}
-            />
-            
-            <div className="bg-white p-4">
-              <div className="mb-4">
-                <h1 className="text-xl md:text-2xl font-semibold mb-1 text-gray-900">
-                  {currentEpisode.title}
-                </h1>
-                <div className="text-sm text-gray-600 flex items-center">
-                  <span className="flex items-center mr-4">
-                    <CalendarDays size={14} className="mr-1 text-flyingbus-muted-text" />
-                    {currentEpisode.releaseDate}
-                  </span>
-                  <span className="flex items-center">
-                    <Clock size={14} className="mr-1 text-flyingbus-muted-text" />
-                    {currentEpisode.duration}
-                  </span>
+          <div className="grid lg:grid-cols-12 gap-6">
+            {/* Video section - centered and optimized for 9:16 aspect ratio */}
+            <div className="lg:col-span-6 lg:col-start-4 md:mx-auto w-full flex flex-col">
+              <div className="rounded-xl overflow-hidden shadow-md">
+                <VideoPlayer 
+                  videoUrl={currentEpisode.videoUrl} 
+                  title={currentEpisode.title}
+                  showTitlePanel={false}
+                  duration={currentEpisode.duration}
+                  aspectRatio={9/16}
+                />
+                
+                <div className="bg-white p-4">
+                  <div className="mb-4">
+                    <h1 className="text-xl md:text-2xl font-semibold mb-1 text-gray-900">
+                      {currentEpisode.title}
+                    </h1>
+                    <div className="text-sm text-gray-600 flex items-center">
+                      <span className="flex items-center mr-4">
+                        <CalendarDays size={14} className="mr-1 text-flyingbus-muted-text" />
+                        {currentEpisode.releaseDate}
+                      </span>
+                      <span className="flex items-center">
+                        <Clock size={14} className="mr-1 text-flyingbus-muted-text" />
+                        {currentEpisode.duration}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-700 text-sm mb-4">
+                    {currentEpisode.description}
+                  </p>
                 </div>
               </div>
               
-              <p className="text-gray-700 text-sm mb-4">
-                {currentEpisode.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-3 justify-between items-center">
+              <div className="mt-4 flex flex-wrap gap-3 justify-between items-center">
                 <div>
                   <span className="text-sm text-gray-500">
                     Episode {currentIndex + 1} of {series.episodes.length}

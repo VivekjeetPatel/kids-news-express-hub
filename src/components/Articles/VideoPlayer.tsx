@@ -9,22 +9,24 @@ interface VideoPlayerProps {
   title: string;
   showTitlePanel?: boolean;
   duration?: string;
+  aspectRatio?: number; // Add customizable aspect ratio
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ 
   videoUrl, 
   title, 
   showTitlePanel = true,
-  duration
+  duration,
+  aspectRatio = 16/9 // Default to 16:9, but allow override
 }) => {
   // Determine if it's a YouTube video
   const isYoutubeVideo = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
   
   return (
-    <Card className="mb-8 overflow-hidden shadow-md bg-white">
+    <Card className="overflow-hidden shadow-md bg-white">
       <CardContent className="p-0">
-        <div className="relative">
-          <AspectRatio ratio={16/9}>
+        <div className="relative flex justify-center bg-black">
+          <AspectRatio ratio={aspectRatio} className={aspectRatio === 9/16 ? 'max-w-md mx-auto' : 'w-full'}>
             {isYoutubeVideo ? (
               <iframe 
                 src={videoUrl}
@@ -36,7 +38,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             ) : (
               <video 
                 controls
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 poster={videoUrl.endsWith('.mp4') ? undefined : videoUrl}
               >
                 {videoUrl.endsWith('.mp4') && <source src={videoUrl} type="video/mp4" />}
@@ -58,7 +60,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         </div>
         
         {showTitlePanel && (
-          <div className="p-3 bg-gradient-to-r from-white to-gray-50 border-t border-gray-100 flex items-center justify-between">
+          <div className="p-3 bg-gradient-to-r from-white to-gray-50 flex items-center justify-between">
             <div className="flex items-center">
               <span className="bg-flyingbus-purple bg-opacity-10 p-1.5 rounded-full mr-3">
                 <Play size={16} className="text-flyingbus-purple" />
