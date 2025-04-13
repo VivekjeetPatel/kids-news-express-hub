@@ -60,7 +60,7 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ article }) => {
                       />
                     </div>
                     <div>
-                      <p className="text-flyingbus-purple group-hover:text-flyingbus-blue font-medium transition-colors line-clamp-2">
+                      <p className="group-hover:opacity-80 font-medium transition-opacity line-clamp-2">
                         {relatedArticle.title}
                       </p>
                       <p className="text-xs text-gray-500 mt-1">
