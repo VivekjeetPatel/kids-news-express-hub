@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
-import { getArticleById } from '@/data/mockArticles';
+import { getArticleById } from '@/data/articles';
 import { Button } from '@/components/ui/button';
 import ArticleHeader from '@/components/Articles/ArticleHeader';
 import ArticleContent from '@/components/Articles/ArticleContent';

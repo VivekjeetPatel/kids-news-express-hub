@@ -1,9 +1,8 @@
-
 import React from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import FeatureArticle from '@/components/Articles/FeatureArticle';
 import CategorySection from '@/components/Articles/CategorySection';
-import { getHeadlineArticle, getCategoryArticles } from '@/data/mockArticles';
+import { getHeadlineArticle, getCategoryArticles } from '@/data/articles';
 
 const Index = () => {
   const headlineArticle = getHeadlineArticle();
