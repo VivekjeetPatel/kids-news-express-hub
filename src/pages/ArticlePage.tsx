@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
 import { getArticleById } from '@/data/mockArticles';
 import { Badge } from '@/components/ui/badge';
-import { CalendarDays, Clock, MessageSquare, Share2 } from 'lucide-react';
+import { CalendarDays, Clock, MessageSquare, Share2, Facebook, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import DebateVote from '@/components/Articles/DebateVote';
+import { Card, CardContent } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 const ArticlePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -74,84 +76,146 @@ const ArticlePage = () => {
 
   return (
     <MainLayout>
-      <article className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Article Header */}
-          <div className="mb-8">
-            <div className="flex items-center space-x-2 mb-4">
-              <Badge className={`${getCategoryColor(article.category)}`}>
-                {article.category}
-              </Badge>
-              {article.readingLevel && (
-                <Badge className="bg-white border text-flyingbus-purple">
-                  Reading Level: {article.readingLevel}
+      <div className="bg-white">
+        {/* Article Hero Section */}
+        <div className="w-full bg-gradient-to-b from-flyingbus-background to-white py-12 mb-8">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center space-x-2 mb-6">
+                <Badge className={`${getCategoryColor(article.category)}`}>
+                  {article.category}
                 </Badge>
-              )}
+                {article.readingLevel && (
+                  <Badge variant="outline" className="bg-white border text-flyingbus-purple">
+                    Reading Level: {article.readingLevel}
+                  </Badge>
+                )}
+              </div>
+              
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                {article.title}
+              </h1>
+              
+              <div className="flex flex-wrap items-center text-flyingbus-muted-text mb-8">
+                <span className="mr-4 font-medium">By {article.author}</span>
+                <span className="flex items-center mr-4">
+                  <CalendarDays size={16} className="mr-1" />
+                  {article.publishDate}
+                </span>
+                <span className="flex items-center mr-4">
+                  <Clock size={16} className="mr-1" />
+                  5 min read
+                </span>
+              </div>
             </div>
-            
-            <h1 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              {article.title}
-            </h1>
-            
-            <div className="flex flex-wrap items-center text-flyingbus-muted-text mb-4">
-              <span className="mr-4">By {article.author}</span>
-              <span className="flex items-center mr-4">
-                <CalendarDays size={16} className="mr-1" />
-                {article.publishDate}
-              </span>
-              <span className="flex items-center mr-4">
-                <Clock size={16} className="mr-1" />
-                5 min read
-              </span>
-              <span className="flex items-center">
-                <MessageSquare size={16} className="mr-1" />
-                {article.commentCount} comments
-              </span>
-            </div>
-          </div>
-          
-          {/* Featured Image */}
-          <div className="mb-8 rounded-xl overflow-hidden">
-            <img 
-              src={article.imageUrl} 
-              alt={article.title}
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          
-          {/* Article Content */}
-          <div 
-            className="prose max-w-none mb-8"
-            dangerouslySetInnerHTML={{ __html: articleContent }}
-          />
-          
-          {/* Debate Section */}
-          {isDebate && (
-            <div className="my-12">
-              <DebateVote 
-                debateId={article.id} 
-                topicTitle={article.title}
-                initialVotes={{ yes: 55, no: 45 }} 
-              />
-            </div>
-          )}
-          
-          {/* Share Buttons */}
-          <div className="flex items-center justify-between border-t border-b py-4 my-8">
-            <div>
-              <span className="text-flyingbus-muted-text mr-2">Share this article:</span>
-              <Button variant="ghost" size="sm" className="rounded-full">
-                <Share2 size={18} />
-              </Button>
-            </div>
-            
-            <Button className="bg-flyingbus-purple hover:bg-purple-600 rounded-full">
-              <MessageSquare size={18} className="mr-2" />
-              Comment
-            </Button>
           </div>
         </div>
-      </article>
+        
+        {/* Main Content Area with Sidebar */}
+        <div className="container mx-auto px-4 pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
+            {/* Article Content - Takes 8/12 columns on large screens */}
+            <div className="lg:col-span-8">
+              {/* Featured Image */}
+              <div className="mb-8 rounded-xl overflow-hidden">
+                <img 
+                  src={article.imageUrl} 
+                  alt={article.title}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+              
+              {/* Article Content */}
+              <div 
+                className="prose prose-lg max-w-none mb-12 prose-headings:font-display prose-headings:font-semibold prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-flyingbus-purple"
+                dangerouslySetInnerHTML={{ __html: articleContent }}
+              />
+              
+              {/* Debate Section */}
+              {isDebate && (
+                <div className="my-12 bg-gray-50 p-6 rounded-xl">
+                  <DebateVote 
+                    debateId={article.id} 
+                    topicTitle={article.title}
+                    initialVotes={{ yes: 55, no: 45 }} 
+                  />
+                </div>
+              )}
+              
+              {/* Article Footer */}
+              <Separator className="my-8" />
+              
+              <div className="flex items-center justify-between py-4">
+                <div className="flex items-center space-x-2">
+                  <span className="text-flyingbus-muted-text">Share:</span>
+                  <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
+                    <Facebook size={16} />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
+                    <Twitter size={16} />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
+                    <Share2 size={16} />
+                  </Button>
+                </div>
+                
+                <div className="flex items-center">
+                  <span className="text-flyingbus-muted-text mr-2">
+                    <MessageSquare size={16} className="inline mr-1" />
+                    {article.commentCount} comments
+                  </span>
+                  <Button className="ml-2 bg-flyingbus-purple hover:bg-purple-600">
+                    Join Discussion
+                  </Button>
+                </div>
+              </div>
+            </div>
+            
+            {/* Sidebar - Takes 4/12 columns on large screens */}
+            <div className="lg:col-span-4">
+              {/* Sticky sidebar for ads or CTAs */}
+              <div className="sticky top-24">
+                {/* Author Info Card */}
+                <Card className="mb-6">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-semibold mb-2">About the Author</h3>
+                    <p className="text-flyingbus-muted-text mb-4">
+                      {article.author} is a young journalist passionate about sharing important stories.
+                    </p>
+                    <Button variant="outline" className="w-full">View Profile</Button>
+                  </CardContent>
+                </Card>
+                
+                {/* Placeholder for Future Ads/CTAs */}
+                <div className="bg-gray-100 rounded-xl p-6 text-center mb-6 min-h-[300px] flex items-center justify-center">
+                  <div>
+                    <p className="text-flyingbus-muted-text mb-2">Future Ad Space</p>
+                    <p className="text-xs text-gray-500">This space reserved for ads or in-house CTAs</p>
+                  </div>
+                </div>
+                
+                {/* Related Articles Card */}
+                <Card>
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-semibold mb-4">Related Articles</h3>
+                    <ul className="space-y-4">
+                      <li>
+                        <a href="#" className="text-flyingbus-purple hover:underline">Young Scientists Create Eco-Friendly Plastic Alternative</a>
+                      </li>
+                      <li>
+                        <a href="#" className="text-flyingbus-purple hover:underline">How to Start a Climate Club at Your School</a>
+                      </li>
+                      <li>
+                        <a href="#" className="text-flyingbus-purple hover:underline">Kids Lead The Way in Community Clean-up Effort</a>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </MainLayout>
   );
 };
