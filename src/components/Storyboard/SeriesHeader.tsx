@@ -14,16 +14,18 @@ interface SeriesHeaderProps {
 const SeriesHeader: React.FC<SeriesHeaderProps> = ({ article }) => {
   const navigate = useNavigate();
   
-  // Sample background images for Storyboard series
+  // Sample background images for Storyboard series - using direct URLs without query params
   const sampleBackgrounds = [
-    'https://images.unsplash.com/photo-1516849677043-ef67c9557e16', // Space launch
-    'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9', // Volcano project
-    'https://images.unsplash.com/photo-1451187580459-43490279c0fa' // Space training
+    'https://images.unsplash.com/photo-1516849677043-ef67c9557e16', 
+    'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9', 
+    'https://images.unsplash.com/photo-1451187580459-43490279c0fa' 
   ];
 
   // Choose a background image, default to the article's image or a fallback
   const backgroundImage = article.imageUrl || 
     sampleBackgrounds[Math.floor(Math.random() * sampleBackgrounds.length)];
+  
+  console.log("Background image URL:", backgroundImage); // Debug the selected image URL
   
   return (
     <div className="relative w-full" style={{ margin: '0', padding: '0' }}>
@@ -31,18 +33,20 @@ const SeriesHeader: React.FC<SeriesHeaderProps> = ({ article }) => {
       <div 
         className="absolute top-0 left-0 right-0 bottom-0 w-screen bg-cover bg-center" 
         style={{ 
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: `url("${backgroundImage}")`,
           backgroundPosition: 'center 20%',
           width: '100vw',
           marginLeft: 'calc(-50vw + 50%)',
-          position: 'absolute'
+          position: 'absolute',
+          height: '100%',
+          zIndex: 0
         }}>
         {/* Gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-flyingbus-background" 
              style={{ width: '100%', height: '100%' }}></div>
       </div>
       
-      <div className="relative pt-6 pb-16 w-full">
+      <div className="relative pt-6 pb-16 w-full z-10">
         <div className="container mx-auto px-4">
           <Button
             variant="outline" 
