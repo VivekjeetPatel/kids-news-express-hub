@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 import Logo from '@/components/ui/logo';
 
 const Header = () => {
@@ -31,7 +32,7 @@ const Header = () => {
 
           <div className="hidden md:flex items-center space-x-2">
             <Button variant="outline" size="sm" className="rounded-md">Sign In</Button>
-            <Button size="sm" className="bg-gray-800 hover:bg-gray-700 text-white rounded-md">Join Us</Button>
+            <RainbowButton className="text-sm py-1">Join Us</RainbowButton>
           </div>
 
           {/* Mobile menu button */}
@@ -55,7 +56,7 @@ const Header = () => {
             </nav>
             <div className="mt-4 flex space-x-2">
               <Button variant="outline" size="sm" className="flex-1 rounded-md">Sign In</Button>
-              <Button size="sm" className="flex-1 bg-gray-800 hover:bg-gray-700 text-white rounded-md">Join Us</Button>
+              <RainbowButton className="flex-1 text-sm py-1">Join Us</RainbowButton>
             </div>
           </div>
         )}

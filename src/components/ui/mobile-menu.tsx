@@ -1,9 +1,11 @@
+
 import * as React from "react"
 import { Link } from "react-router-dom"
 import { Menu, X, User, BookOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { HeaderButtons } from "./header-buttons"
 import { NavButton } from "./nav-button"
+import { RainbowButton } from "./rainbow-button"
 
 interface NavItem {
   to?: string
@@ -85,10 +87,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
               <User className="mr-2 h-4 w-4" />
               Sign In
             </NavButton>
-            <NavButton className="w-full bg-gray-800 text-white">
+            <RainbowButton className="w-full flex items-center justify-center">
               <BookOpen className="mr-2 h-4 w-4" />
               Join Us
-            </NavButton>
+            </RainbowButton>
           </div>
         </nav>
       </div>

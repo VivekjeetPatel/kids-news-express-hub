@@ -2,6 +2,7 @@
 import React from 'react';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 import { MessageSquare, Share2, Facebook, Twitter } from 'lucide-react';
 import { ArticleProps } from '@/components/Articles/ArticleCard';
 
@@ -33,9 +34,9 @@ const ArticleFooter: React.FC<ArticleFooterProps> = ({ article }) => {
             <MessageSquare size={16} className="inline mr-1" />
             {article.commentCount} comments
           </span>
-          <Button className="ml-2 bg-gray-800 hover:bg-gray-700 text-white">
+          <RainbowButton className="ml-2 text-sm">
             Join Discussion
-          </Button>
+          </RainbowButton>
         </div>
       </div>
     </>

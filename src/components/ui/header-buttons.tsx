@@ -2,6 +2,7 @@
 import * as React from "react"
 import { User, BookOpen } from "lucide-react"
 import { NavButton } from "./nav-button"
+import { RainbowButton } from "./rainbow-button"
 
 interface HeaderButtonsProps {
   className?: string
@@ -14,10 +15,10 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({ className }) => {
         <User className="mr-2 h-4 w-4" />
         Sign In
       </NavButton>
-      <NavButton variant="default" className="hidden md:flex">
+      <RainbowButton className="hidden md:flex items-center">
         <BookOpen className="mr-2 h-4 w-4" />
         Join Us
-      </NavButton>
+      </RainbowButton>
     </div>
   )
 }

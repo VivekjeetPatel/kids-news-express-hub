@@ -4,7 +4,8 @@
 }
 
 .btn-primary {
-  @apply bg-gray-800 text-white hover:bg-gray-700 font-medium rounded-md px-5 py-2 transition-colors;
+  @apply font-medium rounded-md px-5 py-2 transition-colors;
+  /* The RainbowButton component will be used instead of this class */
 }
 
 .btn-secondary {
