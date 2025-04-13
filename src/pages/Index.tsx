@@ -19,34 +19,36 @@ const Index = () => {
 
   return (
     <MainLayout fullWidth={true}>
-      <div className="w-full max-w-none mb-12">
+      <div className="w-full mb-12">
         {headlineArticle && (
           <FeatureArticle {...headlineArticle} />
         )}
       </div>
       
-      <div className="grid grid-cols-1 gap-8 mb-16">
-        {categoryMapping.slice(0, 2).map((category) => (
-          <CategorySection
-            key={category.slug}
-            title={category.title}
-            slug={category.slug}
-            articles={getCategoryArticles(category.title)}
-            color={category.color}
-          />
-        ))}
-      </div>
-      
-      <div className="space-y-12">
-        {categoryMapping.slice(2).map((category) => (
-          <CategorySection
-            key={category.slug}
-            title={category.title}
-            slug={category.slug}
-            articles={getCategoryArticles(category.title)}
-            color={category.color}
-          />
-        ))}
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="grid grid-cols-1 gap-8 mb-16">
+          {categoryMapping.slice(0, 2).map((category) => (
+            <CategorySection
+              key={category.slug}
+              title={category.title}
+              slug={category.slug}
+              articles={getCategoryArticles(category.title)}
+              color={category.color}
+            />
+          ))}
+        </div>
+        
+        <div className="space-y-12">
+          {categoryMapping.slice(2).map((category) => (
+            <CategorySection
+              key={category.slug}
+              title={category.title}
+              slug={category.slug}
+              articles={getCategoryArticles(category.title)}
+              color={category.color}
+            />
+          ))}
+        </div>
       </div>
     </MainLayout>
   );
