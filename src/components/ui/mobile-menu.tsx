@@ -1,7 +1,6 @@
-
 import * as React from "react"
 import { Link } from "react-router-dom"
-import { Menu, X } from "lucide-react"
+import { Menu, X, User, BookOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { HeaderButtons } from "./header-buttons"
 import { NavButton } from "./nav-button"
