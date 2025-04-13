@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +16,7 @@ export interface ArticleProps {
   videoUrl?: string;
   readingLevel: string;
   commentCount: number;
+  duration?: string; // Added duration as an optional property
 }
 
 const ArticleCard = ({

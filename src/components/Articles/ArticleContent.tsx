@@ -30,7 +30,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
         <VideoPlayer 
           videoUrl={article.videoUrl!} 
           title={article.title} 
-          duration={article.duration || "3:45"} // Add a default duration if not available
+          duration={article.duration} // Now correctly passing the optional duration
         />
       )}
       
