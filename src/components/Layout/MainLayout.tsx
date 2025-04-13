@@ -12,9 +12,13 @@ const MainLayout = ({ children, fullWidth = false }: MainLayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen bg-flyingbus-background">
       <ModernHeader />
-      <main className={`flex-grow w-full ${fullWidth ? 'px-0' : ''}`}>
+      <main className="flex-grow w-full">
         {fullWidth ? (
-          children
+          <>
+            <div className="max-w-6xl mx-auto px-4 py-6">
+              {children}
+            </div>
+          </>
         ) : (
           <div className="max-w-6xl mx-auto px-4 py-6">
             {children}

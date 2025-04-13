@@ -18,8 +18,8 @@ const Index = () => {
   ];
 
   return (
-    <MainLayout>
-      <div className="mb-12">
+    <MainLayout fullWidth={true}>
+      <div className="w-full max-w-none mb-12">
         {headlineArticle && (
           <FeatureArticle {...headlineArticle} />
         )}
