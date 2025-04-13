@@ -34,7 +34,8 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
         />
       )}
       
-      <div className="mb-8 rounded-xl overflow-hidden">
+      {/* Add margin-top to image when video is present for Spice It Up articles */}
+      <div className={`mb-8 rounded-xl overflow-hidden ${isSpiceItUpWithVideo ? 'mt-8' : ''}`}>
         <AspectRatio ratio={16/9} className="bg-gray-100">
           <img 
             src={article.imageUrl} 
