@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
@@ -199,7 +198,7 @@ calculateCarbonOffset(5000, 10); // = 1,085,000 kg CO2 offset</code></pre>
                 className="article-content prose prose-lg max-w-none mb-12 
                   prose-headings:font-display 
                   prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-6 prose-h1:leading-tight
-                  prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-flyingbus-purple
+                  prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-10 prose-h2:mb-4 
                   prose-h3:text-xl prose-h3:font-medium prose-h3:mt-8 prose-h3:mb-4
                   prose-p:text-gray-800 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
                   prose-a:text-flyingbus-purple prose-a:no-underline prose-a:border-b prose-a:border-flyingbus-purple hover:prose-a:border-b-2
