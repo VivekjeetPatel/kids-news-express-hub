@@ -19,36 +19,34 @@ const Index = () => {
 
   return (
     <MainLayout>
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          {headlineArticle && (
-            <FeatureArticle {...headlineArticle} />
-          )}
-        </div>
-        
-        <div className="grid grid-cols-1 gap-8 mb-16">
-          {categoryMapping.slice(0, 2).map((category) => (
-            <CategorySection
-              key={category.slug}
-              title={category.title}
-              slug={category.slug}
-              articles={getCategoryArticles(category.title)}
-              color={category.color}
-            />
-          ))}
-        </div>
-        
-        <div className="space-y-12">
-          {categoryMapping.slice(2).map((category) => (
-            <CategorySection
-              key={category.slug}
-              title={category.title}
-              slug={category.slug}
-              articles={getCategoryArticles(category.title)}
-              color={category.color}
-            />
-          ))}
-        </div>
+      <div className="mb-12">
+        {headlineArticle && (
+          <FeatureArticle {...headlineArticle} />
+        )}
+      </div>
+      
+      <div className="grid grid-cols-1 gap-8 mb-16">
+        {categoryMapping.slice(0, 2).map((category) => (
+          <CategorySection
+            key={category.slug}
+            title={category.title}
+            slug={category.slug}
+            articles={getCategoryArticles(category.title)}
+            color={category.color}
+          />
+        ))}
+      </div>
+      
+      <div className="space-y-12">
+        {categoryMapping.slice(2).map((category) => (
+          <CategorySection
+            key={category.slug}
+            title={category.title}
+            slug={category.slug}
+            articles={getCategoryArticles(category.title)}
+            color={category.color}
+          />
+        ))}
       </div>
     </MainLayout>
   );
