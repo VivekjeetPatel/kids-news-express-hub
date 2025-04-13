@@ -36,10 +36,12 @@ This document serves as a master checklist tracking both completed and pending t
 - [x] Build article header and footer components
 - [x] Add article sidebar elements
 - [x] Create mock article content
+- [x] Add video support for "Spice It Up" articles
 
 ### 🔲 Editor System
 - [ ] Build rich text editor for article creation
 - [ ] Implement image upload functionality
+- [ ] Add video upload functionality
 - [ ] Add formatting controls for young writers
 - [ ] Create draft saving system
 - [ ] Implement revision tracking
@@ -191,4 +193,3 @@ This document serves as a master checklist tracking both completed and pending t
 - [ ] Add internationalization support
 - [ ] Build school/classroom networks feature
 - [ ] Create featured journalist spotlights
-

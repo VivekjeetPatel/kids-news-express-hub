@@ -3,6 +3,7 @@ import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import DebateVote from '@/components/Articles/DebateVote';
 import { ArticleProps } from '@/components/Articles/ArticleCard';
+import VideoPlayer from '@/components/Articles/VideoPlayer';
 
 interface ArticleContentProps {
   article: ArticleProps;
@@ -19,8 +20,16 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
   // Check if this is a debate article - use case-insensitive comparison
   const isDebate = article.category.toLowerCase() === 'debate' || article.category.toLowerCase() === 'debates';
   
+  // Check if this is a Spice It Up article with video
+  const isSpiceItUpWithVideo = article.category === 'Spice It Up' && article.videoUrl;
+  
   return (
     <div className="lg:col-span-8">
+      {/* Show video for Spice It Up articles that have a video URL */}
+      {isSpiceItUpWithVideo && (
+        <VideoPlayer videoUrl={article.videoUrl!} title={article.title} />
+      )}
+      
       <div className="mb-8 rounded-xl overflow-hidden">
         <AspectRatio ratio={16/9} className="bg-gray-100">
           <img 

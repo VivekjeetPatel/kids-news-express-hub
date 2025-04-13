@@ -10,6 +10,7 @@ export const spiceItUpArticles: ArticleProps[] = [
     author: 'Jacob Williams, 9',
     publishDate: 'Apr 5, 2025',
     imageUrl: 'https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZGlub3NhdXJ8ZW58MHx8MHx8fDA%3D',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Sample YouTube embed URL
     readingLevel: 'Ages 8-10',
     commentCount: 24
   },

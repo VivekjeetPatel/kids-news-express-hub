@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
@@ -13,8 +12,9 @@ export interface ArticleProps {
   author: string;
   publishDate: string;
   imageUrl: string;
-  readingLevel?: string;
-  commentCount?: number;
+  videoUrl?: string;
+  readingLevel: string;
+  commentCount: number;
 }
 
 const ArticleCard = ({
@@ -25,6 +25,7 @@ const ArticleCard = ({
   author,
   publishDate,
   imageUrl,
+  videoUrl,
   readingLevel,
   commentCount,
 }: ArticleProps) => {
