@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { CalendarDays, MessageSquare } from 'lucide-react';
+import { getCategoryColor } from '@/utils/categoryColors';
 
 export interface ArticleProps {
   id: string;
@@ -27,21 +28,6 @@ const ArticleCard = ({
   readingLevel,
   commentCount,
 }: ArticleProps) => {
-  // Map categories to colors
-  const getCategoryColor = (category: string) => {
-    const categories: {[key: string]: string} = {
-      'Headliners': 'bg-flyingbus-purple text-white',
-      'Debates': 'bg-flyingbus-red text-white',
-      'Spice It Up': 'bg-flyingbus-orange text-white',
-      'Storyboard': 'bg-flyingbus-blue text-white',
-      'In the Neighborhood': 'bg-flyingbus-green text-white',
-      'Learning': 'bg-flyingbus-yellow text-black',
-      'School News': 'bg-flyingbus-pink text-white'
-    };
-    
-    return categories[category] || 'bg-gray-500 text-white';
-  };
-
   return (
     <article className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
       <Link to={`/article/${id}`} className="block h-full">
