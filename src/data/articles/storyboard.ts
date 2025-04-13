@@ -1,4 +1,19 @@
-import { StoryboardArticleProps } from './storyboard';
+
+import { ArticleProps } from '@/components/Articles/ArticleCard';
+
+export interface StoryboardEpisode {
+  id: string;
+  title: string;
+  description: string;
+  thumbnailUrl: string;
+  videoUrl: string;
+  duration: string;
+  releaseDate: string;
+}
+
+export interface StoryboardArticleProps extends ArticleProps {
+  episodes: StoryboardEpisode[];
+}
 
 export const storyboardArticles: StoryboardArticleProps[] = [
   {
