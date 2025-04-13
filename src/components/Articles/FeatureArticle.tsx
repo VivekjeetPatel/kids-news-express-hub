@@ -53,7 +53,7 @@ const FeatureArticle = ({
           )}
         </div>
         
-        <h2 className="text-xl md:text-3xl font-medium mb-2 md:mb-3">
+        <h2 className="feature-article-title">
           {title}
         </h2>
         
