@@ -38,6 +38,8 @@ This document serves as a master checklist tracking both completed and pending t
 - [x] Create mock article content
 - [x] Add video support for "Spice It Up" articles
 - [x] Implement "Storyboard" series with video episodes
+- [x] Create catalog view for Storyboard series
+- [x] Add individual episode viewing pages
 
 ### 🔲 Editor System
 - [ ] Build rich text editor for article creation
