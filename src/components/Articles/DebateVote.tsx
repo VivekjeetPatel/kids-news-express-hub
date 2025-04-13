@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -24,24 +23,18 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
   const yesPercentage = totalVotes > 0 ? Math.round((votes.yes / totalVotes) * 100) : 0;
   const noPercentage = totalVotes > 0 ? Math.round((votes.no / totalVotes) * 100) : 0;
 
-  // Check if user has already voted on this debate (from localStorage)
   useEffect(() => {
     const votedDebates = JSON.parse(localStorage.getItem('votedDebates') || '{}');
     if (votedDebates[debateId]) {
       setHasVoted(true);
-      // If they've voted before, we also know their choice
       const choice = votedDebates[debateId] as 'yes' | 'no';
       setUserChoice(choice);
     }
   }, [debateId]);
 
-  // Simulate an API call to check if this IP has voted
   const simulateIpCheck = (debateId: string): Promise<boolean> => {
     return new Promise((resolve) => {
-      // Simulate network delay for realism
       setTimeout(() => {
-        // Since we don't have a real backend, we'll just use localStorage as our "IP database" 
-        // In a real implementation, this would be an API call to check the IP
         const votedDebates = JSON.parse(localStorage.getItem('votedDebates') || '{}');
         resolve(!!votedDebates[debateId]);
       }, 600);
@@ -57,7 +50,6 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
     setIsVoting(true);
 
     try {
-      // First layer: Check local storage
       const votedDebates = JSON.parse(localStorage.getItem('votedDebates') || '{}');
       
       if (votedDebates[debateId]) {
@@ -67,7 +59,6 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
         return;
       }
 
-      // Second layer: Simulate IP address check
       const hasIpVoted = await simulateIpCheck(debateId);
       
       if (hasIpVoted) {
@@ -77,13 +68,11 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
         return;
       }
 
-      // If both checks pass, record the vote
       const newVotes = { ...votes };
       newVotes[choice] += 1;
       setVotes(newVotes);
       setUserChoice(choice);
       
-      // Save to localStorage to prevent voting again
       votedDebates[debateId] = choice;
       localStorage.setItem('votedDebates', JSON.stringify(votedDebates));
       
@@ -125,17 +114,27 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
                 isVoting ? 'opacity-70 cursor-not-allowed' : ''
               } ${
                 userChoice === 'yes'
-                  ? 'border-green-500 bg-green-50 shadow-inner shadow-green-100'
-                  : 'hover:border-green-500 hover:bg-green-50 hover:shadow-md'
+                  ? 'border-green-600 bg-green-50 shadow-inner shadow-green-100'
+                  : 'hover:border-green-600 hover:bg-green-50/30 hover:shadow-md'
               }`}
             >
               <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-colors ${
-                userChoice === 'yes' ? 'bg-green-500 text-white' : 'bg-gray-100'
+                userChoice === 'yes' 
+                  ? 'bg-green-600 text-white' 
+                  : 'bg-green-50 text-green-600 border border-green-200'
               }`}>
                 <ThumbsUp size={24} />
               </div>
-              <span className={`font-medium ${userChoice === 'yes' ? 'text-green-700' : 'text-gray-700'}`}>YES</span>
-              {hasVoted && <span className={`text-sm mt-1 ${userChoice === 'yes' ? 'text-green-600' : 'text-gray-500'}`}>{yesPercentage}%</span>}
+              <span className={`font-medium ${
+                userChoice === 'yes' ? 'text-green-800' : 'text-green-700'
+              }`}>YES</span>
+              {hasVoted && (
+                <span className={`text-sm mt-1 ${
+                  userChoice === 'yes' ? 'text-green-700' : 'text-green-600'
+                }`}>
+                  {yesPercentage}%
+                </span>
+              )}
             </Button>
             
             <Button
@@ -146,36 +145,46 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
                 isVoting ? 'opacity-70 cursor-not-allowed' : ''
               } ${
                 userChoice === 'no'
-                  ? 'border-red-500 bg-red-50 shadow-inner shadow-red-100'
-                  : 'hover:border-red-500 hover:bg-red-50 hover:shadow-md'
+                  ? 'border-red-600 bg-red-50 shadow-inner shadow-red-100'
+                  : 'hover:border-red-600 hover:bg-red-50/30 hover:shadow-md'
               }`}
             >
               <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-colors ${
-                userChoice === 'no' ? 'bg-red-500 text-white' : 'bg-gray-100'
+                userChoice === 'no' 
+                  ? 'bg-red-600 text-white' 
+                  : 'bg-red-50 text-red-600 border border-red-200'
               }`}>
                 <ThumbsDown size={24} />
               </div>
-              <span className={`font-medium ${userChoice === 'no' ? 'text-red-700' : 'text-gray-700'}`}>NO</span>
-              {hasVoted && <span className={`text-sm mt-1 ${userChoice === 'no' ? 'text-red-600' : 'text-gray-500'}`}>{noPercentage}%</span>}
+              <span className={`font-medium ${
+                userChoice === 'no' ? 'text-red-800' : 'text-red-700'
+              }`}>NO</span>
+              {hasVoted && (
+                <span className={`text-sm mt-1 ${
+                  userChoice === 'no' ? 'text-red-700' : 'text-red-600'
+                }`}>
+                  {noPercentage}%
+                </span>
+              )}
             </Button>
           </div>
           
           {hasVoted && (
             <div className="space-y-4 pt-2 pb-1">
-              <div className="space-y-2 bg-gradient-to-r from-green-50 to-green-100/50 p-3 rounded-lg">
+              <div className="space-y-2 bg-green-50 p-3 rounded-lg">
                 <div className="flex justify-between text-sm">
                   <span className="font-medium text-green-700">Yes ({votes.yes} votes)</span>
                   <span className="text-green-700 font-medium">{yesPercentage}%</span>
                 </div>
-                <Progress value={yesPercentage} className="h-2.5 bg-white" indicatorClassName="bg-green-500" />
+                <Progress value={yesPercentage} className="h-2.5 bg-green-100" indicatorClassName="bg-green-600" />
               </div>
               
-              <div className="space-y-2 bg-gradient-to-r from-red-50 to-red-100/50 p-3 rounded-lg">
+              <div className="space-y-2 bg-red-50 p-3 rounded-lg">
                 <div className="flex justify-between text-sm">
                   <span className="font-medium text-red-700">No ({votes.no} votes)</span>
                   <span className="text-red-700 font-medium">{noPercentage}%</span>
                 </div>
-                <Progress value={noPercentage} className="h-2.5 bg-white" indicatorClassName="bg-red-500" />
+                <Progress value={noPercentage} className="h-2.5 bg-red-100" indicatorClassName="bg-red-600" />
               </div>
               
               <div className="flex items-center justify-center gap-2 text-gray-500 text-sm bg-gray-50 py-2 px-4 rounded-full mx-auto w-fit">
