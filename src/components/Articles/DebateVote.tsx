@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ThumbsUp, ThumbsDown, Info } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, Info, Sparkles, Users } from 'lucide-react';
 import { toast } from 'sonner';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 interface DebateVoteProps {
   debateId: string;
@@ -18,6 +19,7 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
   const [votes, setVotes] = useState(initialVotes);
   const [hasVoted, setHasVoted] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
+  const [userChoice, setUserChoice] = useState<'yes' | 'no' | null>(null);
   const totalVotes = votes.yes + votes.no;
   const yesPercentage = totalVotes > 0 ? Math.round((votes.yes / totalVotes) * 100) : 0;
   const noPercentage = totalVotes > 0 ? Math.round((votes.no / totalVotes) * 100) : 0;
@@ -28,12 +30,8 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
     if (votedDebates[debateId]) {
       setHasVoted(true);
       // If they've voted before, we also know their choice
-      const userChoice = votedDebates[debateId];
-      
-      // This is just for UI highlighting which option they chose
-      const newVotes = { ...votes };
-      // We're not changing the actual vote count here, just using this to track which they picked
-      setVotes(prev => ({...prev, [userChoice]: prev[userChoice]}));
+      const choice = votedDebates[debateId] as 'yes' | 'no';
+      setUserChoice(choice);
     }
   }, [debateId]);
 
@@ -83,6 +81,7 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
       const newVotes = { ...votes };
       newVotes[choice] += 1;
       setVotes(newVotes);
+      setUserChoice(choice);
       
       // Save to localStorage to prevent voting again
       votedDebates[debateId] = choice;
@@ -99,90 +98,111 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-      <h3 className="text-xl font-medium text-gray-900 text-center mb-4">
-        What do you think?
-      </h3>
-      
-      <div className="text-center mb-6">
-        <div className="inline-block bg-flyingbus-purple/10 text-flyingbus-purple px-4 py-2 rounded-xl text-sm font-medium">
-          {topicTitle}
-        </div>
-      </div>
-      
-      <div className="flex items-center justify-center space-x-4 mb-6">
-        <Button
-          onClick={() => handleVote('yes')}
-          disabled={hasVoted || isVoting}
-          variant="outline"
-          className={`h-auto flex flex-col items-center p-3 rounded-xl border ${
-            isVoting ? 'opacity-70 cursor-not-allowed' : ''
-          } ${
-            hasVoted && votes.yes > votes.no 
-              ? 'border-green-500 bg-green-50' 
-              : 'hover:border-green-500 hover:bg-green-50'
-          }`}
-        >
-          <ThumbsUp size={28} className={`mb-2 ${hasVoted && votes.yes > votes.no ? 'text-green-500' : ''}`} />
-          <span className="text-sm font-medium">YES</span>
-          {hasVoted && <span className="text-xs mt-1">{yesPercentage}%</span>}
-        </Button>
-        
-        <Button
-          onClick={() => handleVote('no')}
-          disabled={hasVoted || isVoting}
-          variant="outline"
-          className={`h-auto flex flex-col items-center p-3 rounded-xl border ${
-            isVoting ? 'opacity-70 cursor-not-allowed' : ''
-          } ${
-            hasVoted && votes.no > votes.yes 
-              ? 'border-red-500 bg-red-50' 
-              : 'hover:border-red-500 hover:bg-red-50'
-          }`}
-        >
-          <ThumbsDown size={28} className={`mb-2 ${hasVoted && votes.no > votes.yes ? 'text-red-500' : ''}`} />
-          <span className="text-sm font-medium">NO</span>
-          {hasVoted && <span className="text-xs mt-1">{noPercentage}%</span>}
-        </Button>
-      </div>
-      
-      {hasVoted && (
-        <div className="space-y-3">
-          <div className="space-y-1">
-            <div className="flex justify-between text-xs text-gray-600">
-              <span>Yes ({votes.yes} votes)</span>
-              <span>{yesPercentage}%</span>
-            </div>
-            <Progress value={yesPercentage} className="h-2 bg-gray-100" indicatorClassName="bg-green-500" />
+    <Card className="overflow-hidden border-none shadow-md">
+      <CardHeader className="bg-gradient-to-r from-flyingbus-purple/10 to-flyingbus-blue/10 pb-4">
+        <div className="flex flex-col items-center space-y-2">
+          <div className="flex items-center justify-center gap-2">
+            <Sparkles size={18} className="text-flyingbus-purple" />
+            <h3 className="text-xl font-semibold text-gray-900">
+              What do you think?
+            </h3>
           </div>
           
-          <div className="space-y-1">
-            <div className="flex justify-between text-xs text-gray-600">
-              <span>No ({votes.no} votes)</span>
-              <span>{noPercentage}%</span>
-            </div>
-            <Progress value={noPercentage} className="h-2 bg-gray-100" indicatorClassName="bg-red-500" />
+          <div className="inline-flex items-center bg-white/60 backdrop-blur-sm text-flyingbus-purple px-4 py-2 rounded-full text-sm font-medium shadow-sm border border-flyingbus-purple/20">
+            {topicTitle}
+          </div>
+        </div>
+      </CardHeader>
+      
+      <CardContent className="p-6 pt-5">
+        <div className="flex flex-col space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+            <Button
+              onClick={() => handleVote('yes')}
+              disabled={hasVoted || isVoting}
+              variant="outline"
+              className={`h-auto flex flex-col items-center p-4 rounded-xl border transition-all duration-300 ${
+                isVoting ? 'opacity-70 cursor-not-allowed' : ''
+              } ${
+                userChoice === 'yes'
+                  ? 'border-green-500 bg-green-50 shadow-inner shadow-green-100'
+                  : 'hover:border-green-500 hover:bg-green-50 hover:shadow-md'
+              }`}
+            >
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-colors ${
+                userChoice === 'yes' ? 'bg-green-500 text-white' : 'bg-gray-100'
+              }`}>
+                <ThumbsUp size={24} />
+              </div>
+              <span className={`font-medium ${userChoice === 'yes' ? 'text-green-700' : 'text-gray-700'}`}>YES</span>
+              {hasVoted && <span className={`text-sm mt-1 ${userChoice === 'yes' ? 'text-green-600' : 'text-gray-500'}`}>{yesPercentage}%</span>}
+            </Button>
+            
+            <Button
+              onClick={() => handleVote('no')}
+              disabled={hasVoted || isVoting}
+              variant="outline"
+              className={`h-auto flex flex-col items-center p-4 rounded-xl border transition-all duration-300 ${
+                isVoting ? 'opacity-70 cursor-not-allowed' : ''
+              } ${
+                userChoice === 'no'
+                  ? 'border-red-500 bg-red-50 shadow-inner shadow-red-100'
+                  : 'hover:border-red-500 hover:bg-red-50 hover:shadow-md'
+              }`}
+            >
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-colors ${
+                userChoice === 'no' ? 'bg-red-500 text-white' : 'bg-gray-100'
+              }`}>
+                <ThumbsDown size={24} />
+              </div>
+              <span className={`font-medium ${userChoice === 'no' ? 'text-red-700' : 'text-gray-700'}`}>NO</span>
+              {hasVoted && <span className={`text-sm mt-1 ${userChoice === 'no' ? 'text-red-600' : 'text-gray-500'}`}>{noPercentage}%</span>}
+            </Button>
           </div>
           
-          <p className="text-center text-xs text-gray-500 mt-3">
-            Total votes: {totalVotes}
-          </p>
-        </div>
-      )}
-      
-      {!hasVoted && (
-        <div className="text-center text-xs text-gray-500 mt-3 flex items-center justify-center gap-1">
-          <Info size={12} />
-          <span>Your vote is anonymous and can only be cast once per debate</span>
-        </div>
-      )}
+          {hasVoted && (
+            <div className="space-y-4 pt-2 pb-1">
+              <div className="space-y-2 bg-gradient-to-r from-green-50 to-green-100/50 p-3 rounded-lg">
+                <div className="flex justify-between text-sm">
+                  <span className="font-medium text-green-700">Yes ({votes.yes} votes)</span>
+                  <span className="text-green-700 font-medium">{yesPercentage}%</span>
+                </div>
+                <Progress value={yesPercentage} className="h-2.5 bg-white" indicatorClassName="bg-green-500" />
+              </div>
+              
+              <div className="space-y-2 bg-gradient-to-r from-red-50 to-red-100/50 p-3 rounded-lg">
+                <div className="flex justify-between text-sm">
+                  <span className="font-medium text-red-700">No ({votes.no} votes)</span>
+                  <span className="text-red-700 font-medium">{noPercentage}%</span>
+                </div>
+                <Progress value={noPercentage} className="h-2.5 bg-white" indicatorClassName="bg-red-500" />
+              </div>
+              
+              <div className="flex items-center justify-center gap-2 text-gray-500 text-sm bg-gray-50 py-2 px-4 rounded-full mx-auto w-fit">
+                <Users size={14} />
+                <p>Total votes: {totalVotes}</p>
+              </div>
+            </div>
+          )}
+          
+          {!hasVoted && (
+            <div className="text-center text-xs text-gray-500 mt-1 flex items-center justify-center gap-1 bg-gray-50 py-2 px-4 rounded-full">
+              <Info size={12} />
+              <span>Your vote is anonymous and can only be cast once per debate</span>
+            </div>
+          )}
 
-      {isVoting && (
-        <div className="flex justify-center mt-4">
-          <div className="animate-pulse text-sm text-flyingbus-purple">Verifying vote...</div>
+          {isVoting && (
+            <div className="flex justify-center mt-1">
+              <div className="animate-pulse text-sm text-flyingbus-purple flex items-center gap-2">
+                <div className="animate-spin h-4 w-4 border-2 border-flyingbus-purple border-t-transparent rounded-full"></div>
+                Verifying vote...
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -52,7 +52,11 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
       />
       
       {isDebate && debateSettings && (
-        <div className="my-12 bg-gray-50 p-6 rounded-xl shadow-sm">
+        <div className="my-12">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+            <span className="inline-block w-10 h-0.5 bg-flyingbus-purple mr-4"></span>
+            Join the debate
+          </h3>
           <DebateVote 
             debateId={article.id} 
             topicTitle={article.title}
