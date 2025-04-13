@@ -66,12 +66,16 @@ This document serves as a master checklist tracking both completed and pending t
 - [x] Add voting status indicators
 - [x] Implement client-side vote tracking
 
-### 🔲 Comments System
-- [ ] Build moderated commenting interface
-- [ ] Create comment moderation tools
+### ✅ Comments System
+- [x] Build moderated commenting interface
+- [x] Create comment display components
+- [x] Implement comment form with avatar
+- [x] Add comment interactions (likes)
+- [x] Create toggle functionality for showing/hiding comments
 - [ ] Implement nested replies
 - [ ] Add reactions/emojis for comments
 - [ ] Build reporting mechanism for inappropriate content
+- [ ] Create backend integration for real-time comments
 
 ## User Management
 

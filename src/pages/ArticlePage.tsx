@@ -8,6 +8,7 @@ import ArticleHeader from '@/components/Articles/ArticleHeader';
 import ArticleContent from '@/components/Articles/ArticleContent';
 import ArticleSidebar from '@/components/Articles/ArticleSidebar';
 import ArticleFooter from '@/components/Articles/ArticleFooter';
+import { getCommentsByArticleId } from '@/data/comments';
 
 const ArticlePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -45,6 +46,13 @@ const ArticlePage = () => {
       </MainLayout>
     );
   }
+
+  // Get the actual comment count from our mock data
+  const comments = getCommentsByArticleId(article.id);
+  const articleWithComments = {
+    ...article,
+    commentCount: comments.length
+  };
 
   // Check if this is a debate article - both "Debate" and "Debates" are considered valid
   const isDebate = article.category.toLowerCase() === 'debate' || article.category.toLowerCase() === 'debates';
@@ -158,19 +166,19 @@ calculateCarbonOffset(5000, 10); // = 1,085,000 kg CO2 offset</code></pre>
   return (
     <MainLayout fullWidth>
       <div className="w-full bg-white">
-        <ArticleHeader article={article} />
+        <ArticleHeader article={articleWithComments} />
         
         <div className="w-full px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
             <ArticleContent 
-              article={article} 
+              article={articleWithComments} 
               articleContent={articleContent} 
               debateSettings={debateSettings}
             />
-            <ArticleSidebar article={article} />
+            <ArticleSidebar article={articleWithComments} />
             
             <div className="lg:col-span-8">
-              <ArticleFooter article={article} />
+              <ArticleFooter article={articleWithComments} />
             </div>
           </div>
         </div>
