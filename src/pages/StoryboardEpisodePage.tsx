@@ -78,7 +78,6 @@ const StoryboardEpisodePage = () => {
             </Badge>
           </div>
           
-          {/* Video player section - removed mb-6 to eliminate space */}
           <div className="rounded-xl overflow-hidden shadow-md">
             <VideoPlayer 
               videoUrl={currentEpisode.videoUrl} 
@@ -143,7 +142,6 @@ const StoryboardEpisodePage = () => {
         </div>
       </div>
       
-      {/* Series info and more episodes */}
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-semibold mb-6">More Episodes</h2>
         
