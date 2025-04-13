@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Play, Volume2, Maximize, Film, Clock } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -9,7 +8,7 @@ interface VideoPlayerProps {
   title: string;
   showTitlePanel?: boolean;
   duration?: string;
-  aspectRatio?: number; // Add customizable aspect ratio
+  aspectRatio?: number;
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ 
@@ -17,16 +16,22 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   title, 
   showTitlePanel = true,
   duration,
-  aspectRatio = 16/9 // Default to 16:9, but allow override
+  aspectRatio = 16/9
 }) => {
   // Determine if it's a YouTube video
   const isYoutubeVideo = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
+  
+  // For vertical videos (e.g., 9:16), add max-width to keep it contained
+  const isVerticalVideo = aspectRatio < 1;
   
   return (
     <Card className="overflow-hidden shadow-md bg-white">
       <CardContent className="p-0">
         <div className="relative flex justify-center bg-black">
-          <AspectRatio ratio={aspectRatio} className={aspectRatio === 9/16 ? 'max-w-md mx-auto' : 'w-full'}>
+          <AspectRatio 
+            ratio={aspectRatio} 
+            className={isVerticalVideo ? 'w-full max-w-[400px] mx-auto' : 'w-full'}
+          >
             {isYoutubeVideo ? (
               <iframe 
                 src={videoUrl}
