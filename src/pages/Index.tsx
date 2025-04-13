@@ -19,8 +19,7 @@ const Index = () => {
 
   return (
     <MainLayout>
-      {/* Full-width container for the featured article */}
-      <div className="w-full -mt-6 mb-12">
+      <div className="mb-12">
         {headlineArticle && (
           <FeatureArticle {...headlineArticle} />
         )}

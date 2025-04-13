@@ -12,7 +12,7 @@ const FeatureArticleImage = ({ imageUrl, title }: FeatureArticleImageProps) => {
   const fallbackImage = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neXxlbnwwfHwwfHx8MA%3D";
   
   return (
-    <div className="relative aspect-[16/9] w-full">
+    <div className="relative aspect-[16/9]">
       <img 
         src={hasError ? fallbackImage : imageUrl} 
         alt={title}
