@@ -27,8 +27,8 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
       onClick={() => onSelect(episode)}
     >
       <CardContent className="p-0">
-        <div className="relative">
-          <AspectRatio ratio={9/16} className="max-w-[180px] mx-auto">
+        <div className="relative w-full">
+          <AspectRatio ratio={9/16} className="w-full">
             <img 
               src={episode.thumbnailUrl} 
               alt={episode.title} 
