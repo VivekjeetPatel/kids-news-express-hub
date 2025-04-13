@@ -29,7 +29,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
     >
       <CardContent className="p-0">
         <div className="relative">
-          <AspectRatio ratio={16/9}>
+          <AspectRatio ratio={9/16} className="max-w-[180px] mx-auto">
             <img 
               src={episode.thumbnailUrl} 
               alt={episode.title} 
