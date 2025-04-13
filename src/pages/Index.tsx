@@ -1,3 +1,4 @@
+
 import React from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import FeatureArticle from '@/components/Articles/FeatureArticle';
@@ -18,7 +19,8 @@ const Index = () => {
 
   return (
     <MainLayout>
-      <div className="mb-12">
+      {/* Full-width container for the featured article */}
+      <div className="w-full -mt-6 mb-12">
         {headlineArticle && (
           <FeatureArticle {...headlineArticle} />
         )}

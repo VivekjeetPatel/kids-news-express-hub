@@ -7,7 +7,7 @@ import FeatureArticleFooter from './FeatureArticleFooter';
 
 const FeatureArticle = (props: ArticleProps) => {
   return (
-    <article className="relative rounded-lg overflow-hidden shadow-md group">
+    <article className="relative rounded-lg overflow-hidden shadow-md group w-full vw-100">
       <FeatureArticleImage imageUrl={props.imageUrl} title={props.title} />
       
       <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
