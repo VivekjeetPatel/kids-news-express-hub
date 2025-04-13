@@ -1,4 +1,3 @@
-
 import { ArticleProps } from '@/components/Articles/ArticleCard';
 
 export const mockArticles: ArticleProps[] = [
@@ -111,6 +110,83 @@ export const mockArticles: ArticleProps[] = [
     imageUrl: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2lkcyUyMHBob25lfGVufDB8fDB8fHww',
     readingLevel: 'Ages 9-13',
     commentCount: 42
+  },
+  {
+    id: '11',
+    title: 'Young Environmentalists Clean Up Local Beach',
+    excerpt: 'A group of middle school students organized a beach cleanup event, collecting over 200 pounds of trash and raising awareness about marine pollution.',
+    category: 'Headliners',
+    author: 'Emma Rodriguez, 13',
+    publishDate: 'Mar 29, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1530577197743-7adf14294584?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2glMjBjbGVhbnVwfGVufDB8fDB8fHww',
+    readingLevel: 'Ages 10-12',
+    commentCount: 18
+  },
+  {
+    id: '12',
+    title: 'Coding Club Develops App to Help Local Community',
+    excerpt: 'Students from Washington Middle School created a mobile app that connects volunteers with local community service opportunities.',
+    category: 'School News',
+    author: 'Alex Kim, 12',
+    publishDate: 'Mar 28, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd4c4e7c55?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kaW5nJTIwa2lkc3xlbnwwfHwwfHx8MA%3D%3D',
+    readingLevel: 'Ages 9-11',
+    commentCount: 22
+  },
+  {
+    id: '13',
+    title: 'Debate: Are Video Games Educational?',
+    excerpt: 'Students weigh the pros and cons of using video games as a learning tool in classrooms. What do you think?',
+    category: 'Debates',
+    author: 'Sarah Lee, 11',
+    publishDate: 'Mar 27, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1542751371-abacc94f9b1b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dmlkZW8lMjBnYW1lc3xlbnwwfHwwfHx8MA%3D%3D',
+    readingLevel: 'Ages 8-10',
+    commentCount: 35
+  },
+  {
+    id: '14',
+    title: 'Robotics Team Wins Regional Competition',
+    excerpt: 'Local middle school robotics team takes first place in the annual regional robotics challenge with their innovative design.',
+    category: 'Spice It Up',
+    author: 'Michael Chen, 14',
+    publishDate: 'Mar 26, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1533577180227-46c487ddab58?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9ib3RpY3MlMjBraWRzfGVufDB8fDB8fHww',
+    readingLevel: 'Ages 10-12',
+    commentCount: 16
+  },
+  {
+    id: '15',
+    title: 'Creative Writing: A Journey to Mars',
+    excerpt: 'Student-written science fiction story about a young astronaut\'s first mission to colonize Mars. An imaginative tale of adventure and discovery.',
+    category: 'Storyboard',
+    author: 'Olivia Wright, 12',
+    publishDate: 'Mar 25, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1614277786455-d187a4e43018?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BhY2UlMjBzdG9yeXxlbnwwfHwwfHx8MA%3D%3D',
+    readingLevel: 'Ages 9-11',
+    commentCount: 12
+  },
+  {
+    id: '16',
+    title: 'Neighborhood Tree Planting Initiative',
+    excerpt: 'A group of young activists organized a community tree planting event, adding 50 new trees to their local neighborhood park.',
+    category: 'In the Neighborhood',
+    author: 'David Rodriguez, 13',
+    publishDate: 'Mar 24, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1618477388880-36c4b3554b66?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJlZSUyMHBsYW50aW5nfGVufDB8fDB8fHww',
+    readingLevel: 'Ages 10-12',
+    commentCount: 20
+  },
+  {
+    id: '17',
+    title: 'DIY Solar System Model Workshop',
+    excerpt: 'Learn how to create an accurate and beautiful solar system model using everyday materials. Perfect for science enthusiasts!',
+    category: 'Learning',
+    author: 'Emily Tang, 11',
+    publishDate: 'Mar 23, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1614439012099-0f41cd36c2a2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29sYXIlMjBzeXN0ZW18ZW58MHx8MHx8fDA%3D',
+    readingLevel: 'Ages 8-12',
+    commentCount: 28
   }
 ];
 
