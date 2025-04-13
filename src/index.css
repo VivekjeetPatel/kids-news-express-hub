@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,9 +67,25 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 262 83% 66%;
   }
-}
 
-@layer base {
+  @font-face {
+    font-family: 'Open Sauce Two';
+    src: url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucetwo-regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucetwo-regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Open Sauce Two';
+    src: url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucetwo-bold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucetwo-bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
   * {
     @apply border-border;
   }
