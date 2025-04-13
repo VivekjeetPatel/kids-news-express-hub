@@ -12,15 +12,17 @@ interface FeatureArticleHeaderProps {
 const FeatureArticleHeader = ({ title, category, readingLevel }: FeatureArticleHeaderProps) => {
   return (
     <>
-      <Badge className={`${getCategoryColor(category)}`}>
-        {category}
-      </Badge>
-      
-      {readingLevel && (
-        <Badge className="bg-white text-gray-800">
-          Level: {readingLevel}
+      <div className="flex gap-2 mb-3">
+        <Badge className={`${getCategoryColor(category)}`}>
+          {category}
         </Badge>
-      )}
+        
+        {readingLevel && (
+          <Badge className="bg-white text-gray-800">
+            Level: {readingLevel}
+          </Badge>
+        )}
+      </div>
       
       <h2 className="feature-article-title">
         {title}
@@ -30,3 +32,4 @@ const FeatureArticleHeader = ({ title, category, readingLevel }: FeatureArticleH
 };
 
 export default FeatureArticleHeader;
+
