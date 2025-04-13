@@ -1,19 +1,4 @@
-
-import { ArticleProps } from '@/components/Articles/ArticleCard';
-
-export interface StoryboardEpisode {
-  id: string;
-  title: string;
-  description: string;
-  thumbnailUrl: string;
-  videoUrl: string;
-  duration: string;
-  releaseDate: string;
-}
-
-export interface StoryboardArticleProps extends ArticleProps {
-  episodes: StoryboardEpisode[];
-}
+import { StoryboardArticleProps } from './storyboard';
 
 export const storyboardArticles: StoryboardArticleProps[] = [
   {
@@ -32,7 +17,7 @@ export const storyboardArticles: StoryboardArticleProps[] = [
         title: 'Episode 1: Liftoff',
         description: 'Zara prepares for her first space mission and faces unexpected challenges during liftoff.',
         thumbnailUrl: 'https://images.unsplash.com/photo-1516849677043-ef67c9557e16?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3BhY2UlMjBsYXVuY2h8ZW58MHx8MHx8fDA%3D',
-        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        videoUrl: 'https://www.youtube.com/embed/UzMIRs9surfM',
         duration: '4:30',
         releaseDate: 'Apr 4, 2025'
       },
@@ -41,7 +26,7 @@ export const storyboardArticles: StoryboardArticleProps[] = [
         title: 'Episode 2: First Contact',
         description: 'Zara discovers something unexpected on the distant planet that changes her mission completely.',
         thumbnailUrl: 'https://images.unsplash.com/photo-1581822261290-991b38693972?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWxpZW58ZW58MHx8MHx8fDA%3D',
-        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        videoUrl: 'https://www.youtube.com/embed/fTFhLkSeN5Q',
         duration: '5:15',
         releaseDate: 'Apr 11, 2025'
       },
@@ -50,7 +35,7 @@ export const storyboardArticles: StoryboardArticleProps[] = [
         title: 'Episode 3: The Journey Home',
         description: 'After her discoveries, Zara must navigate the challenges of returning to Earth with her new knowledge.',
         thumbnailUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dm9sY2FubyUyMHByb2plY3R8ZW58MHx8MHx8fDA%3D',
-        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        videoUrl: 'https://www.youtube.com/embed/TKfdy9hENmM',
         duration: '6:00',
         releaseDate: 'Apr 18, 2025'
       }
