@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ArticleCard, { ArticleProps } from './ArticleCard';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BookOpen, MessageCircle, Sparkles, BookMarked, Home, GraduationCap, School } from 'lucide-react';
 import { 
   Carousel, 
   CarouselContent, 
@@ -29,12 +29,37 @@ const CategorySection = ({ title, slug, articles, color }: CategorySectionProps)
     'pink': 'border-flyingbus-pink text-flyingbus-pink',
   };
 
+  // Map category to icon
+  const getCategoryIcon = () => {
+    switch (title) {
+      case 'Headliners':
+        return <BookOpen className={`text-flyingbus-${color}`} size={24} />;
+      case 'Debates':
+        return <MessageCircle className={`text-flyingbus-${color}`} size={24} />;
+      case 'Spice It Up':
+        return <Sparkles className={`text-flyingbus-${color}`} size={24} />;
+      case 'Storyboard':
+        return <BookMarked className={`text-flyingbus-${color}`} size={24} />;
+      case 'In the Neighborhood':
+        return <Home className={`text-flyingbus-${color}`} size={24} />;
+      case 'Learning':
+        return <GraduationCap className={`text-flyingbus-${color}`} size={24} />;
+      case 'School News':
+        return <School className={`text-flyingbus-${color}`} size={24} />;
+      default:
+        return <BookOpen className={`text-flyingbus-${color}`} size={24} />;
+    }
+  };
+
   const borderColor = colorVariants[color] || colorVariants.purple;
 
   return (
     <section className="py-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className={`category-title ${borderColor}`}>{title}</h2>
+        <div className="flex items-center gap-2">
+          {getCategoryIcon()}
+          <h2 className={`category-title border-b-2 ${borderColor.replace(/text-[^\\s]+/, '')}`}>{title}</h2>
+        </div>
         <Link 
           to={`/${slug}`} 
           className="flex items-center text-sm font-medium hover:underline"
