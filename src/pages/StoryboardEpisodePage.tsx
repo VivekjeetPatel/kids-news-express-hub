@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
@@ -80,33 +79,33 @@ const StoryboardEpisodePage = () => {
           </div>
           
           {/* Video player section with immersive design */}
-          <div className="rounded-xl overflow-hidden bg-black shadow-xl mb-6">
+          <div className="rounded-xl overflow-hidden shadow-md mb-6">
             <VideoPlayer videoUrl={currentEpisode.videoUrl} title={currentEpisode.title} />
             
-            <div className="bg-gray-900 text-white p-4">
+            <div className="bg-white border-t border-gray-200 p-4">
               <div className="mb-4">
-                <h1 className="text-xl md:text-2xl font-semibold mb-1">
+                <h1 className="text-xl md:text-2xl font-semibold mb-1 text-gray-900">
                   {currentEpisode.title}
                 </h1>
-                <div className="text-sm text-gray-400 flex items-center">
+                <div className="text-sm text-gray-600 flex items-center">
                   <span className="flex items-center mr-4">
-                    <CalendarDays size={14} className="mr-1" />
+                    <CalendarDays size={14} className="mr-1 text-flyingbus-muted-text" />
                     {currentEpisode.releaseDate}
                   </span>
                   <span className="flex items-center">
-                    <Clock size={14} className="mr-1" />
+                    <Clock size={14} className="mr-1 text-flyingbus-muted-text" />
                     {currentEpisode.duration}
                   </span>
                 </div>
               </div>
               
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-gray-700 text-sm mb-4">
                 {currentEpisode.description}
               </p>
               
               <div className="flex flex-wrap gap-3 justify-between items-center">
                 <div>
-                  <span className="text-sm text-gray-400">
+                  <span className="text-sm text-gray-500">
                     Episode {currentIndex + 1} of {series.episodes.length}
                   </span>
                 </div>
@@ -115,7 +114,7 @@ const StoryboardEpisodePage = () => {
                   {prevEpisode && (
                     <Button 
                       variant="outline"
-                      className="text-white border-gray-700 hover:bg-gray-800"
+                      className="text-gray-800 border-gray-300 hover:bg-gray-100"
                       onClick={() => navigate(`/storyboard/${seriesId}/episode/${prevEpisode.id}`)}
                     >
                       <ChevronLeft size={16} className="mr-1" />
@@ -125,7 +124,7 @@ const StoryboardEpisodePage = () => {
                   
                   {nextEpisode && (
                     <Button 
-                      className="bg-flyingbus-blue hover:bg-flyingbus-blue/90"
+                      className="bg-gray-800 text-white hover:bg-gray-700"
                       onClick={() => navigate(`/storyboard/${seriesId}/episode/${nextEpisode.id}`)}
                     >
                       Next
