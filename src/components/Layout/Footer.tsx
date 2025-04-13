@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +7,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-medium text-lg mb-4">The Flying Bus</h3>
+            <h3 className="font-medium text-lg mb-4 text-white">The Flying Bus</h3>
             <p className="text-sm text-gray-400">
               News for Kids, By Kids - A safe and engaging space where young journalists 
               can express themselves through age-appropriate news content.
@@ -16,7 +15,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-medium text-base mb-4">Categories</h4>
+            <h4 className="font-medium text-base mb-4 text-white">Categories</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link to="/headliners" className="hover:text-white transition-colors">Headliners</Link></li>
               <li><Link to="/debates" className="hover:text-white transition-colors">Debates</Link></li>
@@ -26,7 +25,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-medium text-base mb-4">More Categories</h4>
+            <h4 className="font-medium text-base mb-4 text-white">More Categories</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link to="/neighborhood" className="hover:text-white transition-colors">In the Neighborhood</Link></li>
               <li><Link to="/learning" className="hover:text-white transition-colors">Learning</Link></li>
@@ -35,7 +34,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-medium text-base mb-4">For Parents</h4>
+            <h4 className="font-medium text-base mb-4 text-white">For Parents</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/safety" className="hover:text-white transition-colors">Safety Policy</Link></li>
