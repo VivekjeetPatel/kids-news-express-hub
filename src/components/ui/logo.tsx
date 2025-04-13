@@ -7,14 +7,14 @@ interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 }
 
-const Logo = ({ className = '', size = 'lg' }: LogoProps) => {
-  // Updated size classes for the logo container with a new 'xxl' option
+const Logo = ({ className = '', size = 'xxl' }: LogoProps) => {
+  // Updated size classes for the logo container with 'xxl' as default
   const sizeClasses = {
     sm: 'w-24',
     md: 'w-32',
     lg: 'w-40',
     xl: 'w-48',
-    xxl: 'w-64'  // Added an extra large size for maximum visual impact
+    xxl: 'w-64'  // Extra large size for maximum visual impact
   };
 
   return (
