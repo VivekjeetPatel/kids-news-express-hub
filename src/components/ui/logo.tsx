@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 
 interface LogoProps {
   className?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-const Logo = ({ className = '', size = 'md' }: LogoProps) => {
-  // Size classes for the logo container
+const Logo = ({ className = '', size = 'lg' }: LogoProps) => {
+  // Updated size classes for the logo container with a new 'xl' option
   const sizeClasses = {
     sm: 'w-24',
     md: 'w-32',
-    lg: 'w-40'
+    lg: 'w-40',
+    xl: 'w-48'  // Added a larger size for better optical balance
   };
 
   return (
