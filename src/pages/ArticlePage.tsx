@@ -156,11 +156,11 @@ calculateCarbonOffset(5000, 10); // = 1,085,000 kg CO2 offset</code></pre>
   `;
 
   return (
-    <MainLayout>
-      <div className="bg-white">
+    <MainLayout fullWidth>
+      <div className="w-full bg-white">
         <ArticleHeader article={article} />
         
-        <div className="container mx-auto px-4 pb-16">
+        <div className="w-full px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
             <ArticleContent 
               article={article} 
