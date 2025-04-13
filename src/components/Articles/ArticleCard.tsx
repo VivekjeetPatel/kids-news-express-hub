@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { CalendarDays, MessageSquare } from 'lucide-react';
@@ -28,14 +28,18 @@ const ArticleCard = ({
   readingLevel,
   commentCount,
 }: ArticleProps) => {
+  const [hasError, setHasError] = useState(false);
+  const fallbackImage = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neXxlbnwwfHwwfHx8MA%3D";
+
   return (
     <article className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
       <Link to={`/article/${id}`} className="block h-full">
         <div className="relative h-40 overflow-hidden">
           <img 
-            src={imageUrl} 
+            src={hasError ? fallbackImage : imageUrl} 
             alt={title}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={() => setHasError(true)}
           />
           <Badge className={`absolute top-2 left-2 ${getCategoryColor(category)}`}>
             {category}

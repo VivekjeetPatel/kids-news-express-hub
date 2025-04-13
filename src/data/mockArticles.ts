@@ -1,3 +1,4 @@
+
 import { ArticleProps } from '@/components/Articles/ArticleCard';
 
 export const mockArticles: ArticleProps[] = [
@@ -41,7 +42,7 @@ export const mockArticles: ArticleProps[] = [
     category: 'Spice It Up',
     author: 'Jacob Williams, 9',
     publishDate: 'Apr 5, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1519042279709-61024413893c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGRpbm9zYXVyJTIwZm9zc2lsfGVufDB8fDB8fHww',
+    imageUrl: 'https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZGlub3NhdXJ8ZW58MHx8MHx8fDA%3D',
     readingLevel: 'Ages 8-10',
     commentCount: 24
   },
@@ -140,7 +141,7 @@ export const mockArticles: ArticleProps[] = [
     category: 'Debates',
     author: 'Sarah Lee, 11',
     publishDate: 'Mar 27, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1542751371-abacc94f9b1b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dmlkZW8lMjBnYW1lc3xlbnwwfHwwfHx8MA%3D%3D',
+    imageUrl: 'https://images.unsplash.com/photo-1542751371-abacc94f9bf1?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dmlkZW8lMjBnYW1lc3xlbnwwfHwwfHx8MA%3D%3D',
     readingLevel: 'Ages 8-10',
     commentCount: 35
   },
@@ -151,7 +152,7 @@ export const mockArticles: ArticleProps[] = [
     category: 'Spice It Up',
     author: 'Michael Chen, 14',
     publishDate: 'Mar 26, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1533577180227-46c487ddab58?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9ib3RpY3MlMjBraWRzfGVufDB8fDB8fHww',
+    imageUrl: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cm9ib3RpY3N8ZW58MHx8MHx8fDA%3D',
     readingLevel: 'Ages 10-12',
     commentCount: 16
   },
@@ -162,7 +163,7 @@ export const mockArticles: ArticleProps[] = [
     category: 'Storyboard',
     author: 'Olivia Wright, 12',
     publishDate: 'Mar 25, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1614277786455-d187a4e43018?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BhY2UlMjBzdG9yeXxlbnwwfHwwfHx8MA%3D%3D',
+    imageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dm9sY2FubyUyMHByb2plY3R8ZW58MHx8MHx8fDA%3D',
     readingLevel: 'Ages 9-11',
     commentCount: 12
   },
@@ -184,7 +185,7 @@ export const mockArticles: ArticleProps[] = [
     category: 'Learning',
     author: 'Emily Tang, 11',
     publishDate: 'Mar 23, 2025',
-    imageUrl: 'https://images.unsplash.com/photo-1614439012099-0f41cd36c2a2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29sYXIlMjBzeXN0ZW18ZW58MHx8MHx8fDA%3D',
+    imageUrl: 'https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29sYXIlMjBzeXN0ZW0lMjBtb2RlbHxlbnwwfHwwfHx8MA%3D',
     readingLevel: 'Ages 8-12',
     commentCount: 28
   }
