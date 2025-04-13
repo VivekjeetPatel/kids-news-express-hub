@@ -1,8 +1,8 @@
 
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
-import { getArticleById } from '@/data/articles';
+import { getArticleById, isStoryboardArticle } from '@/data/articles';
 import { Button } from '@/components/ui/button';
 import ArticleHeader from '@/components/Articles/ArticleHeader';
 import ArticleContent from '@/components/Articles/ArticleContent';
@@ -11,7 +11,15 @@ import ArticleFooter from '@/components/Articles/ArticleFooter';
 
 const ArticlePage = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const article = getArticleById(id || '');
+
+  // If it's a storyboard article, redirect to the StoryboardPage
+  useEffect(() => {
+    if (article && isStoryboardArticle(article)) {
+      navigate(`/storyboard/${article.id}`);
+    }
+  }, [article, navigate]);
 
   if (!article) {
     return (
@@ -22,6 +30,17 @@ const ArticlePage = () => {
           <Button asChild>
             <a href="/">Back to Home</a>
           </Button>
+        </div>
+      </MainLayout>
+    );
+  }
+
+  // If this is a storyboard article, we'll show a loading state briefly before redirect
+  if (isStoryboardArticle(article)) {
+    return (
+      <MainLayout>
+        <div className="container mx-auto px-4 py-12 text-center">
+          <p>Loading storyboard series...</p>
         </div>
       </MainLayout>
     );

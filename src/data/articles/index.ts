@@ -4,13 +4,13 @@ import { ArticleProps } from '@/components/Articles/ArticleCard';
 import { headlinersArticles } from './headliners';
 import { debatesArticles } from './debates';
 import { spiceItUpArticles } from './spice-it-up';
-import { storyboardArticles } from './storyboard';
+import { storyboardArticles, StoryboardArticleProps } from './storyboard';
 import { neighborhoodArticles } from './neighborhood';
 import { learningArticles } from './learning';
 import { schoolNewsArticles } from './school-news';
 
 // Combine all articles into a single array
-export const mockArticles: ArticleProps[] = [
+export const mockArticles: (ArticleProps | StoryboardArticleProps)[] = [
   ...headlinersArticles,
   ...debatesArticles,
   ...spiceItUpArticles,
@@ -32,4 +32,8 @@ export const getHeadlineArticle = () => {
 
 export const getArticleById = (id: string) => {
   return mockArticles.find(article => article.id === id);
+};
+
+export const isStoryboardArticle = (article: ArticleProps | StoryboardArticleProps): article is StoryboardArticleProps => {
+  return article.category === 'Storyboard' && 'episodes' in article;
 };
