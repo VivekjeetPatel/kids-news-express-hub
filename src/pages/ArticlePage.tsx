@@ -27,8 +27,11 @@ const ArticlePage = () => {
     );
   }
 
+  // Check if this is a debate article - both "Debate" and "Debates" are considered valid
+  const isDebate = article.category.toLowerCase() === 'debate' || article.category.toLowerCase() === 'debates';
+
   // We'll pass specific debate settings if this is a debate article
-  const debateSettings = article.category === 'Debate' ? {
+  const debateSettings = isDebate ? {
     initialVotes: { yes: 67, no: 33 } // These would come from the backend in a real application
   } : undefined;
 

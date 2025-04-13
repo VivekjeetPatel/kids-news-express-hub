@@ -16,7 +16,8 @@ interface ArticleContentProps {
 }
 
 const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent, debateSettings }) => {
-  const isDebate = article.category === 'Debate';
+  // Check if this is a debate article - use case-insensitive comparison
+  const isDebate = article.category.toLowerCase() === 'debate' || article.category.toLowerCase() === 'debates';
   
   return (
     <div className="lg:col-span-8">
@@ -50,12 +51,12 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
         dangerouslySetInnerHTML={{ __html: articleContent }}
       />
       
-      {isDebate && (
+      {isDebate && debateSettings && (
         <div className="my-12 bg-gray-50 p-6 rounded-xl shadow-sm">
           <DebateVote 
             debateId={article.id} 
             topicTitle={article.title}
-            initialVotes={debateSettings?.initialVotes || { yes: 55, no: 45 }} 
+            initialVotes={debateSettings.initialVotes} 
           />
         </div>
       )}
