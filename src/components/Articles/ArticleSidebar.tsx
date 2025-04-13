@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArticleProps } from '@/components/Articles/ArticleCard';
 import { mockArticles } from '@/data/articles';
+import { ArrowUpRight } from 'lucide-react';
 
 interface ArticleSidebarProps {
   article: ArticleProps;
@@ -49,9 +50,9 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ article }) => {
                   <Link 
                     key={relatedArticle.id} 
                     to={`/article/${relatedArticle.id}`}
-                    className="flex gap-3 group items-start"
+                    className="flex gap-3 group items-start hover:bg-gray-50 p-2 rounded-lg transition-all"
                   >
-                    <div className="flex-shrink-0 w-20 h-20 overflow-hidden rounded-md">
+                    <div className="flex-shrink-0 w-16 h-16 overflow-hidden rounded-md">
                       <img 
                         src={imageError ? fallbackImage : relatedArticle.imageUrl}
                         alt={relatedArticle.title}
@@ -59,10 +60,13 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ article }) => {
                         onError={() => setImageError(true)}
                       />
                     </div>
-                    <div>
-                      <p className="group-hover:opacity-80 font-medium transition-opacity line-clamp-2">
-                        {relatedArticle.title}
-                      </p>
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between gap-1">
+                        <p className="text-sm font-medium line-clamp-2 group-hover:opacity-80 transition-opacity">
+                          {relatedArticle.title}
+                        </p>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 mt-1 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
                       <p className="text-xs text-gray-500 mt-1">
                         {relatedArticle.publishDate}
                       </p>
