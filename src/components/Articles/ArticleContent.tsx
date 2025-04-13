@@ -7,9 +7,15 @@ import { ArticleProps } from '@/components/Articles/ArticleCard';
 interface ArticleContentProps {
   article: ArticleProps;
   articleContent: string;
+  debateSettings?: {
+    initialVotes: {
+      yes: number;
+      no: number;
+    }
+  };
 }
 
-const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent }) => {
+const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent, debateSettings }) => {
   const isDebate = article.category === 'Debate';
   
   return (
@@ -49,7 +55,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
           <DebateVote 
             debateId={article.id} 
             topicTitle={article.title}
-            initialVotes={{ yes: 55, no: 45 }} 
+            initialVotes={debateSettings?.initialVotes || { yes: 55, no: 45 }} 
           />
         </div>
       )}

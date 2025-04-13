@@ -27,6 +27,11 @@ const ArticlePage = () => {
     );
   }
 
+  // We'll pass specific debate settings if this is a debate article
+  const debateSettings = article.category === 'Debate' ? {
+    initialVotes: { yes: 67, no: 33 } // These would come from the backend in a real application
+  } : undefined;
+
   const articleContent = `
     <h1>Kids from Around the World Unite for Climate Change Action</h1>
     
@@ -135,7 +140,11 @@ calculateCarbonOffset(5000, 10); // = 1,085,000 kg CO2 offset</code></pre>
         
         <div className="container mx-auto px-4 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
-            <ArticleContent article={article} articleContent={articleContent} />
+            <ArticleContent 
+              article={article} 
+              articleContent={articleContent} 
+              debateSettings={debateSettings}
+            />
             <ArticleSidebar article={article} />
             
             <div className="lg:col-span-8">
