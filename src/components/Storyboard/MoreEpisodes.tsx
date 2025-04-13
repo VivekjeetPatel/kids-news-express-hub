@@ -36,9 +36,6 @@ const MoreEpisodes: React.FC<MoreEpisodesProps> = ({
                   alt={episode.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 text-xs font-medium rounded">
-                  Episode {index + 1}
-                </div>
               </AspectRatio>
             </div>
             <div className="p-3 bg-white">
