@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -92,12 +93,18 @@ export default {
         'float': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-8px)' }
+        },
+        'rainbow': {
+          '0%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+          '100%': { 'background-position': '0% 50%' }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'float': 'float 5s ease-in-out infinite'
+        'float': 'float 5s ease-in-out infinite',
+        'rainbow': 'rainbow 6s linear infinite'
       },
       fontFamily: {
         display: ['Open Sauce Two', 'system-ui', 'sans-serif'],

@@ -37,6 +37,13 @@
 
     --font-display: 'Open Sauce Two', system-ui, sans-serif;
     --font-body: 'Open Sauce Two', system-ui, sans-serif;
+
+    /* Rainbow Button Colors */
+    --color-1: 270 50% 60%;  /* Purple */
+    --color-2: 50 100% 60%;  /* Yellow */
+    --color-3: 200 100% 60%; /* Blue */
+    --color-4: 0 100% 60%;   /* Red */
+    --color-5: 140 100% 60%; /* Green */
   }
 
   .dark {
@@ -67,6 +74,13 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 262 83% 66%;
+
+    /* Rainbow Button Colors - same in dark mode */
+    --color-1: 270 50% 60%;
+    --color-2: 50 100% 60%;
+    --color-3: 200 100% 60%;
+    --color-4: 0 100% 60%;
+    --color-5: 140 100% 60%;
   }
 
   * {
