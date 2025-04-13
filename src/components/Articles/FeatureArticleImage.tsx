@@ -9,9 +9,9 @@ interface FeatureArticleImageProps {
 const FeatureArticleImage: React.FC<FeatureArticleImageProps> = ({ imageUrl, title }) => {
   return (
     <div className="relative w-full" style={{ 
-      height: "calc(100svh - var(--header-height) - 3rem)", 
-      minHeight: "500px", 
-      maxHeight: "800px" 
+      height: "calc(100svh - var(--header-height) - 5rem)", 
+      minHeight: "450px", 
+      maxHeight: "700px" 
     }}>
       <img
         src={imageUrl}
