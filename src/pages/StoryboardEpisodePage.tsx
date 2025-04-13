@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
@@ -79,8 +78,8 @@ const StoryboardEpisodePage = () => {
             </Badge>
           </div>
           
-          {/* Video player section - make sure showTitlePanel is false */}
-          <div className="rounded-xl overflow-hidden shadow-md mb-6">
+          {/* Video player section - removed mb-6 to eliminate space */}
+          <div className="rounded-xl overflow-hidden shadow-md">
             <VideoPlayer 
               videoUrl={currentEpisode.videoUrl} 
               title={currentEpisode.title}
@@ -88,7 +87,7 @@ const StoryboardEpisodePage = () => {
               duration={currentEpisode.duration}
             />
             
-            <div className="bg-white border border-gray-100 rounded-b-xl p-4">
+            <div className="bg-white border-t border-gray-100 p-4">
               <div className="mb-4">
                 <h1 className="text-xl md:text-2xl font-semibold mb-1 text-gray-900">
                   {currentEpisode.title}
