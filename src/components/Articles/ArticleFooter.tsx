@@ -34,7 +34,7 @@ const ArticleFooter: React.FC<ArticleFooterProps> = ({ article }) => {
             <MessageSquare size={16} className="inline mr-1" />
             {article.commentCount} comments
           </span>
-          <RainbowButton className="ml-2 text-sm">
+          <RainbowButton className="ml-2">
             Join Discussion
           </RainbowButton>
         </div>

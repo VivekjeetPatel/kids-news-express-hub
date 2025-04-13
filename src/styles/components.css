@@ -4,14 +4,14 @@
 }
 
 .btn-primary {
-  @apply font-medium rounded-md px-5 py-2 transition-colors;
+  @apply font-medium rounded-xl px-6 py-2 transition-colors text-sm;
   /* The RainbowButton component will be used instead of this class */
 }
 
 .btn-secondary {
-  @apply bg-gray-200 text-gray-800 hover:bg-gray-300 font-medium rounded-md px-5 py-2 transition-colors;
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300 font-medium rounded-xl px-6 py-2 transition-colors text-sm;
 }
 
 .nav-link {
-  @apply px-3 py-2 rounded-md text-gray-800 hover:bg-gray-200 transition-colors;
+  @apply px-3 py-2 rounded-xl text-gray-800 hover:bg-gray-200 transition-colors;
 }

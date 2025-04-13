@@ -47,7 +47,7 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
       </h3>
       
       <div className="text-center mb-6">
-        <div className="inline-block bg-flyingbus-purple/10 text-flyingbus-purple px-4 py-2 rounded-md text-sm font-medium">
+        <div className="inline-block bg-flyingbus-purple/10 text-flyingbus-purple px-4 py-2 rounded-xl text-sm font-medium">
           {topicTitle}
         </div>
       </div>
@@ -57,7 +57,7 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
           onClick={() => handleVote('yes')}
           disabled={hasVoted}
           variant="outline"
-          className={`h-auto flex flex-col items-center p-3 rounded-lg border ${
+          className={`h-auto flex flex-col items-center p-3 rounded-xl border ${
             hasVoted && votes.yes > votes.no 
               ? 'border-green-500 bg-green-50' 
               : 'hover:border-green-500 hover:bg-green-50'
@@ -72,7 +72,7 @@ const DebateVote = ({ debateId, topicTitle, initialVotes = { yes: 50, no: 50 } }
           onClick={() => handleVote('no')}
           disabled={hasVoted}
           variant="outline"
-          className={`h-auto flex flex-col items-center p-3 rounded-lg border ${
+          className={`h-auto flex flex-col items-center p-3 rounded-xl border ${
             hasVoted && votes.no > votes.yes 
               ? 'border-red-500 bg-red-50' 
               : 'hover:border-red-500 hover:bg-red-50'
