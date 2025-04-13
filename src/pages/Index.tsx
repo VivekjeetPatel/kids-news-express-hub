@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import FeatureArticle from '@/components/Articles/FeatureArticle';
 import CategorySection from '@/components/Articles/CategorySection';
@@ -16,6 +16,12 @@ const Index = () => {
     { title: 'Learning', slug: 'learning', color: 'purple' },
     { title: 'School News', slug: 'school', color: 'pink' },
   ];
+
+  // Set CSS variable for header height for responsive calculations
+  useEffect(() => {
+    const headerHeight = document.querySelector('header')?.offsetHeight || 80;
+    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+  }, []);
 
   return (
     <MainLayout fullWidth={true}>
