@@ -9,12 +9,13 @@ import { HeaderButtons } from '@/components/ui/header-buttons';
 // Menu items configuration based on The Flying Bus categories
 const menuItems = [
   {
-    text: "Headliners",
-    to: "/headliners"
-  },
-  {
     text: "Categories",
     items: [
+      {
+        text: "Headliners",
+        description: "Top stories of the day",
+        to: "/headliners"
+      },
       {
         text: "Debates",
         description: "Join discussions on important topics",
@@ -73,3 +74,4 @@ const Header = () => {
 };
 
 export default Header;
+
