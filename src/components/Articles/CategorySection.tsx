@@ -9,6 +9,7 @@ import {
   CarouselItem, 
   CarouselNavigation 
 } from '@/components/ui/custom-carousel';
+import { getCategoryColor } from '@/utils/categoryColors';
 
 interface CategorySectionProps {
   title: string;
@@ -18,47 +19,47 @@ interface CategorySectionProps {
 }
 
 const CategorySection = ({ title, slug, articles, color }: CategorySectionProps) => {
-  // Map colors for different categories
-  const colorVariants: {[key: string]: string} = {
-    'purple': 'border-flyingbus-purple text-flyingbus-purple',
-    'red': 'border-flyingbus-red text-flyingbus-red',
-    'orange': 'border-flyingbus-orange text-flyingbus-orange',
-    'blue': 'border-flyingbus-blue text-flyingbus-blue',
-    'green': 'border-flyingbus-green text-flyingbus-green',
-    'yellow': 'border-flyingbus-yellow text-flyingbus-yellow',
-    'pink': 'border-flyingbus-pink text-flyingbus-pink',
+  // Map category to correct Tailwind color based on our updated utility
+  const getColorClass = () => {
+    const categoryColorClass = getCategoryColor(title);
+    const colorName = categoryColorClass.split('-')[1].split(' ')[0]; // Extract color name from bg-flyingbus-{color}
+    
+    return {
+      border: `border-flyingbus-${colorName}`,
+      text: `text-flyingbus-${colorName}`
+    };
   };
+
+  const colorClasses = getColorClass();
 
   // Map category to icon
   const getCategoryIcon = () => {
     switch (title) {
       case 'Headliners':
-        return <BookOpen className={`text-flyingbus-${color}`} size={24} />;
+        return <BookOpen className={colorClasses.text} size={24} />;
       case 'Debates':
-        return <MessageCircle className={`text-flyingbus-${color}`} size={24} />;
+        return <MessageCircle className={colorClasses.text} size={24} />;
       case 'Spice It Up':
-        return <Sparkles className={`text-flyingbus-${color}`} size={24} />;
+        return <Sparkles className={colorClasses.text} size={24} />;
       case 'Storyboard':
-        return <BookMarked className={`text-flyingbus-${color}`} size={24} />;
+        return <BookMarked className={colorClasses.text} size={24} />;
       case 'In the Neighborhood':
-        return <Home className={`text-flyingbus-${color}`} size={24} />;
+        return <Home className={colorClasses.text} size={24} />;
       case 'Learning':
-        return <GraduationCap className={`text-flyingbus-${color}`} size={24} />;
+        return <GraduationCap className={colorClasses.text} size={24} />;
       case 'School News':
-        return <School className={`text-flyingbus-${color}`} size={24} />;
+        return <School className={colorClasses.text} size={24} />;
       default:
-        return <BookOpen className={`text-flyingbus-${color}`} size={24} />;
+        return <BookOpen className={colorClasses.text} size={24} />;
     }
   };
-
-  const borderColor = colorVariants[color] || colorVariants.purple;
 
   return (
     <section className="py-8">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2">
           {getCategoryIcon()}
-          <h2 className={`category-title border-b-2 ${borderColor.replace(/text-[^\\s]+/, '')}`}>{title}</h2>
+          <h2 className={`category-title border-b-2 ${colorClasses.border}`}>{title}</h2>
         </div>
         <Link 
           to={`/${slug}`} 
@@ -79,7 +80,7 @@ const CategorySection = ({ title, slug, articles, color }: CategorySectionProps)
             ))}
           </CarouselContent>
           <CarouselNavigation 
-            classNameButton={`bg-white border border-gray-200 shadow-sm hover:bg-gray-50 *:stroke-${color === 'yellow' ? 'black' : color}`}
+            classNameButton={`bg-white border border-gray-200 shadow-sm hover:bg-gray-50 *:stroke-${title === 'Spice It Up' ? 'black' : colorClasses.text.replace('text-', '')}`}
           />
         </Carousel>
       </div>

@@ -12,6 +12,10 @@ interface FeatureArticleHeaderProps {
 const FeatureArticleHeader = ({ title, category, readingLevel }: FeatureArticleHeaderProps) => {
   return (
     <>
+      <Badge className={`${getCategoryColor(category)}`}>
+        {category}
+      </Badge>
+      
       {readingLevel && (
         <Badge className="bg-white text-gray-800">
           Level: {readingLevel}

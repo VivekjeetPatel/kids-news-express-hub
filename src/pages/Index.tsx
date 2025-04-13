@@ -8,12 +8,12 @@ import { getHeadlineArticle, getCategoryArticles } from '@/data/mockArticles';
 const Index = () => {
   const headlineArticle = getHeadlineArticle();
   const categoryMapping = [
-    { title: 'Headliners', slug: 'headliners', color: 'purple' },
-    { title: 'Debates', slug: 'debates', color: 'red' },
-    { title: 'Spice It Up', slug: 'spice-it-up', color: 'orange' },
+    { title: 'Headliners', slug: 'headliners', color: 'red' },
+    { title: 'Debates', slug: 'debates', color: 'orange' },
+    { title: 'Spice It Up', slug: 'spice-it-up', color: 'yellow' },
     { title: 'Storyboard', slug: 'storyboard', color: 'blue' },
     { title: 'In the Neighborhood', slug: 'neighborhood', color: 'green' },
-    { title: 'Learning', slug: 'learning', color: 'yellow' },
+    { title: 'Learning', slug: 'learning', color: 'purple' },
     { title: 'School News', slug: 'school', color: 'pink' },
   ];
 
