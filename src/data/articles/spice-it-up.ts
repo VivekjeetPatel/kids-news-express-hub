@@ -12,7 +12,8 @@ export const spiceItUpArticles: ArticleProps[] = [
     imageUrl: 'https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZGlub3NhdXJ8ZW58MHx8MHx8fDA%3D',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Sample YouTube embed URL
     readingLevel: 'Ages 8-10',
-    commentCount: 24
+    commentCount: 24,
+    duration: '3:42'
   },
   {
     id: '14',
@@ -23,6 +24,7 @@ export const spiceItUpArticles: ArticleProps[] = [
     publishDate: 'Mar 26, 2025',
     imageUrl: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cm9ib3RpY3N8ZW58MHx8MHx8fDA%3D',
     readingLevel: 'Ages 10-12',
-    commentCount: 16
+    commentCount: 16,
+    duration: '4:15'
   }
 ];

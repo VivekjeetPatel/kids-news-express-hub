@@ -78,9 +78,13 @@ const StoryboardEpisodePage = () => {
             </Badge>
           </div>
           
-          {/* Video player section with immersive design */}
+          {/* Video player section with immersive design - notice showTitlePanel is false */}
           <div className="rounded-xl overflow-hidden shadow-md mb-6">
-            <VideoPlayer videoUrl={currentEpisode.videoUrl} title={currentEpisode.title} />
+            <VideoPlayer 
+              videoUrl={currentEpisode.videoUrl} 
+              title={currentEpisode.title}
+              showTitlePanel={false}
+            />
             
             <div className="bg-white border-t border-gray-200 p-4">
               <div className="mb-4">

@@ -27,7 +27,11 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
     <div className="lg:col-span-8">
       {/* Show video for Spice It Up articles that have a video URL */}
       {isSpiceItUpWithVideo && (
-        <VideoPlayer videoUrl={article.videoUrl!} title={article.title} />
+        <VideoPlayer 
+          videoUrl={article.videoUrl!} 
+          title={article.title} 
+          duration={article.duration || "3:45"} // Add a default duration if not available
+        />
       )}
       
       <div className="mb-8 rounded-xl overflow-hidden">
