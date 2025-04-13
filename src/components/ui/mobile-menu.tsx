@@ -3,6 +3,8 @@ import * as React from "react"
 import { Link } from "react-router-dom"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { HeaderButtons } from "./header-buttons"
+import { NavButton } from "./nav-button"
 
 interface NavItem {
   to?: string
@@ -79,6 +81,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
               </li>
             ))}
           </ul>
+          <div className="mt-6 px-4">
+            <NavButton variant="outline" className="w-full mb-2">
+              <User className="mr-2 h-4 w-4" />
+              Sign In
+            </NavButton>
+            <NavButton className="w-full">
+              <BookOpen className="mr-2 h-4 w-4" />
+              Join Us
+            </NavButton>
+          </div>
         </nav>
       </div>
     </div>
