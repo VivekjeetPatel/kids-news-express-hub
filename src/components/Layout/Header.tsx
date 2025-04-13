@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Logo from '@/components/ui/logo';
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -16,14 +17,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="h-10 w-10 bg-flyingbus-purple rounded-full flex items-center justify-center">
-                <span className="text-white font-display text-xl">FB</span>
-              </div>
-              <h1 className="text-xl md:text-2xl font-display font-bold text-gray-900">
-                The Flying Bus
-              </h1>
-            </Link>
+            <Logo />
           </div>
 
           {/* Desktop Navigation */}

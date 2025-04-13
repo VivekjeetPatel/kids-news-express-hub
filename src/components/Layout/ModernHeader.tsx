@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { User, BookOpen } from 'lucide-react';
 import ModernHeader, { NavButton } from '@/components/ui/modern-header';
+import Logo from '@/components/ui/logo';
 
 // Menu items configuration based on The Flying Bus categories
 const menuItems = [
@@ -57,14 +58,7 @@ const menuItems = [
 ];
 
 const HeaderLogo = () => (
-  <Link to="/" className="flex items-center space-x-3">
-    <div className="h-10 w-10 bg-flyingbus-purple rounded-full flex items-center justify-center">
-      <span className="text-white font-display text-xl">FB</span>
-    </div>
-    <h1 className="text-xl md:text-2xl font-display font-bold text-gray-900">
-      The Flying Bus
-    </h1>
-  </Link>
+  <Logo />
 );
 
 // Right content with sign in buttons
