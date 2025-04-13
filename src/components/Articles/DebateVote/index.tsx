@@ -26,6 +26,7 @@ const DebateVote = ({
   const [hasVoted, setHasVoted] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
   const [userChoice, setUserChoice] = useState<'yes' | 'no' | null>(null);
+  const [resultsVisible, setResultsVisible] = useState(false);
   
   const totalVotes = votes.yes + votes.no;
   const yesPercentage = totalVotes > 0 ? Math.round((votes.yes / totalVotes) * 100) : 0;
@@ -36,6 +37,7 @@ const DebateVote = ({
     if (userHasVoted) {
       setHasVoted(true);
       setUserChoice(savedChoice);
+      setResultsVisible(true);
     }
   }, [debateId]);
 
@@ -46,6 +48,7 @@ const DebateVote = ({
     }
 
     setIsVoting(true);
+    setResultsVisible(false);
 
     try {
       // Check if this debate ID has been voted on already (stored in localStorage)
@@ -55,6 +58,7 @@ const DebateVote = ({
         toast.warning("You've already voted on this debate!");
         setHasVoted(true);
         setIsVoting(false);
+        setResultsVisible(true);
         return;
       }
 
@@ -65,6 +69,7 @@ const DebateVote = ({
         toast.warning("A vote from your location has already been recorded!");
         setHasVoted(true);
         setIsVoting(false);
+        setResultsVisible(true);
         return;
       }
 
@@ -78,11 +83,17 @@ const DebateVote = ({
       recordVote(debateId, choice);
       
       setHasVoted(true);
-      toast.success("Your vote has been counted! Thanks for participating!");
+      
+      // Short delay before showing results for a smoother transition
+      setTimeout(() => {
+        setResultsVisible(true);
+        setIsVoting(false);
+        toast.success("Your vote has been counted! Thanks for participating!");
+      }, 800);
+      
     } catch (error) {
       toast.error("There was a problem recording your vote. Please try again.");
       console.error("Voting error:", error);
-    } finally {
       setIsVoting(false);
     }
   };
@@ -115,14 +126,18 @@ const DebateVote = ({
             noPercentage={noPercentage}
           />
           
-          {hasVoted && (
-            <VoteResults 
-              votes={votes}
-              yesPercentage={yesPercentage}
-              noPercentage={noPercentage}
-              totalVotes={totalVotes}
-            />
-          )}
+          <div className={`transition-all duration-500 ease-in-out ${
+            resultsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
+            {hasVoted && resultsVisible && (
+              <VoteResults 
+                votes={votes}
+                yesPercentage={yesPercentage}
+                noPercentage={noPercentage}
+                totalVotes={totalVotes}
+              />
+            )}
+          </div>
           
           <VoteStatus 
             hasVoted={hasVoted} 

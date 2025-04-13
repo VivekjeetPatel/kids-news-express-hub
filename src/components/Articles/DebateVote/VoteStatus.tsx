@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Info } from 'lucide-react';
+import { Info, LoaderCircle } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface VoteStatusProps {
   hasVoted: boolean;
@@ -18,10 +19,17 @@ const VoteStatus: React.FC<VoteStatusProps> = ({ hasVoted, isVoting }) => {
       )}
 
       {isVoting && (
-        <div className="flex justify-center mt-1">
-          <div className="animate-pulse text-sm text-flyingbus-purple flex items-center gap-2">
-            <div className="animate-spin h-4 w-4 border-2 border-flyingbus-purple border-t-transparent rounded-full"></div>
-            Verifying vote...
+        <div className="flex justify-center mt-3 transition-all duration-300 ease-in-out">
+          <div className="text-sm text-flyingbus-purple flex items-center gap-2 bg-purple-50 py-2 px-5 rounded-full shadow-sm">
+            <LoaderCircle 
+              className={cn(
+                "animate-spin", 
+                "text-flyingbus-purple",
+                "transition-all duration-300"
+              )} 
+              size={18} 
+            />
+            <span className="animate-pulse font-medium">Verifying vote...</span>
           </div>
         </div>
       )}
