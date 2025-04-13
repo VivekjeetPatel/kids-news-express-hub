@@ -3,6 +3,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ArticleCard, { ArticleProps } from './ArticleCard';
 import { ArrowRight } from 'lucide-react';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNavigation 
+} from '@/components/ui/custom-carousel';
 
 interface CategorySectionProps {
   title: string;
@@ -37,7 +43,24 @@ const CategorySection = ({ title, slug, articles, color }: CategorySectionProps)
         </Link>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* For desktop and larger screens, show carousel */}
+      <div className="hidden md:block relative">
+        <Carousel>
+          <CarouselContent className="-ml-6">
+            {articles.map((article) => (
+              <CarouselItem key={article.id} className="pl-6 basis-1/3">
+                <ArticleCard {...article} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselNavigation 
+            classNameButton={`bg-white border border-gray-200 shadow-sm hover:bg-gray-50 *:stroke-${color === 'yellow' ? 'black' : color}`}
+          />
+        </Carousel>
+      </div>
+      
+      {/* For mobile, show grid layout */}
+      <div className="grid grid-cols-1 md:hidden gap-6">
         {articles.map((article) => (
           <ArticleCard key={article.id} {...article} />
         ))}
