@@ -14,19 +14,31 @@ interface SeriesHeaderProps {
 const SeriesHeader: React.FC<SeriesHeaderProps> = ({ article }) => {
   const navigate = useNavigate();
   
+  // Sample background images for Storyboard series
+  const sampleBackgrounds = [
+    'https://images.unsplash.com/photo-1516849677043-ef67c9557e16', // Space launch
+    'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9', // Volcano project
+    'https://images.unsplash.com/photo-1451187580459-43490279c0fa' // Space training
+  ];
+
+  // Choose a background image, default to the article's image or a fallback
+  const backgroundImage = article.imageUrl || 
+    sampleBackgrounds[Math.floor(Math.random() * sampleBackgrounds.length)];
+  
   return (
-    <div className="relative">
-      {/* Background image with overlay gradient */}
-      <div className="absolute inset-0 bg-cover bg-center" 
-           style={{ 
-             backgroundImage: `url(${article.imageUrl || 'https://images.unsplash.com/photo-1493397212122-2b85dda8106b?auto=format&fit=crop&q=80'})`,
-             backgroundPosition: 'center 20%'
-           }}>
+    <div className="relative w-full">
+      {/* Full-width background image with overlay gradient */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center" 
+        style={{ 
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundPosition: 'center 20%'
+        }}>
         {/* Gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-flyingbus-background"></div>
       </div>
       
-      <div className="relative pt-6 pb-16">
+      <div className="relative pt-6 pb-16 w-full">
         <div className="container mx-auto px-4">
           <Button
             variant="outline" 
