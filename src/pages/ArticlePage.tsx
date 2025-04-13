@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
@@ -163,7 +162,7 @@ calculateCarbonOffset(5000, 10); // = 1,085,000 kg CO2 offset</code></pre>
                 )}
               </div>
               
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-left">
                 {article.title}
               </h1>
               
