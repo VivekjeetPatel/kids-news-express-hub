@@ -26,16 +26,20 @@ const SeriesHeader: React.FC<SeriesHeaderProps> = ({ article }) => {
     sampleBackgrounds[Math.floor(Math.random() * sampleBackgrounds.length)];
   
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" style={{ margin: '0', padding: '0' }}>
       {/* Full-width background image with overlay gradient */}
       <div 
-        className="absolute inset-0 bg-cover bg-center" 
+        className="absolute top-0 left-0 right-0 bottom-0 w-screen bg-cover bg-center" 
         style={{ 
           backgroundImage: `url(${backgroundImage})`,
-          backgroundPosition: 'center 20%'
+          backgroundPosition: 'center 20%',
+          width: '100vw',
+          marginLeft: 'calc(-50vw + 50%)',
+          position: 'absolute'
         }}>
         {/* Gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-flyingbus-background"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-flyingbus-background" 
+             style={{ width: '100%', height: '100%' }}></div>
       </div>
       
       <div className="relative pt-6 pb-16 w-full">
