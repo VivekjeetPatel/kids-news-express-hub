@@ -8,7 +8,15 @@ import EpisodeCard from '@/components/Storyboard/EpisodeCard';
 import VideoPlayer from '@/components/Articles/VideoPlayer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CalendarDays, BookMarked, ArrowLeft } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { 
+  CalendarDays, 
+  BookMarked, 
+  ArrowLeft, 
+  Play,
+  Info,
+  ListVideo
+} from 'lucide-react';
 import { getCategoryColor } from '@/utils/categoryColors';
 
 const StoryboardPage = () => {
@@ -33,10 +41,27 @@ const StoryboardPage = () => {
 
   // State for the currently selected episode
   const [currentEpisode, setCurrentEpisode] = useState<StoryboardEpisode>(article.episodes[0]);
+  const [showInfo, setShowInfo] = useState(true);
+
+  // Find the current episode index
+  const currentIndex = article.episodes.findIndex(ep => ep.id === currentEpisode.id);
+  
+  // Handle next/previous episode navigation
+  const goToNextEpisode = () => {
+    if (currentIndex < article.episodes.length - 1) {
+      setCurrentEpisode(article.episodes[currentIndex + 1]);
+    }
+  };
+  
+  const goToPreviousEpisode = () => {
+    if (currentIndex > 0) {
+      setCurrentEpisode(article.episodes[currentIndex - 1]);
+    }
+  };
 
   return (
     <MainLayout>
-      <div className="bg-gradient-to-b from-flyingbus-background to-white py-6">
+      <div className="bg-gradient-to-b from-flyingbus-background to-white pt-6">
         <div className="container mx-auto px-4">
           <Button
             variant="ghost" 
@@ -47,6 +72,61 @@ const StoryboardPage = () => {
             Back to Home
           </Button>
           
+          {/* Video player section with immersive design */}
+          <div className="rounded-xl overflow-hidden bg-black shadow-xl mb-6">
+            <VideoPlayer videoUrl={currentEpisode.videoUrl} title={currentEpisode.title} />
+            
+            <div className="bg-gray-900 text-white p-4">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h2 className="text-xl md:text-2xl font-semibold mb-1">{currentEpisode.title}</h2>
+                  <div className="text-sm text-gray-400 mb-2 flex items-center">
+                    {currentEpisode.releaseDate} • {currentEpisode.duration}
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-white border-gray-700 hover:bg-gray-800"
+                    onClick={() => setShowInfo(!showInfo)}
+                  >
+                    <Info size={16} className="mr-1" />
+                    {showInfo ? 'Hide Info' : 'Show Info'}
+                  </Button>
+                </div>
+              </div>
+              
+              {showInfo && (
+                <div className="mt-3 text-gray-300 text-sm">
+                  <p>{currentEpisode.description}</p>
+                </div>
+              )}
+
+              <div className="flex gap-2 mt-4">
+                <Button 
+                  className="bg-flyingbus-blue hover:bg-flyingbus-blue/90"
+                  onClick={goToPreviousEpisode}
+                  disabled={currentIndex === 0}
+                >
+                  Previous
+                </Button>
+                <Button 
+                  className="bg-flyingbus-blue hover:bg-flyingbus-blue/90"
+                  onClick={goToNextEpisode}
+                  disabled={currentIndex === article.episodes.length - 1}
+                >
+                  Next
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Series info and episodes list */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
           <div className="flex items-center space-x-2 mb-4">
             <Badge className={`${getCategoryColor('Storyboard')}`}>
               <BookMarked size={14} className="mr-1" />
@@ -63,7 +143,7 @@ const StoryboardPage = () => {
             {article.title}
           </h1>
           
-          <div className="flex flex-wrap items-center text-flyingbus-muted-text mb-6">
+          <div className="flex flex-wrap items-center text-flyingbus-muted-text mb-4">
             <span className="mr-4 font-medium">Created by {article.author}</span>
             <span className="flex items-center mr-4">
               <CalendarDays size={16} className="mr-1" />
@@ -75,44 +155,24 @@ const StoryboardPage = () => {
             {article.excerpt}
           </p>
         </div>
-      </div>
-      
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Main content - Video player */}
-          <div className="lg:col-span-8">
-            <div className="mb-6">
-              <VideoPlayer videoUrl={currentEpisode.videoUrl} title={currentEpisode.title} />
-            </div>
-            
-            <div className="mb-10">
-              <h2 className="text-2xl font-semibold mb-2">{currentEpisode.title}</h2>
-              <div className="text-sm text-gray-500 mb-4">
-                {currentEpisode.releaseDate} • {currentEpisode.duration}
-              </div>
-              <p className="text-gray-700">{currentEpisode.description}</p>
-            </div>
-          </div>
+        
+        {/* Episodes list with improved grid layout */}
+        <div>
+          <h3 className="text-xl font-semibold mb-4 flex items-center">
+            <ListVideo size={20} className="mr-2 text-flyingbus-blue" />
+            All Episodes
+          </h3>
           
-          {/* Sidebar - Episodes list */}
-          <div className="lg:col-span-4">
-            <div className="sticky top-4">
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
-                <span className="w-8 h-0.5 bg-flyingbus-blue mr-2"></span>
-                Episodes
-              </h3>
-              
-              <div className="space-y-4">
-                {article.episodes.map((episode) => (
-                  <EpisodeCard 
-                    key={episode.id}
-                    episode={episode}
-                    onSelect={setCurrentEpisode}
-                    isActive={currentEpisode.id === episode.id}
-                  />
-                ))}
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {article.episodes.map((episode, index) => (
+              <EpisodeCard 
+                key={episode.id}
+                episode={episode}
+                onSelect={setCurrentEpisode}
+                isActive={currentEpisode.id === episode.id}
+                episodeNumber={index + 1}
+              />
+            ))}
           </div>
         </div>
       </div>
