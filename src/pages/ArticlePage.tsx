@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
@@ -9,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import DebateVote from '@/components/Articles/DebateVote';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const ArticlePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,7 +28,6 @@ const ArticlePage = () => {
     );
   }
 
-  // Map categories to colors for badge
   const getCategoryColor = (category: string) => {
     const categories: {[key: string]: string} = {
       'Headliners': 'bg-flyingbus-purple text-white',
@@ -43,7 +42,6 @@ const ArticlePage = () => {
     return categories[category] || 'bg-gray-500 text-white';
   };
 
-  // Sample article content - in a real app, this would come from the database
   const articleContent = `
     <p>Young activists from over 20 countries participated in a virtual summit to discuss and propose solutions for climate change. Their innovative ideas are gaining attention from world leaders.</p>
     
@@ -77,7 +75,6 @@ const ArticlePage = () => {
   return (
     <MainLayout>
       <div className="bg-white">
-        {/* Article Hero Section */}
         <div className="w-full bg-gradient-to-b from-flyingbus-background to-white py-12 mb-8">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
@@ -111,27 +108,24 @@ const ArticlePage = () => {
           </div>
         </div>
         
-        {/* Main Content Area with Sidebar */}
         <div className="container mx-auto px-4 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
-            {/* Article Content - Takes 8/12 columns on large screens */}
             <div className="lg:col-span-8">
-              {/* Featured Image */}
               <div className="mb-8 rounded-xl overflow-hidden">
-                <img 
-                  src={article.imageUrl} 
-                  alt={article.title}
-                  className="w-full h-auto object-cover"
-                />
+                <AspectRatio ratio={16/9} className="bg-gray-100">
+                  <img 
+                    src={article.imageUrl} 
+                    alt={article.title}
+                    className="w-full h-full object-cover"
+                  />
+                </AspectRatio>
               </div>
               
-              {/* Article Content */}
               <div 
                 className="prose prose-lg max-w-none mb-12 prose-headings:font-display prose-headings:font-semibold prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-flyingbus-purple"
                 dangerouslySetInnerHTML={{ __html: articleContent }}
               />
               
-              {/* Debate Section */}
               {isDebate && (
                 <div className="my-12 bg-gray-50 p-6 rounded-xl">
                   <DebateVote 
@@ -142,7 +136,6 @@ const ArticlePage = () => {
                 </div>
               )}
               
-              {/* Article Footer */}
               <Separator className="my-8" />
               
               <div className="flex items-center justify-between py-4">
@@ -171,11 +164,8 @@ const ArticlePage = () => {
               </div>
             </div>
             
-            {/* Sidebar - Takes 4/12 columns on large screens */}
             <div className="lg:col-span-4">
-              {/* Sticky sidebar for ads or CTAs */}
               <div className="sticky top-24">
-                {/* Author Info Card */}
                 <Card className="mb-6">
                   <CardContent className="p-6">
                     <h3 className="text-lg font-semibold mb-2">About the Author</h3>
@@ -186,7 +176,6 @@ const ArticlePage = () => {
                   </CardContent>
                 </Card>
                 
-                {/* Placeholder for Future Ads/CTAs */}
                 <div className="bg-gray-100 rounded-xl p-6 text-center mb-6 min-h-[300px] flex items-center justify-center">
                   <div>
                     <p className="text-flyingbus-muted-text mb-2">Future Ad Space</p>
@@ -194,7 +183,6 @@ const ArticlePage = () => {
                   </div>
                 </div>
                 
-                {/* Related Articles Card */}
                 <Card>
                   <CardContent className="p-6">
                     <h3 className="text-lg font-semibold mb-4">Related Articles</h3>
