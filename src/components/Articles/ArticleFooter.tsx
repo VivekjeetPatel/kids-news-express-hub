@@ -33,7 +33,7 @@ const ArticleFooter: React.FC<ArticleFooterProps> = ({ article }) => {
             <MessageSquare size={16} className="inline mr-1" />
             {article.commentCount} comments
           </span>
-          <Button className="ml-2 bg-flyingbus-purple hover:bg-purple-600">
+          <Button className="ml-2 bg-gray-800 hover:bg-gray-700 text-white">
             Join Discussion
           </Button>
         </div>

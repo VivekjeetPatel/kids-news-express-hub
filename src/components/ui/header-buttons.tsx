@@ -14,7 +14,7 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({ className }) => {
         <User className="mr-2 h-4 w-4" />
         Sign In
       </NavButton>
-      <NavButton className="hidden md:flex">
+      <NavButton variant="default" className="hidden md:flex">
         <BookOpen className="mr-2 h-4 w-4" />
         Join Us
       </NavButton>

@@ -4,13 +4,13 @@
 }
 
 .btn-primary {
-  @apply bg-flyingbus-purple text-white hover:bg-purple-600 font-medium rounded-md px-5 py-2 transition-colors;
+  @apply bg-gray-800 text-white hover:bg-gray-700 font-medium rounded-md px-5 py-2 transition-colors;
 }
 
 .btn-secondary {
-  @apply bg-flyingbus-yellow text-black hover:bg-amber-400 font-medium rounded-md px-5 py-2 transition-colors;
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300 font-medium rounded-md px-5 py-2 transition-colors;
 }
 
 .nav-link {
-  @apply px-3 py-2 rounded-md text-flyingbus-purple hover:bg-flyingbus-purple hover:text-white transition-colors;
+  @apply px-3 py-2 rounded-md text-gray-800 hover:bg-gray-200 transition-colors;
 }

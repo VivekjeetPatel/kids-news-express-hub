@@ -19,15 +19,15 @@ const NavButton = React.forwardRef<HTMLButtonElement, NavButtonProps>(({
       ref={ref}
       className={cn(
         'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-flyingbus-purple focus-visible:ring-offset-2',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2',
         'disabled:pointer-events-none disabled:opacity-50',
         'h-10 px-4 py-2',
         variant === 'default' && [
-          'bg-flyingbus-purple text-white hover:bg-flyingbus-purple/90',
+          'bg-gray-800 text-white hover:bg-gray-700',
         ],
         variant === 'outline' && [
-          'border border-current',
-          'hover:bg-flyingbus-purple/10'
+          'border border-current text-gray-800',
+          'hover:bg-gray-100'
         ],
         className
       )}

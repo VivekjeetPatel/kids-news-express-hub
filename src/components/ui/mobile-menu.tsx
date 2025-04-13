@@ -54,7 +54,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
                 {item.to ? (
                   <Link 
                     to={item.to} 
-                    className="block text-lg font-medium text-gray-700 hover:text-flyingbus-purple"
+                    className="block text-lg font-medium text-gray-700 hover:text-gray-900"
                   >
                     {item.text}
                   </Link>
@@ -67,7 +67,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
                           <li key={subIndex}>
                             <Link 
                               to={subItem.to} 
-                              className="block text-base text-gray-600 hover:text-flyingbus-purple"
+                              className="block text-base text-gray-600 hover:text-gray-900"
                             >
                               {subItem.text}
                             </Link>
@@ -85,7 +85,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
               <User className="mr-2 h-4 w-4" />
               Sign In
             </NavButton>
-            <NavButton className="w-full">
+            <NavButton className="w-full bg-gray-800 text-white">
               <BookOpen className="mr-2 h-4 w-4" />
               Join Us
             </NavButton>

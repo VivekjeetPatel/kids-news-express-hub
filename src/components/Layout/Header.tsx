@@ -22,16 +22,16 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            <Link to="/" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple transition-colors">Home</Link>
-            <Link to="/headliners" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple transition-colors">Headliners</Link>
-            <Link to="/debates" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple transition-colors">Debates</Link>
-            <Link to="/storyboard" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple transition-colors">Storyboard</Link>
-            <Link to="/learning" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple transition-colors">Learning</Link>
+            <Link to="/" className="px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Home</Link>
+            <Link to="/headliners" className="px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Headliners</Link>
+            <Link to="/debates" className="px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Debates</Link>
+            <Link to="/storyboard" className="px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Storyboard</Link>
+            <Link to="/learning" className="px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Learning</Link>
           </nav>
 
           <div className="hidden md:flex items-center space-x-2">
             <Button variant="outline" size="sm" className="rounded-md">Sign In</Button>
-            <Button size="sm" className="bg-flyingbus-purple hover:bg-purple-600 text-white rounded-md">Join Us</Button>
+            <Button size="sm" className="bg-gray-800 hover:bg-gray-700 text-white rounded-md">Join Us</Button>
           </div>
 
           {/* Mobile menu button */}
@@ -47,15 +47,15 @@ const Header = () => {
         {isNavOpen && (
           <div className="md:hidden mt-4 pb-4">
             <nav className="flex flex-col space-y-2">
-              <Link to="/" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple hover:bg-gray-50 rounded-md transition-colors">Home</Link>
-              <Link to="/headliners" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple hover:bg-gray-50 rounded-md transition-colors">Headliners</Link>
-              <Link to="/debates" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple hover:bg-gray-50 rounded-md transition-colors">Debates</Link>
-              <Link to="/storyboard" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple hover:bg-gray-50 rounded-md transition-colors">Storyboard</Link>
-              <Link to="/learning" className="px-3 py-2 text-gray-700 hover:text-flyingbus-purple hover:bg-gray-50 rounded-md transition-colors">Learning</Link>
+              <Link to="/" className="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Home</Link>
+              <Link to="/headliners" className="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Headliners</Link>
+              <Link to="/debates" className="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Debates</Link>
+              <Link to="/storyboard" className="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Storyboard</Link>
+              <Link to="/learning" className="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Learning</Link>
             </nav>
             <div className="mt-4 flex space-x-2">
               <Button variant="outline" size="sm" className="flex-1 rounded-md">Sign In</Button>
-              <Button size="sm" className="flex-1 bg-flyingbus-purple hover:bg-purple-600 text-white rounded-md">Join Us</Button>
+              <Button size="sm" className="flex-1 bg-gray-800 hover:bg-gray-700 text-white rounded-md">Join Us</Button>
             </div>
           </div>
         )}
