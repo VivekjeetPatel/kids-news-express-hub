@@ -143,7 +143,7 @@ calculateCarbonOffset(5000, 10); // = 1,085,000 kg CO2 offset</code></pre>
     <p>"Anyone can make a difference," Johnson concluded. "Even small actions add up to big changes when we all work together. The future of our planet depends on what we do today, and we're proving that kids can lead the way."</p>
   `;
 
-  const isDebate = article.category === 'Debates';
+  const isDebate = article.category === 'Debate';
 
   return (
     <MainLayout>
