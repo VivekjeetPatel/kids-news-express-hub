@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { ArticleProps } from '@/components/Articles/ArticleCard';
 import { mockArticles } from '@/data/articles';
 import { ArrowUpRight } from 'lucide-react';
+import ProfileLink from '@/components/Comments/ProfileLink';
 
 interface ArticleSidebarProps {
   article: ArticleProps;
@@ -19,6 +20,10 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ article }) => {
 
   const fallbackImage = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neXxlbnwwfHwwfHx8MA%3D";
 
+  // For the author profile url - we'll assume the author name is used to create the URL
+  // Later this can be replaced with actual author IDs from the backend
+  const authorUsername = article.author.toLowerCase().replace(/\s+/g, '_');
+
   return (
     <div className="lg:col-span-4">
       <div className="sticky top-24">
@@ -28,7 +33,9 @@ const ArticleSidebar: React.FC<ArticleSidebarProps> = ({ article }) => {
             <p className="text-flyingbus-muted-text mb-4">
               {article.author} is a young journalist passionate about sharing important stories.
             </p>
-            <Button variant="outline" className="w-full">View Profile</Button>
+            <Button variant="outline" className="w-full" asChild>
+              <Link to={`/profile/${authorUsername}`}>View Profile</Link>
+            </Button>
           </CardContent>
         </Card>
         
