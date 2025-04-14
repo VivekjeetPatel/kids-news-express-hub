@@ -91,27 +91,27 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
     <MainLayout>
       <div className="max-w-6xl mx-auto px-4">
         {/* Category Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <div className="flex flex-col gap-4 mb-6">
           <CategoryHeader 
             displayCategory={displayCategory} 
             colorName={colorName}
           />
           
-          {/* Filter Controls */}
+          {/* Enhanced Breadcrumb */}
+          <Breadcrumb 
+            items={breadcrumbItems} 
+            className="bg-white/90 backdrop-blur-sm rounded-lg py-2 px-4 shadow-sm"
+          />
+        </div>
+        
+        {/* Filter Controls */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <CategoryFilter 
             sortBy={sortBy}
             onSortChange={setSortBy}
             readingLevels={availableReadingLevels}
             onReadingLevelChange={handleReadingLevelChange}
             selectedReadingLevel={selectedReadingLevel}
-          />
-        </div>
-        
-        {/* Enhanced Breadcrumb */}
-        <div className="mb-6">
-          <Breadcrumb 
-            items={breadcrumbItems} 
-            className="bg-white/90 backdrop-blur-sm rounded-lg py-2 px-4 shadow-sm"
           />
         </div>
 

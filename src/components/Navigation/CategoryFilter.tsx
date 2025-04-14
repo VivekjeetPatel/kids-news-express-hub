@@ -3,7 +3,8 @@ import React from 'react';
 import { 
   CalendarDays, 
   SortAsc,
-  Tag
+  Tag,
+  Filter
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { 
@@ -16,6 +17,16 @@ import {
   DropdownMenuTrigger 
 } from '@/components/ui/dropdown-menu';
 import { Card } from '@/components/ui/card';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface CategoryFilterProps {
   sortBy: 'newest' | 'oldest' | 'a-z';
@@ -32,6 +43,106 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
   onReadingLevelChange,
   selectedReadingLevel
 }) => {
+  const isMobile = useIsMobile();
+
+  const MobileSortOption = ({ value, label, icon }: { value: 'newest' | 'oldest' | 'a-z', label: string, icon: React.ReactNode }) => (
+    <DrawerClose asChild>
+      <Button 
+        variant="ghost" 
+        size="sm"
+        onClick={() => onSortChange(value)}
+        className={`w-full justify-start text-left ${
+          sortBy === value 
+            ? 'bg-gray-100 font-medium' 
+            : ''
+        }`}
+      >
+        {icon}
+        {label}
+        {sortBy === value && <span className="ml-auto text-flyingbus-purple">•</span>}
+      </Button>
+    </DrawerClose>
+  );
+
+  const MobileLevelOption = ({ level }: { level: string | null }) => (
+    <DrawerClose asChild>
+      <Button 
+        variant="ghost" 
+        size="sm"
+        onClick={() => onReadingLevelChange?.(level)}
+        className={`w-full justify-start text-left ${
+          selectedReadingLevel === level 
+            ? 'bg-gray-100 font-medium' 
+            : ''
+        }`}
+      >
+        {level || 'All Levels'}
+        {selectedReadingLevel === level && <span className="ml-auto text-flyingbus-purple">•</span>}
+      </Button>
+    </DrawerClose>
+  );
+
+  // Mobile filter drawer
+  if (isMobile) {
+    return (
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="text-xs flex gap-1 items-center border-gray-300 text-gray-700"
+          >
+            <Filter size={14} className="text-gray-500" />
+            <span className="whitespace-nowrap">Filter & Sort</span>
+          </Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Filter Articles</DrawerTitle>
+          </DrawerHeader>
+          <div className="p-4 pb-0">
+            {readingLevels.length > 0 && onReadingLevelChange && (
+              <div className="mb-6">
+                <h3 className="text-sm font-medium mb-2">Reading Level</h3>
+                <div className="space-y-1">
+                  <MobileLevelOption level={null} />
+                  {readingLevels.map((level) => (
+                    <MobileLevelOption key={level} level={level} />
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            <h3 className="text-sm font-medium mb-2">Sort Articles</h3>
+            <div className="space-y-1">
+              <MobileSortOption 
+                value="newest" 
+                label="Newest First" 
+                icon={<CalendarDays size={16} className="mr-2" />} 
+              />
+              <MobileSortOption 
+                value="oldest" 
+                label="Oldest First" 
+                icon={<CalendarDays size={16} className="mr-2" />} 
+              />
+              <MobileSortOption 
+                value="a-z" 
+                label="A-Z" 
+                icon={<SortAsc size={16} className="mr-2" />} 
+              />
+            </div>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button variant="outline">Close</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  }
+
+  // Desktop layout
   return (
     <div className="flex items-center gap-3">
       {/* Reading Level Filter */}
@@ -111,4 +222,3 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
 };
 
 export default CategoryFilter;
-
