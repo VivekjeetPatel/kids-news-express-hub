@@ -1,18 +1,14 @@
 
 import React from 'react';
-import { Label } from '@/components/ui/label';
+import { Control } from 'react-hook-form';
+import { FormField, FormItem, FormControl, FormLabel } from '@/components/ui/form';
+import { Switch } from '@/components/ui/switch';
 
 interface PrivacySettingsSectionProps {
-  showCommentHistory: boolean;
-  showReadingActivity: boolean;
-  onPrivacyChange: (field: string, value: boolean) => void;
+  control: Control<any>;
 }
 
-const PrivacySettingsSection: React.FC<PrivacySettingsSectionProps> = ({
-  showCommentHistory,
-  showReadingActivity,
-  onPrivacyChange
-}) => {
+const PrivacySettingsSection: React.FC<PrivacySettingsSectionProps> = ({ control }) => {
   return (
     <div>
       <h3 className="text-lg font-medium mb-3">Privacy Settings</h3>
@@ -21,31 +17,43 @@ const PrivacySettingsSection: React.FC<PrivacySettingsSectionProps> = ({
       </p>
       
       <div className="space-y-4">
-        <div className="flex items-center gap-3">
-          <input
-            type="checkbox"
-            id="showCommentHistory"
-            checked={showCommentHistory}
-            onChange={(e) => onPrivacyChange('showCommentHistory', e.target.checked)}
-            className="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
-          />
-          <Label htmlFor="showCommentHistory" className="text-sm font-normal cursor-pointer">
-            Show my comment history on my profile
-          </Label>
-        </div>
+        <FormField
+          control={control}
+          name="showCommentHistory"
+          render={({ field }) => (
+            <FormItem className="flex items-center gap-3">
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  id="showCommentHistory"
+                />
+              </FormControl>
+              <FormLabel className="text-sm font-normal cursor-pointer" htmlFor="showCommentHistory">
+                Show my comment history on my profile
+              </FormLabel>
+            </FormItem>
+          )}
+        />
         
-        <div className="flex items-center gap-3">
-          <input
-            type="checkbox"
-            id="showReadingActivity"
-            checked={showReadingActivity}
-            onChange={(e) => onPrivacyChange('showReadingActivity', e.target.checked)}
-            className="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
-          />
-          <Label htmlFor="showReadingActivity" className="text-sm font-normal cursor-pointer">
-            Show my reading activity on my profile
-          </Label>
-        </div>
+        <FormField
+          control={control}
+          name="showReadingActivity"
+          render={({ field }) => (
+            <FormItem className="flex items-center gap-3">
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  id="showReadingActivity"
+                />
+              </FormControl>
+              <FormLabel className="text-sm font-normal cursor-pointer" htmlFor="showReadingActivity">
+                Show my reading activity on my profile
+              </FormLabel>
+            </FormItem>
+          )}
+        />
       </div>
     </div>
   );
