@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { Link } from "react-router-dom"
 import { Menu, X, User, BookOpen, LogOut, Settings, CircleDot } from "lucide-react"
@@ -124,33 +123,33 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
   return (
     <div className="md:hidden fixed inset-0 top-[72px] z-50 bg-white">
       <div className="container h-full overflow-y-auto">
-        <nav className="py-8">
-          <ul className="flex flex-col space-y-6">
+        <nav className="py-6">
+          <ul className="flex flex-col space-y-4">
             {items.map((item, index) => (
               <li key={index}>
                 {item.to ? (
                   <Link 
                     to={item.to} 
-                    className="flex items-center px-5 text-lg font-medium text-gray-800 hover:text-gray-900"
+                    className="flex items-center px-3 text-base font-medium text-gray-800 hover:text-gray-900"
                   >
                     {getCategoryDotColor(item.text) && (
-                      <CircleDot className={`mr-3 h-5 w-5 ${getCategoryDotColor(item.text)}`} />
+                      <CircleDot className={`mr-2 h-4 w-4 ${getCategoryDotColor(item.text)}`} />
                     )}
                     <span>{item.text}</span>
                   </Link>
                 ) : (
-                  <div className="px-5">
-                    <div className="text-base uppercase tracking-wider font-semibold text-gray-500 mb-4">{item.text}</div>
+                  <div className="px-3">
+                    <div className="text-sm uppercase tracking-wider font-semibold text-gray-500 mb-3">{item.text}</div>
                     {item.items && item.items.length > 0 && (
-                      <ul className="space-y-4 pl-0">
+                      <ul className="space-y-3 pl-0">
                         {item.items.map((subItem, subIndex) => (
                           <li key={subIndex}>
                             <Link 
                               to={subItem.to} 
-                              className="flex items-center text-lg font-medium text-gray-800 hover:text-gray-900"
+                              className="flex items-center text-base font-medium text-gray-800 hover:text-gray-900"
                             >
                               {getCategoryDotColor(subItem.text) && (
-                                <CircleDot className={`mr-3 h-5 w-5 ${getCategoryDotColor(subItem.text)}`} />
+                                <CircleDot className={`mr-2 h-4 w-4 ${getCategoryDotColor(subItem.text)}`} />
                               )}
                               <span>{subItem.text}</span>
                             </Link>
