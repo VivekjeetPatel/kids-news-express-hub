@@ -8,8 +8,9 @@ export const getCategoryColor = (category: string) => {
     'Storyboard': 'bg-flyingbus-blue text-white',
     'In the Neighborhood': 'bg-flyingbus-green text-white',
     'Learning': 'bg-flyingbus-purple text-white',
+    'Learning Resources': 'bg-flyingbus-purple text-white',
     'School News': 'bg-flyingbus-pink text-white'
   };
   
-  return categories[category] || 'bg-gray-500 text-white';
+  return categories[category] || '';
 };
