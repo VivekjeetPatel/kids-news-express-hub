@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Link } from "react-router-dom"
 import { Menu, X, User, BookOpen, LogOut, Settings, Newspaper, FileText, BookText, MessagesSquare, HomeIcon, Info } from "lucide-react"
@@ -9,6 +10,7 @@ import { useAuth } from "@/contexts/AuthContext"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { getCategoryColor } from "@/utils/categoryColors"
 import { Separator } from "@/components/ui/separator"
+import { NavLink } from "./nav-link"
 
 interface MobileMenuButtonProps {
   onClick: () => void
@@ -62,31 +64,27 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
         <div className="mt-6 pt-6">
           <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">Account</div>
           <Separator className="mb-3" />
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             <li>
-              <Link 
+              <NavLink 
                 to={`/profile/${currentUser.username}`}
-                className="flex items-center gap-3 py-2 text-gray-700 font-medium"
-              >
-                <User size={18} />
-                <span>My Profile</span>
-              </Link>
+                icon={<User size={16} />}
+                text="My Profile"
+              />
             </li>
             <li>
-              <Link 
+              <NavLink 
                 to={`/profile/${currentUser.username}/settings`}
-                className="flex items-center gap-3 py-2 text-gray-700 font-medium"
-              >
-                <Settings size={18} />
-                <span>Settings</span>
-              </Link>
+                icon={<Settings size={16} />}
+                text="Settings"
+              />
             </li>
             <li>
               <button 
                 onClick={handleLogout}
-                className="flex items-center gap-3 py-2 text-gray-700 w-full text-left font-medium"
+                className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900 w-full text-left"
               >
-                <LogOut size={18} />
+                <LogOut size={16} className="mr-2" />
                 <span>Log out</span>
               </button>
             </li>
@@ -123,13 +121,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
             {items.map((item, index) => (
               <li key={index} className="mb-5">
                 {item.to ? (
-                  <Link 
+                  <NavLink 
                     to={item.to} 
-                    className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900"
-                  >
-                    {getCategoryIcon(item.text)}
-                    <span className="ml-2">{item.text}</span>
-                  </Link>
+                    icon={getCategoryIcon(item.text)}
+                    text={item.text}
+                  />
                 ) : (
                   <div>
                     <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">{item.text}</div>
@@ -138,13 +134,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
                       <ul className="space-y-3 pl-0">
                         {item.items.map((subItem, subIndex) => (
                           <li key={subIndex}>
-                            <Link 
+                            <NavLink 
                               to={subItem.to} 
-                              className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900"
-                            >
-                              {getCategoryIcon(subItem.text)}
-                              <span className="ml-2">{subItem.text}</span>
-                            </Link>
+                              icon={getCategoryIcon(subItem.text)}
+                              text={subItem.text}
+                            />
                           </li>
                         ))}
                       </ul>
