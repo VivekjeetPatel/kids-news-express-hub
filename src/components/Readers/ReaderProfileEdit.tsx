@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
@@ -6,10 +7,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Camera, Save } from 'lucide-react';
+import { Camera, Save, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { ReaderProfile } from '@/types/ReaderProfile';
 import MainLayout from '@/components/Layout/MainLayout';
+import { Link } from 'react-router-dom';
 
 interface ReaderProfileEditProps {
   profile: ReaderProfile;
@@ -62,32 +64,44 @@ const ReaderProfileEdit: React.FC<ReaderProfileEditProps> = ({
   return (
     <MainLayout>
       <div className="container mx-auto py-8 px-4">
+        <div className="mb-6">
+          <Link 
+            to={`/profile/${profile.username}`}
+            className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Profile
+          </Link>
+        </div>
+        
+        <div className="relative mb-6 overflow-hidden rounded-lg">
+          {/* Pastel gradient background - soft blue to soft purple */}
+          <div className="h-32 bg-gradient-to-r from-[#D3E4FD] to-[#E5DEFF]"></div>
+        </div>
+        
         <form onSubmit={handleSubmit}>
-          <Card>
-            <CardHeader>
+          <Card className="-mt-16 relative z-10 border-0 shadow-lg">
+            <CardHeader className="flex flex-row items-center gap-4 relative">
+              <div className="relative">
+                <Avatar className="h-24 w-24 ring-4 ring-white">
+                  <AvatarImage src={editedProfile.avatar} alt={editedProfile.displayName} />
+                  <AvatarFallback className="text-xl">
+                    {editedProfile.displayName.substring(0, 2).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  className="absolute bottom-0 right-0 rounded-full bg-white"
+                  onClick={handleAvatarChange}
+                >
+                  <Camera className="h-4 w-4" />
+                </Button>
+              </div>
               <CardTitle>Edit Profile</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="flex justify-center">
-                <div className="relative">
-                  <Avatar className="h-24 w-24">
-                    <AvatarImage src={editedProfile.avatar} alt={editedProfile.displayName} />
-                    <AvatarFallback className="text-xl">
-                      {editedProfile.displayName.substring(0, 2).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="icon"
-                    className="absolute bottom-0 right-0 rounded-full bg-white"
-                    onClick={handleAvatarChange}
-                  >
-                    <Camera className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-              
               <div className="grid gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="displayName">Display Name</Label>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -6,10 +7,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { formatDistanceToNow } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
-import { MessageSquare, Award, Flame } from 'lucide-react';
+import { MessageSquare, Award, Flame, Share2 } from 'lucide-react';
 import { getReaderByUsername } from '@/data/readers';
 import { getCommentsByAuthor } from '@/data/comments';
 import MainLayout from '@/components/Layout/MainLayout';
+import { Button } from '@/components/ui/button';
 
 const ReaderProfilePage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
@@ -33,9 +35,11 @@ const ReaderProfilePage: React.FC = () => {
   return (
     <MainLayout>
       <div className="container mx-auto py-8 px-4">
-        <Card className="mb-6 overflow-hidden">
-          <div className="h-32 bg-gradient-to-r from-purple-500 to-indigo-600"></div>
-          <CardContent className="pt-0 -mt-16">
+        <div className="relative mb-6 overflow-hidden rounded-lg">
+          {/* Pastel gradient background - peach to pink */}
+          <div className="h-40 bg-gradient-to-r from-[#FDE1D3] to-[#FFDEE2]"></div>
+          
+          <div className="relative px-6 -mt-16 pb-6">
             <div className="flex flex-col md:flex-row gap-6 items-center md:items-end">
               <Avatar className="h-32 w-32 ring-4 ring-white">
                 <AvatarImage src={reader.avatar} alt={reader.displayName} />
@@ -44,12 +48,22 @@ const ReaderProfilePage: React.FC = () => {
                 </AvatarFallback>
               </Avatar>
               
-              <div className="text-center md:text-left">
-                <h1 className="text-2xl font-bold mt-2">{reader.displayName}</h1>
+              <div className="text-center md:text-left mt-4 md:mt-0">
+                <h1 className="text-2xl font-bold">{reader.displayName}</h1>
                 <p className="text-gray-500">@{reader.username}</p>
                 <p className="text-sm text-gray-600 mt-1">
                   Joined {formatDistanceToNow(reader.joinedDate, { addSuffix: true })}
                 </p>
+              </div>
+              
+              <div className="md:ml-auto mt-4 md:mt-0">
+                <Button 
+                  variant="outline"
+                  className="flex items-center gap-2 bg-white"
+                >
+                  <Share2 className="h-4 w-4" />
+                  Share Profile
+                </Button>
               </div>
             </div>
             
@@ -66,8 +80,8 @@ const ReaderProfilePage: React.FC = () => {
                 </Badge>
               ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
         
         <Tabs defaultValue="activity">
           <TabsList className="grid w-full grid-cols-3 mb-8">
