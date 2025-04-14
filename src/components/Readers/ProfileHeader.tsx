@@ -54,8 +54,8 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ reader, isOwnProfile }) =
         </div>
       </div>
       
-      {/* Profile Picture - positioned to overlap with the background */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ top: "52px" }}>
+      {/* Profile Picture - positioned to overlap with the bottom of the background */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ top: "calc(100% - 64px)" }}>
         <Avatar className="h-32 w-32 border-4 border-white bg-white shadow-md">
           <AvatarImage src={reader.avatar} alt={reader.displayName} />
           <AvatarFallback className="text-3xl bg-purple-50 text-purple-700">
@@ -68,3 +68,4 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ reader, isOwnProfile }) =
 };
 
 export default ProfileHeader;
+
