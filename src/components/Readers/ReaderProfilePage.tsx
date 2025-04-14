@@ -50,8 +50,9 @@ const ReaderProfilePage: React.FC = () => {
     <MainLayout>
       <div className="container max-w-4xl mx-auto pb-12">
         {/* Profile Header with Gradient Background */}
-        <div className="relative mb-16">
-          <div className="h-64 rounded-b-3xl bg-gradient-to-r from-[#FDE1D3] to-[#FFDEE2] overflow-hidden">
+        <div className="relative">
+          {/* Gradient background with increased height */}
+          <div className="h-52 rounded-b-3xl bg-gradient-to-r from-[#FDE1D3] to-[#FFDEE2] overflow-hidden">
             {/* Navigation */}
             <div className="absolute top-4 left-4">
               <Link to="/" className="inline-flex items-center gap-1 bg-white/70 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-gray-700 hover:bg-white/90 transition-colors">
@@ -85,29 +86,27 @@ const ReaderProfilePage: React.FC = () => {
             </div>
           </div>
           
-          {/* Profile Picture & Basic Info */}
-          <div className="absolute -bottom-16 w-full flex flex-col items-center">
+          {/* Profile Picture - positioned to overlap with the background */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ top: "52px" }}>
             <Avatar className="h-32 w-32 border-4 border-white bg-white shadow-md">
               <AvatarImage src={reader.avatar} alt={reader.displayName} />
               <AvatarFallback className="text-3xl bg-purple-50 text-purple-700">
                 {reader.displayName.substring(0, 2).toUpperCase()}
               </AvatarFallback>
             </Avatar>
-            
-            <div className="mt-4 text-center">
-              <h1 className="text-2xl font-bold">{reader.displayName}</h1>
-              <p className="text-gray-500">@{reader.username}</p>
-              <p className="text-sm text-gray-600 mt-1">
-                Joined {formatDistanceToNow(reader.joinedDate, { addSuffix: true })}
-              </p>
-            </div>
           </div>
         </div>
         
-        {/* Bio & Badges */}
-        <div className="px-4 mt-16 mb-8">
+        {/* User Info Section - positioned below the gradient background with proper spacing */}
+        <div className="mt-36 px-4 text-center">
+          <h1 className="text-2xl font-bold">{reader.displayName}</h1>
+          <p className="text-gray-500">@{reader.username}</p>
+          <p className="text-sm text-gray-600 mt-1">
+            Joined {formatDistanceToNow(reader.joinedDate, { addSuffix: true })}
+          </p>
+          
           {reader.bio && (
-            <p className="text-center text-gray-700 max-w-lg mx-auto">{reader.bio}</p>
+            <p className="text-center text-gray-700 max-w-lg mx-auto mt-4">{reader.bio}</p>
           )}
           
           <div className="flex flex-wrap justify-center gap-2 mt-4">

@@ -65,50 +65,53 @@ const ReaderProfileEdit: React.FC<ReaderProfileEditProps> = ({
   
   return (
     <MainLayout>
-      <div className="container max-w-3xl mx-auto py-8 pb-12 px-4">
-        <div className="mb-4">
-          <Link 
-            to={`/profile/${profile.username}`}
-            className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Profile
-          </Link>
+      <div className="container max-w-3xl mx-auto pb-12">
+        {/* Header with Gradient Background */}
+        <div className="relative">
+          {/* Gradient background with adequate height */}
+          <div className="h-52 rounded-b-3xl bg-gradient-to-r from-[#D3E4FD] to-[#E5DEFF]"></div>
+          
+          {/* Back Button */}
+          <div className="absolute top-4 left-4">
+            <Link 
+              to={`/profile/${profile.username}`}
+              className="inline-flex items-center gap-1 bg-white/70 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-gray-700 hover:bg-white/90 transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Profile
+            </Link>
+          </div>
+          
+          {/* Avatar positioned to overlap with gradient */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ top: "52px" }}>
+            <div className="relative inline-block">
+              <Avatar className="h-32 w-32 border-4 border-white bg-white shadow-md">
+                <AvatarImage src={editedProfile.avatar} alt={editedProfile.displayName} />
+                <AvatarFallback className="text-3xl bg-purple-50 text-purple-700">
+                  {editedProfile.displayName.substring(0, 2).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                className="absolute bottom-0 right-0 rounded-full bg-white shadow-sm"
+                onClick={handleAvatarChange}
+              >
+                <Camera className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
         </div>
         
-        {/* Background Header */}
-        <div className="relative mb-12">
-          <div className="h-40 rounded-xl bg-gradient-to-r from-[#D3E4FD] to-[#E5DEFF]"></div>
-        </div>
-        
-        <form onSubmit={handleSubmit}>
-          <Card className="-mt-24 border-none shadow-md">
-            <CardHeader className="relative pt-8">
-              <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
-                <div className="relative inline-block">
-                  <Avatar className="h-24 w-24 border-4 border-white bg-white">
-                    <AvatarImage src={editedProfile.avatar} alt={editedProfile.displayName} />
-                    <AvatarFallback className="text-xl bg-purple-50 text-purple-700">
-                      {editedProfile.displayName.substring(0, 2).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="icon"
-                    className="absolute bottom-0 right-0 rounded-full bg-white shadow-sm"
-                    onClick={handleAvatarChange}
-                  >
-                    <Camera className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-              <div className="pt-6">
-                <CardTitle className="text-center">Edit Your Profile</CardTitle>
-              </div>
+        {/* Form Section - properly spaced below the avatar */}
+        <form onSubmit={handleSubmit} className="mt-24 px-4">
+          <Card className="border-none shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-center text-xl">Edit Your Profile</CardTitle>
             </CardHeader>
             
-            <CardContent className="space-y-6 px-6">
+            <CardContent className="space-y-6">
               <div className="grid gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="displayName">Display Name</Label>
@@ -191,24 +194,22 @@ const ReaderProfileEdit: React.FC<ReaderProfileEditProps> = ({
               </div>
             </CardContent>
             
-            <CardFooter className="px-6 pb-6 flex justify-end">
-              <div className="flex gap-3">
-                <Button 
-                  type="button" 
-                  variant="outline"
-                  onClick={() => navigate(`/profile/${profile.username}`)}
-                >
-                  Cancel
-                </Button>
-                <Button 
-                  type="submit" 
-                  className="flex gap-2 items-center bg-purple-600 hover:bg-purple-700"
-                  disabled={isSubmitting}
-                >
-                  <Save className="h-4 w-4" />
-                  {isSubmitting ? 'Saving...' : 'Save Changes'}
-                </Button>
-              </div>
+            <CardFooter className="flex justify-end pb-6 gap-3">
+              <Button 
+                type="button" 
+                variant="outline"
+                onClick={() => navigate(`/profile/${profile.username}`)}
+              >
+                Cancel
+              </Button>
+              <Button 
+                type="submit" 
+                className="flex gap-2 items-center bg-purple-600 hover:bg-purple-700"
+                disabled={isSubmitting}
+              >
+                <Save className="h-4 w-4" />
+                {isSubmitting ? 'Saving...' : 'Save Changes'}
+              </Button>
             </CardFooter>
           </Card>
         </form>
