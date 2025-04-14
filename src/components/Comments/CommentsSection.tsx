@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import CommentItem, { CommentProps } from './CommentItem';
 import CommentForm from './CommentForm';
 import { Separator } from '@/components/ui/separator';
+import { Card } from '@/components/ui/card';
 import { MessageCircle } from 'lucide-react';
 
 interface CommentsSectionProps {
@@ -36,18 +37,16 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ articleId, comments }
   };
 
   return (
-    <div className="mt-8 pt-4">
+    <Card className="mt-8 pt-4 px-6 pb-6 bg-gray-50/50">
       <h3 className="text-xl font-semibold flex items-center gap-2 mb-6">
         <MessageCircle className="h-5 w-5 text-flyingbus-purple" />
-        Comments ({localComments.length})
+        Discussion ({localComments.length})
       </h3>
       
       <CommentForm onSubmit={handleSubmitComment} isSubmitting={isSubmitting} />
       
-      <Separator className="my-4" />
-      
       {localComments.length > 0 ? (
-        <div className="space-y-1">
+        <div className="space-y-1 mt-6">
           {localComments.map((comment) => (
             <CommentItem key={comment.id} {...comment} />
           ))}
@@ -57,7 +56,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ articleId, comments }
           <p>No comments yet. Be the first to comment!</p>
         </div>
       )}
-    </div>
+    </Card>
   );
 };
 

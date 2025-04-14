@@ -13,12 +13,7 @@ interface ArticleFooterProps {
 }
 
 const ArticleFooter: React.FC<ArticleFooterProps> = ({ article }) => {
-  const [showComments, setShowComments] = useState(false);
   const comments = getCommentsByArticleId(article.id);
-
-  const toggleComments = () => {
-    setShowComments(!showComments);
-  };
 
   return (
     <>
@@ -43,18 +38,13 @@ const ArticleFooter: React.FC<ArticleFooterProps> = ({ article }) => {
             <MessageSquare size={16} className="inline mr-1" />
             {comments.length} comments
           </span>
-          <RainbowButton className="ml-2" onClick={toggleComments}>
-            {showComments ? 'Hide Discussion' : 'Join Discussion'}
-          </RainbowButton>
         </div>
       </div>
 
-      {showComments && (
-        <CommentsSection 
-          articleId={article.id}
-          comments={comments}
-        />
-      )}
+      <CommentsSection 
+        articleId={article.id}
+        comments={comments}
+      />
     </>
   );
 };
