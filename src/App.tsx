@@ -1,61 +1,31 @@
 
-console.log('App.tsx is rendering');
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import NotFound from '@/pages/NotFound';
+import Index from '@/pages/Index';
+import CategoryPage from '@/pages/CategoryPage';
+import ArticlePage from '@/pages/ArticlePage';
+import About from '@/pages/About';
+import ReaderAuth from '@/pages/ReaderAuth';
+import StoryboardPage from '@/pages/StoryboardPage';
+import StoryboardEpisodePage from '@/pages/StoryboardEpisodePage';
+import StoryboardCategoryPage from '@/pages/StoryboardCategoryPage';
+import './App.css';
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import ArticlePage from "./pages/ArticlePage";
-import StoryboardPage from "./pages/StoryboardPage";
-import StoryboardEpisodePage from "./pages/StoryboardEpisodePage";
-import About from "./pages/About";
-import NotFound from "./pages/NotFound";
-import ReaderProfilePage from "./components/Readers/ReaderProfilePage";
-import ReaderAuth from "./pages/ReaderAuth";
-import { AuthProvider } from "./contexts/AuthContext";
-import ReaderProfileEdit from "./components/Readers/ReaderProfileEdit";
-import { useAuth } from "./contexts/AuthContext";
-import CategoryPage from "./pages/CategoryPage";
-
-const queryClient = new QueryClient();
-
-// Create a wrapper component to pass the current user to ReaderProfileEdit
-const ProfileEditWrapper = () => {
-  const { currentUser } = useAuth();
-  return currentUser ? <ReaderProfileEdit profile={currentUser} /> : <NotFound />;
-};
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/article/:id" element={<ArticlePage />} />
-            <Route path="/storyboard/:id" element={<StoryboardPage />} />
-            <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/profile/:username" element={<ReaderProfilePage />} />
-            <Route path="/profile/:username/edit" element={<ProfileEditWrapper />} />
-            <Route path="/reader-auth" element={<ReaderAuth />} />
-            {/* Category routes */}
-            <Route path="/headliners" element={<CategoryPage category="headliners" />} />
-            <Route path="/debates" element={<CategoryPage category="debates" />} />
-            <Route path="/spice-it-up" element={<CategoryPage category="spice-it-up" />} />
-            <Route path="/neighborhood" element={<CategoryPage category="neighborhood" />} />
-            <Route path="/learning" element={<CategoryPage category="learning" />} />
-            <Route path="/school-news" element={<CategoryPage category="school-news" />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/article/:id" element={<ArticlePage />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/auth/:mode" element={<ReaderAuth />} />
+      <Route path="/storyboard" element={<StoryboardCategoryPage />} />
+      <Route path="/storyboard/:id" element={<StoryboardPage />} />
+      <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
+      <Route path="/:category" element={<CategoryPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
 
 export default App;

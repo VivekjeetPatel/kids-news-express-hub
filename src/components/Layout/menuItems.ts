@@ -1,71 +1,38 @@
 
-// Menu items configuration for The Flying Bus navigation
-export interface NavSubItem {
-  text: string;
-  description?: string;
-  to: string;
-  icon?: {
-    dark: string;
-    light: string;
-  };
-}
-
-export interface NavItem {
-  text: string;
-  to?: string;
-  items?: NavSubItem[];
-}
-
-const menuItems: NavItem[] = [
+// Define menu items for navigation
+const menuItems = [
   {
-    text: "Categories",
-    items: [
-      {
-        text: "Headliners",
-        description: "Top stories of the day",
-        to: "/headliners"
-      },
-      {
-        text: "Debates",
-        description: "Join discussions on important topics",
-        to: "/debates"
-      },
-      {
-        text: "Spice It Up",
-        description: "Fun and interesting stories",
-        to: "/spice-it-up"
-      },
-      {
-        text: "Storyboard", 
-        description: "Creative writing and stories",
-        to: "/storyboard"
-      },
-      {
-        text: "In the Neighborhood",
-        description: "Local news and events",
-        to: "/neighborhood"
-      },
-    ]
+    label: "Headliners",
+    href: "/headliners",
   },
   {
-    text: "Learning",
-    items: [
-      {
-        text: "Learning Resources",
-        description: "Educational content for kids",
-        to: "/learning"
-      },
-      {
-        text: "School News",
-        description: "Latest updates from schools",
-        to: "/school"
-      }
-    ]
+    label: "Debates",
+    href: "/debates",
   },
   {
-    text: "About",
-    to: "/about"
-  }
+    label: "Spice It Up",
+    href: "/spice-it-up",
+  },
+  {
+    label: "Storyboard",
+    href: "/storyboard",
+  },
+  {
+    label: "In the Neighborhood",
+    href: "/in-the-neighborhood",
+  },
+  {
+    label: "Learning",
+    href: "/learning",
+  },
+  {
+    label: "School News",
+    href: "/school-news",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
 ];
 
 export default menuItems;
