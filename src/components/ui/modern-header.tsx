@@ -30,10 +30,12 @@ export const ModernHeader: React.FC<ModernHeaderProps> = ({
         className
       )}
     >
-      <div className="w-full px-4 md:px-8 lg:px-12 py-4">
+      <div className="w-full px-4 md:px-6 lg:px-10 py-3">
         <div className="flex items-center justify-between">
-          {logo}
-          <HeaderNavigation items={menuItems} />
+          <div className="flex items-center space-x-8">
+            {logo}
+            <HeaderNavigation items={menuItems} />
+          </div>
           <div className="flex items-center gap-x-4">
             {rightContent}
             <MobileMenuButton
@@ -50,4 +52,3 @@ export const ModernHeader: React.FC<ModernHeaderProps> = ({
 
 export { NavButton };
 export default ModernHeader;
-

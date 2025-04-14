@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { Navbar1 } from '@/components/ui/navbar1';
+import ModernHeader from '@/components/ui/modern-header';
 import Logo from '@/components/ui/logo';
 import { HeaderButtons } from '@/components/ui/header-buttons';
 import menuItems from './menuItems';
 
 const HeaderLogo = () => (
-  <Logo className="md:block hidden" size="lg" />
+  <Logo className="md:block hidden" size="xl" />
 );
 
 const MobileLogo = () => (
@@ -15,7 +15,7 @@ const MobileLogo = () => (
 
 const Header = () => {
   return (
-    <Navbar1
+    <ModernHeader
       logo={
         <>
           <HeaderLogo />
