@@ -30,12 +30,12 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
         <VideoPlayer 
           videoUrl={article.videoUrl!} 
           title={article.title} 
-          duration={article.duration} // Now correctly passing the optional duration
+          duration={article.duration} 
         />
       )}
       
-      {/* Add margin-top to image when video is present for Spice It Up articles */}
-      <div className={`mb-8 rounded-xl overflow-hidden ${isSpiceItUpWithVideo ? 'mt-8' : ''}`}>
+      {/* Reduce margin-top and bottom for image */}
+      <div className={`mb-4 rounded-xl overflow-hidden ${isSpiceItUpWithVideo ? 'mt-4' : ''}`}>
         <AspectRatio ratio={16/9} className="bg-gray-100">
           <img 
             src={article.imageUrl} 
