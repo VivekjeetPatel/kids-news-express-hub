@@ -6,7 +6,6 @@ import { mockArticles } from '@/data/articles';
 import { getCategoryColor } from '@/utils/categoryColors';
 import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import CategoryFilter from '@/components/Navigation/CategoryFilter';
-import DebateVote from '@/components/Articles/DebateVote';
 import CategoryHeader from '@/components/Category/CategoryHeader';
 import ActiveFilters from '@/components/Category/ActiveFilters';
 import ArticlesGrid from '@/components/Category/ArticlesGrid';
@@ -88,11 +87,6 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
 
   const hasActiveFilters = selectedReadingLevel !== null || sortBy !== 'newest';
 
-  // Get first debate article for voting component
-  const featuredDebate = displayCategory === 'Debates' && articles.length > 0 
-    ? articles[0] 
-    : null;
-
   return (
     <MainLayout>
       <div className="max-w-6xl mx-auto px-4">
@@ -120,17 +114,6 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
             className="bg-white/90 backdrop-blur-sm rounded-lg py-2 px-4 shadow-sm"
           />
         </div>
-
-        {/* Add Debate Voting Component for Debates Category */}
-        {displayCategory === 'Debates' && featuredDebate && (
-          <div className="mb-8">
-            <DebateVote 
-              debateId={featuredDebate.id}
-              topicTitle={featuredDebate.title}
-              initialVotes={{ yes: 62, no: 38 }}
-            />
-          </div>
-        )}
 
         {/* Active Filters */}
         <ActiveFilters 
