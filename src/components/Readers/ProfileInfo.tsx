@@ -10,7 +10,7 @@ interface ProfileInfoProps {
 
 const ProfileInfo: React.FC<ProfileInfoProps> = ({ reader }) => {
   return (
-    <div className="mt-36 px-4 text-center">
+    <div className="mt-8 px-4 text-center">
       <h1 className="text-2xl font-bold">{reader.displayName}</h1>
       <p className="text-gray-500">@{reader.username}</p>
       <p className="text-sm text-gray-600 mt-1">
