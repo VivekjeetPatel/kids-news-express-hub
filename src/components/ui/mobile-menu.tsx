@@ -58,19 +58,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
     if (isLoggedIn && currentUser) {
       return (
         <div className="mt-6 pt-6 border-t border-gray-200">
-          <div className="flex items-center gap-4 mb-6">
-            <Avatar className="h-12 w-12">
-              <AvatarImage src={currentUser.avatar} alt={currentUser.displayName} />
-              <AvatarFallback className="bg-neutral-700 text-white">
-                {currentUser.displayName.split(' ').map(n => n[0]).join('').toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="font-medium text-base">{currentUser.displayName}</p>
-              <p className="text-sm text-gray-500">@{currentUser.username}</p>
-            </div>
-          </div>
-          
           <ul className="space-y-4">
             <li>
               <Link 
