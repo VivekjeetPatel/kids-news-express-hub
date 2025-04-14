@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
 import ArticleCard from '@/components/Articles/ArticleCard';
@@ -13,13 +13,12 @@ import {
   GraduationCap, 
   School, 
   Newspaper,
-  ArrowDownAZ,
-  CalendarDays
+  FilterX
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from '@/components/ui/pagination';
 import Breadcrumb from '@/components/Navigation/Breadcrumb';
+import CategoryFilter from '@/components/Navigation/CategoryFilter';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 interface CategoryPageProps {
@@ -29,9 +28,11 @@ interface CategoryPageProps {
 const ARTICLES_PER_PAGE = 6;
 
 const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) => {
-  // State for sorting and pagination
+  // State for sorting, filtering and pagination
   const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'a-z'>('newest');
+  const [selectedReadingLevel, setSelectedReadingLevel] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [availableReadingLevels, setAvailableReadingLevels] = useState<string[]>([]);
   const isMobile = useIsMobile();
   
   // Get path from location to determine category if not provided via props
@@ -56,6 +57,17 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
   // Filter articles by category
   let articles = mockArticles.filter(article => article.category === displayCategory);
   
+  // Extract and set unique reading levels on component mount
+  useEffect(() => {
+    const levels = [...new Set(articles.map(article => article.readingLevel))];
+    setAvailableReadingLevels(levels);
+  }, [displayCategory]);
+
+  // Filter by reading level if selected
+  if (selectedReadingLevel) {
+    articles = articles.filter(article => article.readingLevel === selectedReadingLevel);
+  }
+  
   // Sort articles based on selected option
   if (sortBy === 'newest') {
     articles = [...articles].sort((a, b) => 
@@ -68,6 +80,11 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
   } else if (sortBy === 'a-z') {
     articles = [...articles].sort((a, b) => a.title.localeCompare(b.title));
   }
+
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [sortBy, selectedReadingLevel]);
 
   // Calculate pagination
   const totalPages = Math.ceil(articles.length / ARTICLES_PER_PAGE);
@@ -103,6 +120,19 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
     { label: displayCategory, active: true }
   ];
 
+  // Handle reading level filter change
+  const handleReadingLevelChange = (level: string | null) => {
+    setSelectedReadingLevel(level);
+  };
+
+  // Clear all filters
+  const clearFilters = () => {
+    setSelectedReadingLevel(null);
+    setSortBy('newest');
+  };
+
+  const hasActiveFilters = selectedReadingLevel !== null || sortBy !== 'newest';
+
   return (
     <MainLayout>
       <div className="max-w-6xl mx-auto px-4">
@@ -115,33 +145,14 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
             </h1>
           </div>
           
-          {/* Sort Controls */}
-          <Card className="p-1 flex gap-1 bg-white/80 backdrop-blur-sm">
-            <Button 
-              variant={sortBy === 'newest' ? 'default' : 'ghost'} 
-              size="sm"
-              onClick={() => setSortBy('newest')}
-              className="text-xs flex gap-1 items-center"
-            >
-              <CalendarDays size={14} /> Newest
-            </Button>
-            <Button 
-              variant={sortBy === 'oldest' ? 'default' : 'ghost'} 
-              size="sm"
-              onClick={() => setSortBy('oldest')}
-              className="text-xs flex gap-1 items-center"
-            >
-              <CalendarDays size={14} /> Oldest
-            </Button>
-            <Button 
-              variant={sortBy === 'a-z' ? 'default' : 'ghost'} 
-              size="sm"
-              onClick={() => setSortBy('a-z')}
-              className="text-xs flex gap-1 items-center"
-            >
-              <ArrowDownAZ size={14} /> A-Z
-            </Button>
-          </Card>
+          {/* Filter Controls */}
+          <CategoryFilter 
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+            readingLevels={availableReadingLevels}
+            onReadingLevelChange={handleReadingLevelChange}
+            selectedReadingLevel={selectedReadingLevel}
+          />
         </div>
         
         {/* Enhanced Breadcrumb */}
@@ -151,11 +162,41 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
             className="bg-white/90 backdrop-blur-sm rounded-lg py-2 px-4 shadow-sm"
           />
         </div>
+
+        {/* Active Filters */}
+        {hasActiveFilters && (
+          <div className="mb-6 flex items-center justify-between bg-white/90 backdrop-blur-sm rounded-lg py-2 px-4 shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium text-gray-500">Active filters:</span>
+              {selectedReadingLevel && (
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-flyingbus-purple text-white">
+                  Level: {selectedReadingLevel}
+                </span>
+              )}
+              {sortBy !== 'newest' && (
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-flyingbus-blue text-white">
+                  Sorted: {sortBy === 'oldest' ? 'Oldest first' : 'A-Z'}
+                </span>
+              )}
+            </div>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={clearFilters}
+              className="text-xs"
+            >
+              <FilterX size={14} className="mr-1" /> Clear filters
+            </Button>
+          </div>
+        )}
         
         {/* Articles Grid */}
         {paginatedArticles.length === 0 ? (
           <div className="text-center py-12">
             <h2 className="text-xl text-gray-600">No articles found in this category.</h2>
+            {hasActiveFilters && (
+              <p className="mt-2 text-gray-500">Try removing some filters to see more results.</p>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
