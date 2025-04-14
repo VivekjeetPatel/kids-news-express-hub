@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Link } from 'react-router-dom';
+import { useToast } from '@/components/ui/use-toast';
 
 interface CommentFormProps {
   onSubmit: (content: string) => void;
@@ -11,9 +13,21 @@ interface CommentFormProps {
 
 const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = false }) => {
   const [comment, setComment] = useState('');
+  const { toast } = useToast();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // This would be replaced with actual auth state
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!isLoggedIn) {
+      toast({
+        title: "Sign in required",
+        description: "Please sign in to join the discussion",
+        variant: "default"
+      });
+      return;
+    }
+    
     if (comment.trim()) {
       onSubmit(comment);
       setComment('');
@@ -31,16 +45,27 @@ const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = fals
       
       <div className="flex-1 space-y-3">
         <Textarea
-          placeholder="Share your thoughts..."
+          placeholder={isLoggedIn ? "Share your thoughts..." : "Sign in to join the discussion"}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           className="min-h-[80px] resize-none border-neutral-200 focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500 bg-white"
+          disabled={!isLoggedIn}
         />
         
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-2">
+          {!isLoggedIn && (
+            <Button 
+              type="button" 
+              variant="outline"
+              size="sm"
+              asChild
+            >
+              <Link to="/reader-auth?tab=sign-in">Sign In</Link>
+            </Button>
+          )}
           <Button 
             type="submit" 
-            disabled={!comment.trim() || isSubmitting}
+            disabled={!comment.trim() || isSubmitting || !isLoggedIn}
             size="sm"
             className="bg-neutral-600 hover:bg-neutral-700"
           >
@@ -53,4 +78,3 @@ const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = fals
 };
 
 export default CommentForm;
-

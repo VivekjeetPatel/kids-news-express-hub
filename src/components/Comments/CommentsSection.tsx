@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import CommentItem, { CommentProps } from './CommentItem';
 import CommentForm from './CommentForm';
 import { Card } from '@/components/ui/card';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, UserRound } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { addComment } from '@/data/comments';
 
 interface CommentsSectionProps {
   articleId: string;
@@ -13,24 +16,27 @@ interface CommentsSectionProps {
 const CommentsSection: React.FC<CommentsSectionProps> = ({ articleId, comments }) => {
   const [localComments, setLocalComments] = useState<CommentProps[]>(comments);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // This would be replaced with actual auth state
 
   const handleSubmitComment = (content: string) => {
     setIsSubmitting(true);
     
     // Simulate API call delay
     setTimeout(() => {
-      const newComment: CommentProps = {
-        id: `local-${Date.now()}`,
+      const newComment: Omit<CommentProps, 'id'> = {
         author: {
           name: 'Kid Reporter',
-          avatar: '/avatar-placeholder.png'
+          avatar: '/avatar-placeholder.png',
+          badges: ['New Reader']
         },
         content,
         createdAt: new Date(),
         likes: 0
       };
       
-      setLocalComments([newComment, ...localComments]);
+      // Add comment to mock data
+      const savedComment = addComment(articleId, newComment);
+      setLocalComments([savedComment, ...localComments]);
       setIsSubmitting(false);
     }, 500);
   };
@@ -52,7 +58,15 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ articleId, comments }
         </div>
       ) : (
         <div className="text-center py-8 text-gray-500">
-          <p>No comments yet. Be the first to comment!</p>
+          <p className="mb-4">No comments yet. Be the first to comment!</p>
+          {!isLoggedIn && (
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/reader-auth?tab=sign-up" className="inline-flex items-center gap-2">
+                <UserRound className="h-4 w-4" />
+                Create an account to join the discussion
+              </Link>
+            </Button>
+          )}
         </div>
       )}
     </Card>
@@ -60,4 +74,3 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ articleId, comments }
 };
 
 export default CommentsSection;
-

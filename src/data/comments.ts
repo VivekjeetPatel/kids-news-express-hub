@@ -9,6 +9,7 @@ const mockComments: Record<string, CommentProps[]> = {
       author: {
         name: 'Curious Reader',
         avatar: '/avatar-placeholder.png',
+        badges: ['Early Adopter', 'Science Enthusiast'],
       },
       content: 'This article is so informative! I never knew polar bears could swim that far.',
       createdAt: new Date('2023-09-15T08:23:00'),
@@ -19,6 +20,7 @@ const mockComments: Record<string, CommentProps[]> = {
       author: {
         name: 'Book Worm',
         avatar: '/avatar-placeholder.png',
+        badges: ['Debate Contributor', 'Regular Reader'],
       },
       content: 'I learned so much from this article. Can\'t wait to share it with my friends!',
       createdAt: new Date('2023-09-15T10:45:00'),
@@ -31,6 +33,7 @@ const mockComments: Record<string, CommentProps[]> = {
       author: {
         name: 'Book Worm',
         avatar: '/avatar-placeholder.png',
+        badges: ['Debate Contributor', 'Regular Reader'],
       },
       content: 'I disagree with the stance on homework. I think it\'s important for reinforcing what we learn in school.',
       createdAt: new Date('2023-09-16T14:12:00'),
@@ -68,4 +71,19 @@ export const getCommentsByAuthor = (authorName: string): CommentProps[] => {
     // Also check for username match (assuming username in the form "curious_reader")
     comment.author.name.toLowerCase().replace(' ', '_') === nameLower
   );
+};
+
+// Function to add a new comment (mock implementation)
+export const addComment = (articleId: string, comment: Omit<CommentProps, 'id'>): CommentProps => {
+  const newComment = {
+    ...comment,
+    id: `comment-${Date.now()}`,
+  };
+  
+  if (!mockComments[articleId]) {
+    mockComments[articleId] = [];
+  }
+  
+  mockComments[articleId].unshift(newComment);
+  return newComment;
 };

@@ -1,14 +1,17 @@
 
 import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import { ThumbsUp } from 'lucide-react';
+import { ThumbsUp, Award } from 'lucide-react';
 import ProfileLink from './ProfileLink';
+import { Badge } from '@/components/ui/badge';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 export interface CommentProps {
   id: string;
   author: {
     name: string;
     avatar?: string;
+    badges?: string[];
   };
   content: string;
   createdAt: Date;
@@ -21,11 +24,35 @@ const CommentItem: React.FC<CommentProps> = ({ author, content, createdAt, likes
       <div className="flex items-start gap-3">
         <div className="flex-1">
           <div className="flex justify-between items-center mb-1">
-            <ProfileLink 
-              name={author.name}
-              avatar={author.avatar}
-              className="font-medium text-sm"
-            />
+            <div className="flex items-center gap-2">
+              <ProfileLink 
+                name={author.name}
+                avatar={author.avatar}
+                className="font-medium text-sm"
+              />
+              
+              {author.badges && author.badges.length > 0 && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="inline-flex items-center">
+                      <Award className="h-3.5 w-3.5 text-amber-500" />
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <div className="space-y-1">
+                      <p className="text-xs font-medium">Reader Badges:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {author.badges.map((badge, index) => (
+                          <Badge key={index} variant="outline" className="text-xs bg-amber-50 text-amber-700 border-amber-200">
+                            {badge}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </div>
             <span className="text-xs text-neutral-500">
               {formatDistanceToNow(createdAt, { addSuffix: true })}
             </span>
