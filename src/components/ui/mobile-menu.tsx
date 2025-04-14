@@ -1,7 +1,7 @@
 
 import * as React from "react"
 import { Link } from "react-router-dom"
-import { Menu, X, User, BookOpen, LogOut, Settings, Circle } from "lucide-react"
+import { Menu, X, User, BookOpen, LogOut, Settings, Newspaper, FileText, BookText, MessagesSquare, HomeIcon, Info } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { NavButton } from "./nav-button"
 import { RainbowButton } from "./rainbow-button"
@@ -42,22 +42,28 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
     logout();
   };
 
-  const getCategoryDotColor = (text: string) => {
-    const colorClass = getCategoryColor(text);
-    if (!colorClass) return null;
+  // Function to get the appropriate icon based on category text
+  const getCategoryIcon = (text: string) => {
+    const categoryIcons: {[key: string]: React.ReactNode} = {
+      'Headliners': <Newspaper size={16} />,
+      'Debates': <MessagesSquare size={16} />,
+      'Spice It Up': <FileText size={16} />,
+      'Storyboard': <BookText size={16} />,
+      'In the Neighborhood': <HomeIcon size={16} />,
+      'Learning Resources': <BookOpen size={16} />,
+      'School News': <Newspaper size={16} />,
+      'About': <Info size={16} />
+    };
     
-    // Extract just the background color class (bg-*)
-    const bgClass = colorClass.split(' ')[0];
-    if (!bgClass) return null;
-    
-    // Convert bg-* to text-* (e.g., bg-flyingbus-red → text-flyingbus-red)
-    return bgClass.replace('bg-', 'text-');
+    return categoryIcons[text] || <FileText size={16} />;
   };
 
   const renderAuthSection = () => {
     if (isLoggedIn && currentUser) {
       return (
         <div className="mt-6 pt-6 border-t border-gray-200">
+          <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">Account</div>
+          <Separator className="mb-3" />
           <ul className="space-y-4">
             <li>
               <Link 
@@ -93,6 +99,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
     
     return (
       <div className="mt-6 pt-6 border-t border-gray-200">
+        <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">Account</div>
+        <Separator className="mb-3" />
         <Link to="/reader-auth?tab=sign-in" className="block w-full mb-3">
           <NavButton variant="outline" className="w-full">
             <User className="mr-2 h-4 w-4" />
@@ -121,10 +129,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
                     to={item.to} 
                     className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900"
                   >
-                    {getCategoryDotColor(item.text) && (
-                      <Circle className={`mr-2 h-3 w-3 fill-current ${getCategoryDotColor(item.text)}`} />
-                    )}
-                    <span>{item.text}</span>
+                    {getCategoryIcon(item.text)}
+                    <span className="ml-2">{item.text}</span>
                   </Link>
                 ) : (
                   <div>
@@ -138,10 +144,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
                               to={subItem.to} 
                               className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900"
                             >
-                              {getCategoryDotColor(subItem.text) && (
-                                <Circle className={`mr-2 h-3 w-3 fill-current ${getCategoryDotColor(subItem.text)}`} />
-                              )}
-                              <span>{subItem.text}</span>
+                              {getCategoryIcon(subItem.text)}
+                              <span className="ml-2">{subItem.text}</span>
                             </Link>
                           </li>
                         ))}
