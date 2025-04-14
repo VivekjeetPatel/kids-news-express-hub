@@ -18,9 +18,15 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article }) => {
             {article.category}
           </Badge>
           {article.readingLevel && (
-            <Badge variant="outline" className="bg-white border text-flyingbus-purple">
-              Reading Level: {article.readingLevel}
-            </Badge>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm text-neutral-600 font-medium">Reading Level:</span>
+              <Badge 
+                variant="outline" 
+                className="bg-neutral-100 border-neutral-200 text-neutral-800 font-normal"
+              >
+                {article.readingLevel}
+              </Badge>
+            </div>
           )}
         </div>
         
@@ -45,3 +51,4 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article }) => {
 };
 
 export default ArticleHeader;
+
