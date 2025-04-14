@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { User, BookOpen } from 'lucide-react';
-import ModernHeader, { NavButton } from '@/components/ui/modern-header';
+import { Navbar1 } from '@/components/ui/navbar1';
 import Logo from '@/components/ui/logo';
 import { HeaderButtons } from '@/components/ui/header-buttons';
 import menuItems from './menuItems';
@@ -16,7 +15,7 @@ const MobileLogo = () => (
 
 const Header = () => {
   return (
-    <ModernHeader
+    <Navbar1
       logo={
         <>
           <HeaderLogo />
