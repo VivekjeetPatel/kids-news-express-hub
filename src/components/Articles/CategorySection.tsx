@@ -63,7 +63,7 @@ const CategorySection = ({ title, slug, articles, color }: CategorySectionProps)
         </div>
         <Link 
           to={`/${slug}`} 
-          className="flex items-center text-sm font-medium hover:underline"
+          className="flex items-center text-sm font-medium hover:text-gray-800 hover:underline"
         >
           See All <ArrowRight size={16} className="ml-1" />
         </Link>
