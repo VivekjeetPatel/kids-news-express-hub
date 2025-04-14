@@ -10,7 +10,7 @@ interface ArticleHeaderProps {
 
 const ArticleHeader: React.FC<ArticleHeaderProps> = ({ article }) => {
   return (
-    <div className="w-full bg-gradient-to-b from-flyingbus-background to-white py-8 mb-4">
+    <div className="w-full bg-gradient-to-b from-flyingbus-background to-white py-8 mb-2">
       <div className="max-w-4xl mx-auto px-6">
         <div className="flex items-center space-x-2 mb-6">
           <Badge className={`${getCategoryColor(article.category)}`}>
