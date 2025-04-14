@@ -7,6 +7,7 @@ import VoteButtons from './VoteButtons';
 import VoteResults from './VoteResults';
 import VoteStatus from './VoteStatus';
 import { checkIfUserHasVoted, simulateIpCheck, recordVote } from './voteUtils';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface DebateVoteProps {
   debateId: string;
@@ -27,6 +28,7 @@ const DebateVote = ({
   const [isVoting, setIsVoting] = useState(false);
   const [userChoice, setUserChoice] = useState<'yes' | 'no' | null>(null);
   const [resultsVisible, setResultsVisible] = useState(false);
+  const { isLoggedIn } = useAuth();
   
   const totalVotes = votes.yes + votes.no;
   const yesPercentage = totalVotes > 0 ? Math.round((votes.yes / totalVotes) * 100) : 0;
@@ -42,6 +44,17 @@ const DebateVote = ({
   }, [debateId]);
 
   const handleVote = async (choice: 'yes' | 'no') => {
+    if (!isLoggedIn) {
+      toast.error("Please sign in to vote on debates!", {
+        description: "Create an account or sign in to participate in debates.",
+        action: {
+          label: "Sign In",
+          onClick: () => window.location.href = "/reader-auth?tab=sign-in",
+        },
+      });
+      return;
+    }
+
     if (hasVoted) {
       toast.warning("You've already voted on this debate!");
       return;
@@ -142,6 +155,7 @@ const DebateVote = ({
           <VoteStatus 
             hasVoted={hasVoted} 
             isVoting={isVoting} 
+            isLoggedIn={isLoggedIn}
           />
         </div>
       </CardContent>
