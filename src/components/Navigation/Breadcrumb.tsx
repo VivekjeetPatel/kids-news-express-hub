@@ -28,7 +28,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
               {item.href && !item.active ? (
                 <Link 
                   to={item.href} 
-                  className="hover:text-flyingbus-purple transition-colors"
+                  className="hover:text-gray-700 transition-colors"
                 >
                   {item.label}
                 </Link>

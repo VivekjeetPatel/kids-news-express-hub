@@ -36,7 +36,7 @@ const renderMenuItem = (item: NavItem) => {
               {item.items.map((subItem) => (
                 <li key={subItem.text}>
                   <Link
-                    className="flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-accent-foreground"
+                    className="flex select-none gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-gray-900"
                     to={subItem.to}
                   >
                     <div>
@@ -57,7 +57,7 @@ const renderMenuItem = (item: NavItem) => {
   return (
     <Link
       key={item.text}
-      className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-accent-foreground"
+      className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-gray-900"
       to={item.to || "#"}
     >
       {item.text}

@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Link } from "react-router-dom"
 import { NavItem } from "@/components/Layout/menuItems"
@@ -24,7 +25,7 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = ({ items }) => (
             {to ? (
               <Link
                 className={cn(
-                  'flex items-center gap-x-1 whitespace-pre text-sm font-medium text-gray-700 hover:text-flyingbus-purple',
+                  'flex items-center gap-x-1 whitespace-pre text-sm font-medium text-gray-700 hover:text-gray-900',
                 )}
                 to={to}
               >
@@ -33,7 +34,7 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = ({ items }) => (
             ) : (
               <button
                 className={cn(
-                  'flex items-center gap-x-1 whitespace-pre text-sm font-medium text-gray-700 hover:text-flyingbus-purple',
+                  'flex items-center gap-x-1 whitespace-pre text-sm font-medium text-gray-700 hover:text-gray-900',
                 )}
               >
                 {text}

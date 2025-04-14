@@ -29,11 +29,11 @@
 }
 
 .article-content a {
-  @apply text-flyingbus-purple no-underline border-b border-flyingbus-purple hover:border-b-2 transition-all;
+  @apply text-gray-800 no-underline border-b border-gray-600 hover:border-b-2 transition-all;
 }
 
 .article-content blockquote {
-  @apply italic pl-6 py-2 my-6 border-l-4 border-flyingbus-purple bg-gray-50 rounded-r-md text-gray-700;
+  @apply italic pl-6 py-2 my-6 border-l-4 border-gray-400 bg-gray-50 rounded-r-md text-gray-700;
 }
 
 .article-content ul {
