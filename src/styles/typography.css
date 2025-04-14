@@ -9,7 +9,7 @@ p, span, div, a, button, input, textarea {
 
 /* Typography component styles */
 .newspaper-title {
-  @apply font-display text-5xl md:text-6xl text-flyingbus-purple font-bold tracking-tight;
+  @apply font-display text-5xl md:text-6xl text-flyingbus-purple font-semibold tracking-tight;
   text-shadow: 2px 2px 0 theme('colors.flyingbus.yellow');
 }
 

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import DebateVote from '@/components/Articles/DebateVote';
@@ -42,7 +43,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
       <div 
         className="article-content prose prose-lg max-w-none mt-6 mb-12 
           prose-headings:font-display prose-headings:text-gray-900
-          prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-6 prose-h1:leading-tight
+          prose-h1:text-4xl prose-h1:font-semibold prose-h1:mb-6 prose-h1:leading-tight
           prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-10 prose-h2:mb-4
           prose-h3:text-xl prose-h3:font-medium prose-h3:mt-8 prose-h3:mb-4
           prose-p:text-gray-800 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
