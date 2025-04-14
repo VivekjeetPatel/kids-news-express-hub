@@ -7,11 +7,11 @@ import { HeaderButtons } from '@/components/ui/header-buttons';
 import menuItems from './menuItems';
 
 const HeaderLogo = () => (
-  <Logo className="md:block hidden" />
+  <Logo className="md:block hidden" size="xxl" />
 );
 
 const MobileLogo = () => (
-  <Logo className="md:hidden block" size="md" />
+  <Logo className="md:hidden block" size="xl" />
 );
 
 const Header = () => {
