@@ -1,4 +1,3 @@
-
 console.log('App.tsx is rendering');
 
 import { Toaster } from "@/components/ui/toaster";
@@ -15,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import ReaderProfilePage from "./components/Readers/ReaderProfilePage";
 import ReaderAuth from "./pages/ReaderAuth";
 import { AuthProvider } from "./contexts/AuthContext";
+import ReaderProfileEdit from "./components/Readers/ReaderProfileEdit";
 
 const queryClient = new QueryClient();
 
@@ -32,8 +32,8 @@ const App = () => (
             <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
             <Route path="/about" element={<About />} />
             <Route path="/profile/:username" element={<ReaderProfilePage />} />
+            <Route path="/profile/:username/edit" element={<ReaderProfileEdit profile={/* pass current user profile */} />} />
             <Route path="/reader-auth" element={<ReaderAuth />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

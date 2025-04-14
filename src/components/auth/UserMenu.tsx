@@ -58,9 +58,9 @@ const UserMenu = () => {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to={`/profile/${currentUser.username}/settings`} className="flex items-center">
+          <Link to={`/profile/${currentUser.username}/edit`} className="flex items-center">
             <Settings className="mr-2 h-4 w-4" />
-            <span>Settings</span>
+            <span>Edit Profile</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
