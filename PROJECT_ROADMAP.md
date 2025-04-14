@@ -47,6 +47,11 @@ This document serves as a master checklist tracking both completed and pending t
 - [x] Add episode metadata display (duration, release date)
 - [x] Implement responsive video player with proper aspect ratio (9:16)
 - [x] Design "More Episodes" component for series navigation
+- [ ] Optimize storyboard category page for improved performance
+- [ ] Enhance storyboard series cards with better hover effects
+- [ ] Improve episode list display with better pagination
+- [ ] Add series filtering by theme or age group
+- [ ] Implement storyboard series search functionality
 
 ### 🔲 Editor System
 - [ ] Build rich text editor for article creation
@@ -148,6 +153,14 @@ This document serves as a master checklist tracking both completed and pending t
 - [x] Create filter and sorting components for content discovery
 - [x] Enhance navigation with modern, accessible menu system
 
+### 🔲 Navigation Improvements
+- [ ] Optimize category icons and colors in navigation
+- [ ] Improve mobile navigation interaction and performance
+- [ ] Add visual feedback for active navigation items
+- [ ] Implement smooth transitions between navigation states
+- [ ] Create compact navigation view for smaller screens
+- [ ] Add breadcrumb navigation for better wayfinding
+
 ### 🔲 Advanced UI Features
 - [ ] Add dark mode support
 - [ ] Create animations for page transitions
@@ -233,3 +246,4 @@ This document serves as a master checklist tracking both completed and pending t
 - [ ] Create featured journalist spotlights
 - [ ] Implement reader gamification system with achievements and badges
 - [ ] Build reader engagement analytics dashboard
+
