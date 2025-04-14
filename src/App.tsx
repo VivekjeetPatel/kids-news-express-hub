@@ -17,6 +17,7 @@ import ReaderAuth from "./pages/ReaderAuth";
 import { AuthProvider } from "./contexts/AuthContext";
 import ReaderProfileEdit from "./components/Readers/ReaderProfileEdit";
 import { useAuth } from "./contexts/AuthContext";
+import CategoryPage from "./pages/CategoryPage";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,13 @@ const App = () => (
             <Route path="/profile/:username" element={<ReaderProfilePage />} />
             <Route path="/profile/:username/edit" element={<ProfileEditWrapper />} />
             <Route path="/reader-auth" element={<ReaderAuth />} />
+            {/* Category routes */}
+            <Route path="/headliners" element={<CategoryPage />} />
+            <Route path="/debates" element={<CategoryPage />} />
+            <Route path="/spice-it-up" element={<CategoryPage />} />
+            <Route path="/neighborhood" element={<CategoryPage />} />
+            <Route path="/learning" element={<CategoryPage />} />
+            <Route path="/school-news" element={<CategoryPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
