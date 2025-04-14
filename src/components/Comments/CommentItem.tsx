@@ -17,11 +17,11 @@ export interface CommentProps {
 
 const CommentItem: React.FC<CommentProps> = ({ author, content, createdAt, likes }) => {
   return (
-    <div className="py-4 border-b border-gray-100 last:border-0">
+    <div className="py-4 border-b border-neutral-100 last:border-0">
       <div className="flex items-start gap-3">
         <Avatar className="h-8 w-8">
           <AvatarImage src={author.avatar} alt={author.name} />
-          <AvatarFallback className="bg-flyingbus-purple text-white text-xs">
+          <AvatarFallback className="bg-neutral-600 text-white text-xs">
             {author.name.substring(0, 2).toUpperCase()}
           </AvatarFallback>
         </Avatar>
@@ -29,19 +29,19 @@ const CommentItem: React.FC<CommentProps> = ({ author, content, createdAt, likes
         <div className="flex-1">
           <div className="flex justify-between items-center mb-1">
             <h4 className="font-medium text-sm">{author.name}</h4>
-            <span className="text-xs text-gray-500">
+            <span className="text-xs text-neutral-500">
               {formatDistanceToNow(createdAt, { addSuffix: true })}
             </span>
           </div>
           
-          <p className="text-sm text-gray-700 mb-3">{content}</p>
+          <p className="text-sm text-neutral-700 mb-3">{content}</p>
           
           <div className="flex gap-4 mt-2">
-            <button className="text-xs text-gray-500 hover:text-flyingbus-purple transition-colors flex items-center gap-1">
+            <button className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors flex items-center gap-1">
               <ThumbsUp className="h-3.5 w-3.5" />
               {likes} {likes === 1 ? 'Like' : 'Likes'}
             </button>
-            <button className="text-xs text-gray-500 hover:text-flyingbus-purple transition-colors">Reply</button>
+            <button className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors">Reply</button>
           </div>
         </div>
       </div>
@@ -50,3 +50,4 @@ const CommentItem: React.FC<CommentProps> = ({ author, content, createdAt, likes
 };
 
 export default CommentItem;
+

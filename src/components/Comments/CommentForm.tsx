@@ -24,7 +24,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = fals
     <form onSubmit={handleSubmit} className="flex gap-3 mb-2">
       <Avatar className="h-8 w-8 mt-1">
         <AvatarImage src="/avatar-placeholder.png" />
-        <AvatarFallback className="bg-flyingbus-purple text-white text-xs">
+        <AvatarFallback className="bg-neutral-600 text-white text-xs">
           KR
         </AvatarFallback>
       </Avatar>
@@ -34,7 +34,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = fals
           placeholder="Share your thoughts..."
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className="min-h-[80px] resize-none border-gray-200 focus:border-flyingbus-purple focus:ring-1 focus:ring-flyingbus-purple bg-white"
+          className="min-h-[80px] resize-none border-neutral-200 focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500 bg-white"
         />
         
         <div className="flex justify-end">
@@ -42,7 +42,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = fals
             type="submit" 
             disabled={!comment.trim() || isSubmitting}
             size="sm"
-            className="bg-flyingbus-purple hover:bg-flyingbus-purple/90"
+            className="bg-neutral-600 hover:bg-neutral-700"
           >
             {isSubmitting ? 'Posting...' : 'Post Comment'}
           </Button>
@@ -53,3 +53,4 @@ const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = fals
 };
 
 export default CommentForm;
+
