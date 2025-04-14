@@ -44,12 +44,12 @@ const App = () => (
             <Route path="/profile/:username/edit" element={<ProfileEditWrapper />} />
             <Route path="/reader-auth" element={<ReaderAuth />} />
             {/* Category routes */}
-            <Route path="/headliners" element={<CategoryPage />} />
-            <Route path="/debates" element={<CategoryPage />} />
-            <Route path="/spice-it-up" element={<CategoryPage />} />
-            <Route path="/neighborhood" element={<CategoryPage />} />
-            <Route path="/learning" element={<CategoryPage />} />
-            <Route path="/school-news" element={<CategoryPage />} />
+            <Route path="/headliners" element={<CategoryPage category="headliners" />} />
+            <Route path="/debates" element={<CategoryPage category="debates" />} />
+            <Route path="/spice-it-up" element={<CategoryPage category="spice-it-up" />} />
+            <Route path="/neighborhood" element={<CategoryPage category="neighborhood" />} />
+            <Route path="/learning" element={<CategoryPage category="learning" />} />
+            <Route path="/school-news" element={<CategoryPage category="school-news" />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

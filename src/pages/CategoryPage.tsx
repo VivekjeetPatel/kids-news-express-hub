@@ -1,14 +1,23 @@
 
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import MainLayout from '@/components/Layout/MainLayout';
 import ArticleCard from '@/components/Articles/ArticleCard';
 import { mockArticles } from '@/data/articles';
 import { getCategoryColor } from '@/utils/categoryColors';
 import { BookOpen, MessageCircle, Sparkles, Home, GraduationCap, School, Newspaper } from 'lucide-react';
 
-const CategoryPage = () => {
-  const { category } = useParams<{ category: string }>();
+interface CategoryPageProps {
+  category?: string;
+}
+
+const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) => {
+  // Get path from location to determine category if not provided via props
+  const location = useLocation();
+  const pathCategory = location.pathname.split('/')[1];
+  
+  // Use prop category if provided, otherwise use path
+  const categorySlug = propCategory || pathCategory;
   
   // Map URL parameter to proper category name
   const categoryMapping: Record<string, string> = {
@@ -20,7 +29,7 @@ const CategoryPage = () => {
     'school-news': 'School News'
   };
   
-  const displayCategory = categoryMapping[category || ''] || 'Articles';
+  const displayCategory = categoryMapping[categorySlug] || 'Articles';
   
   // Filter articles by category
   const articles = mockArticles.filter(article => article.category === displayCategory);
@@ -50,7 +59,7 @@ const CategoryPage = () => {
 
   return (
     <MainLayout>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center gap-3 mb-8">
           {getCategoryIcon()}
           <h1 className={`text-3xl font-bold border-b-2 border-flyingbus-${colorName} pb-1`}>
