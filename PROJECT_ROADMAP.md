@@ -80,18 +80,29 @@ This document serves as a master checklist tracking both completed and pending t
 ## User Management
 
 ### 🔲 User Roles
-- [ ] Implement role-based access control (young journalists, moderators, admins)
+- [ ] Implement role-based access control (young journalists, moderators, admins, readers)
 - [ ] Create profile pages for journalists
 - [ ] Build journalist contribution tracking
 - [ ] Implement moderator queue dashboard
 - [ ] Create admin controls for site management
 
+### 🔲 Reader Role System
+- [ ] Create open self-service registration for readers
+- [ ] Build reader profile page with customizable information
+- [ ] Implement profile picture upload and management
+- [ ] Create comment history section on reader profiles
+- [ ] Design reader activity tracking for future gamification
+- [ ] Build placeholder UI elements for achievements and badges
+- [ ] Implement privacy controls for reader profiles
+- [ ] Create reader-specific comment permissions
+
 ### 🔲 Authentication
 - [ ] Build secure login system
-- [ ] Implement parent/guardian approval flow
-- [ ] Create account creation process
+- [ ] Implement parent/guardian approval flow for young journalists
+- [ ] Create account creation process with role selection
 - [ ] Add password reset functionality
 - [ ] Implement session management
+- [ ] Create different registration flows for readers vs. journalists
 
 ## Educational Features
 
@@ -194,6 +205,7 @@ This document serves as a master checklist tracking both completed and pending t
 - [ ] Build tutorials for young writers
 - [ ] Develop parent/guardian guides
 - [ ] Create moderator handbook
+- [ ] Build reader orientation guide
 
 ### 🔲 Technical Documentation
 - [ ] Document API endpoints
@@ -205,6 +217,7 @@ This document serves as a master checklist tracking both completed and pending t
   - [ ] Spice It Up article schema with video
   - [ ] Storyboard series schema with episodes collection
   - [ ] User profile schema with roles
+  - [ ] Reader profile schema with gamification hooks
 
 ## Future Enhancements
 
@@ -215,3 +228,5 @@ This document serves as a master checklist tracking both completed and pending t
 - [ ] Add internationalization support
 - [ ] Build school/classroom networks feature
 - [ ] Create featured journalist spotlights
+- [ ] Implement reader gamification system with achievements and badges
+- [ ] Build reader engagement analytics dashboard
