@@ -2,8 +2,6 @@
 import React from 'react';
 import { 
   CalendarDays, 
-  Clock, 
-  BarChart2, 
   SortAsc,
   Tag
 } from 'lucide-react';
@@ -35,13 +33,17 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
   selectedReadingLevel
 }) => {
   return (
-    <div className="flex flex-wrap gap-3 justify-end">
-      {/* Reading Level Filter - Only show if we have reading levels and handler */}
+    <div className="flex items-center gap-3">
+      {/* Reading Level Filter */}
       {readingLevels.length > 0 && onReadingLevelChange && (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="h-9 text-xs flex gap-1 items-center">
-              <Tag size={14} />
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="text-xs flex gap-1 items-center border-gray-300 text-gray-700 hover:bg-gray-100"
+            >
+              <Tag size={14} className="text-gray-500" />
               {selectedReadingLevel ? `Level: ${selectedReadingLevel}` : 'Reading Level'}
             </Button>
           </DropdownMenuTrigger>
@@ -66,12 +68,16 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
       )}
       
       {/* Sort Controls */}
-      <Card className="p-1 flex gap-1 bg-white/80 backdrop-blur-sm">
+      <Card className="p-1 flex gap-1 bg-white border border-gray-200 rounded-xl">
         <Button 
           variant={sortBy === 'newest' ? 'default' : 'ghost'} 
           size="sm"
           onClick={() => onSortChange('newest')}
-          className="text-xs flex gap-1 items-center"
+          className={`text-xs flex gap-1 items-center ${
+            sortBy === 'newest' 
+              ? 'bg-gray-800 text-white' 
+              : 'text-gray-600 hover:bg-gray-100'
+          }`}
         >
           <CalendarDays size={14} /> Newest
         </Button>
@@ -79,7 +85,11 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
           variant={sortBy === 'oldest' ? 'default' : 'ghost'} 
           size="sm"
           onClick={() => onSortChange('oldest')}
-          className="text-xs flex gap-1 items-center"
+          className={`text-xs flex gap-1 items-center ${
+            sortBy === 'oldest' 
+              ? 'bg-gray-800 text-white' 
+              : 'text-gray-600 hover:bg-gray-100'
+          }`}
         >
           <CalendarDays size={14} /> Oldest
         </Button>
@@ -87,7 +97,11 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
           variant={sortBy === 'a-z' ? 'default' : 'ghost'} 
           size="sm"
           onClick={() => onSortChange('a-z')}
-          className="text-xs flex gap-1 items-center"
+          className={`text-xs flex gap-1 items-center ${
+            sortBy === 'a-z' 
+              ? 'bg-gray-800 text-white' 
+              : 'text-gray-600 hover:bg-gray-100'
+          }`}
         >
           <SortAsc size={14} /> A-Z
         </Button>
@@ -97,3 +111,4 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
 };
 
 export default CategoryFilter;
+
