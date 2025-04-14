@@ -1,10 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import { ThumbsUp, Award } from 'lucide-react';
+import { ThumbsUp, Award, MessageSquare } from 'lucide-react';
 import ProfileLink from './ProfileLink';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import ReplyForm from './ReplyForm';
+import { useToast } from '@/components/ui/use-toast';
 
 export interface CommentProps {
   id: string;
@@ -16,9 +18,73 @@ export interface CommentProps {
   content: string;
   createdAt: Date;
   likes: number;
+  replies?: CommentProps[];
 }
 
-const CommentItem: React.FC<CommentProps> = ({ author, content, createdAt, likes }) => {
+const CommentItem: React.FC<CommentProps> = ({ id, author, content, createdAt, likes: initialLikes, replies = [] }) => {
+  const [isReplying, setIsReplying] = useState(false);
+  const [showReplies, setShowReplies] = useState(false);
+  const [likes, setLikes] = useState(initialLikes);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [localReplies, setLocalReplies] = useState<CommentProps[]>(replies);
+  const { toast } = useToast();
+  
+  const handleLike = () => {
+    // Check if user is logged in (for demo, we'll simulate this)
+    const isLoggedIn = false; // This would be replaced with actual auth state
+    
+    if (!isLoggedIn) {
+      toast({
+        title: "Sign in required",
+        description: "Please sign in to like comments",
+        variant: "default"
+      });
+      return;
+    }
+    
+    if (!hasLiked) {
+      setLikes(prev => prev + 1);
+      setHasLiked(true);
+    } else {
+      setLikes(prev => prev - 1);
+      setHasLiked(false);
+    }
+  };
+  
+  const handleReplyClick = () => {
+    // Check if user is logged in (for demo, we'll simulate this)
+    const isLoggedIn = false; // This would be replaced with actual auth state
+    
+    if (!isLoggedIn) {
+      toast({
+        title: "Sign in required",
+        description: "Please sign in to reply to comments",
+        variant: "default"
+      });
+      return;
+    }
+    
+    setIsReplying(!isReplying);
+  };
+  
+  const handleReplySubmit = (replyContent: string) => {
+    const newReply: CommentProps = {
+      id: `reply-${Date.now()}`,
+      author: {
+        name: 'Kid Reporter',
+        avatar: '/avatar-placeholder.png',
+        badges: ['New Reader']
+      },
+      content: replyContent,
+      createdAt: new Date(),
+      likes: 0
+    };
+    
+    setLocalReplies([...localReplies, newReply]);
+    setIsReplying(false);
+    setShowReplies(true);
+  };
+
   return (
     <div className="py-4 border-b border-neutral-100 last:border-0">
       <div className="flex items-start gap-3">
@@ -61,12 +127,61 @@ const CommentItem: React.FC<CommentProps> = ({ author, content, createdAt, likes
           <p className="text-sm text-neutral-700 mb-3">{content}</p>
           
           <div className="flex gap-4 mt-2">
-            <button className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors flex items-center gap-1">
-              <ThumbsUp className="h-3.5 w-3.5" />
+            <button 
+              className={`text-xs ${hasLiked ? 'text-blue-600' : 'text-neutral-500'} hover:text-blue-600 transition-colors flex items-center gap-1`}
+              onClick={handleLike}
+            >
+              <ThumbsUp className={`h-3.5 w-3.5 ${hasLiked ? 'fill-blue-600' : ''}`} />
               {likes} {likes === 1 ? 'Like' : 'Likes'}
             </button>
-            <button className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors">Reply</button>
+            
+            <button 
+              className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors flex items-center gap-1"
+              onClick={handleReplyClick}
+            >
+              <MessageSquare className="h-3.5 w-3.5" />
+              Reply
+            </button>
+            
+            {localReplies.length > 0 && (
+              <button 
+                className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors"
+                onClick={() => setShowReplies(!showReplies)}
+              >
+                {showReplies ? 'Hide Replies' : `Show Replies (${localReplies.length})`}
+              </button>
+            )}
           </div>
+          
+          {isReplying && (
+            <div className="mt-3">
+              <ReplyForm 
+                parentId={id} 
+                onSubmit={handleReplySubmit} 
+                onCancel={() => setIsReplying(false)}
+              />
+            </div>
+          )}
+          
+          {showReplies && localReplies.length > 0 && (
+            <div className="mt-4 pl-4 border-l-2 border-neutral-100 space-y-3">
+              {localReplies.map((reply) => (
+                <div key={reply.id} className="py-2">
+                  <div className="flex justify-between items-center mb-1">
+                    <ProfileLink 
+                      name={reply.author.name}
+                      avatar={reply.author.avatar}
+                      className="font-medium text-sm"
+                    />
+                    <span className="text-xs text-neutral-500">
+                      {formatDistanceToNow(reply.createdAt, { addSuffix: true })}
+                    </span>
+                  </div>
+                  <p className="text-sm text-neutral-700">{reply.content}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

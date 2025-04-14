@@ -31,7 +31,8 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ articleId, comments }
         },
         content,
         createdAt: new Date(),
-        likes: 0
+        likes: 0,
+        replies: []
       };
       
       // Add comment to mock data
