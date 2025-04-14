@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { formatDistanceToNow } from 'date-fns';
 import { ThumbsUp } from 'lucide-react';
+import ProfileLink from './ProfileLink';
 
 export interface CommentProps {
   id: string;
@@ -19,16 +19,13 @@ const CommentItem: React.FC<CommentProps> = ({ author, content, createdAt, likes
   return (
     <div className="py-4 border-b border-neutral-100 last:border-0">
       <div className="flex items-start gap-3">
-        <Avatar className="h-8 w-8">
-          <AvatarImage src={author.avatar} alt={author.name} />
-          <AvatarFallback className="bg-neutral-600 text-white text-xs">
-            {author.name.substring(0, 2).toUpperCase()}
-          </AvatarFallback>
-        </Avatar>
-        
         <div className="flex-1">
           <div className="flex justify-between items-center mb-1">
-            <h4 className="font-medium text-sm">{author.name}</h4>
+            <ProfileLink 
+              name={author.name}
+              avatar={author.avatar}
+              className="font-medium text-sm"
+            />
             <span className="text-xs text-neutral-500">
               {formatDistanceToNow(createdAt, { addSuffix: true })}
             </span>
@@ -50,4 +47,3 @@ const CommentItem: React.FC<CommentProps> = ({ author, content, createdAt, likes
 };
 
 export default CommentItem;
-

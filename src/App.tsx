@@ -12,6 +12,7 @@ import StoryboardPage from "./pages/StoryboardPage";
 import StoryboardEpisodePage from "./pages/StoryboardEpisodePage";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import ReaderProfilePage from "./components/Readers/ReaderProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/storyboard/:id" element={<StoryboardPage />} />
           <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
           <Route path="/about" element={<About />} />
+          <Route path="/profile/:username" element={<ReaderProfilePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

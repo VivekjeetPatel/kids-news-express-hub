@@ -1,74 +1,71 @@
 
 import { CommentProps } from '@/components/Comments/CommentItem';
 
-// Helper function to create a date in the past
-const getPastDate = (daysAgo: number): Date => {
-  const date = new Date();
-  date.setDate(date.getDate() - daysAgo);
-  return date;
+// Mock comments data
+const mockComments: Record<string, CommentProps[]> = {
+  'headliner-1': [
+    {
+      id: 'comment-1',
+      author: {
+        name: 'Curious Reader',
+        avatar: '/avatar-placeholder.png',
+      },
+      content: 'This article is so informative! I never knew polar bears could swim that far.',
+      createdAt: new Date('2023-09-15T08:23:00'),
+      likes: 5
+    },
+    {
+      id: 'comment-2',
+      author: {
+        name: 'Book Worm',
+        avatar: '/avatar-placeholder.png',
+      },
+      content: 'I learned so much from this article. Can\'t wait to share it with my friends!',
+      createdAt: new Date('2023-09-15T10:45:00'),
+      likes: 3
+    }
+  ],
+  'debate-1': [
+    {
+      id: 'comment-3',
+      author: {
+        name: 'Book Worm',
+        avatar: '/avatar-placeholder.png',
+      },
+      content: 'I disagree with the stance on homework. I think it\'s important for reinforcing what we learn in school.',
+      createdAt: new Date('2023-09-16T14:12:00'),
+      likes: 7
+    },
+    {
+      id: 'comment-4',
+      author: {
+        name: 'Young Thinker',
+        avatar: '/avatar-placeholder.png',
+      },
+      content: 'Great points made on both sides. This really made me think!',
+      createdAt: new Date('2023-09-16T16:08:00'),
+      likes: 2
+    }
+  ]
 };
 
+// Function to get comments by article ID
 export const getCommentsByArticleId = (articleId: string): CommentProps[] => {
-  // In a real app, we would fetch comments from an API based on the articleId
-  // For now, we'll return mock data
-  
-  const mockComments: Record<string, CommentProps[]> = {
-    '1': [
-      {
-        id: '1',
-        author: {
-          name: 'Emma Johnson',
-          avatar: 'https://i.pravatar.cc/150?img=1'
-        },
-        content: 'This article was so interesting! I never knew kids from so many countries were working together on climate change.',
-        createdAt: getPastDate(1),
-        likes: 12
-      },
-      {
-        id: '2',
-        author: {
-          name: 'Jacob Lee',
-          avatar: 'https://i.pravatar.cc/150?img=2'
-        },
-        content: 'I tried starting a recycling program at my school after reading this. It\'s going great so far!',
-        createdAt: getPastDate(2),
-        likes: 8
-      },
-      {
-        id: '3',
-        author: {
-          name: 'Sophia Williams',
-          avatar: 'https://i.pravatar.cc/150?img=3'
-        },
-        content: 'My science teacher showed us this article in class today. We\'re thinking about joining the tree planting day!',
-        createdAt: getPastDate(3),
-        likes: 5
-      }
-    ],
-    '2': [
-      {
-        id: '4',
-        author: {
-          name: 'Noah Martinez',
-          avatar: 'https://i.pravatar.cc/150?img=4'
-        },
-        content: 'I learned so much from this article. Thanks for sharing!',
-        createdAt: getPastDate(1),
-        likes: 7
-      },
-      {
-        id: '5',
-        author: {
-          name: 'Olivia Garcia',
-          avatar: 'https://i.pravatar.cc/150?img=5'
-        },
-        content: 'This is exactly what we\'ve been discussing in our science class. Great reporting!',
-        createdAt: getPastDate(2),
-        likes: 4
-      }
-    ]
-  };
-  
-  // Return comments for the specific article or an empty array if none exist
   return mockComments[articleId] || [];
+};
+
+// Function to get comments by author name
+export const getCommentsByAuthor = (authorName: string): CommentProps[] => {
+  // Flatten all comments from all articles
+  const allComments = Object.values(mockComments).flat();
+  
+  // Convert to lowercase for case-insensitive matching
+  const nameLower = authorName.toLowerCase();
+  
+  // Filter comments by author name (case-insensitive)
+  return allComments.filter(comment => 
+    comment.author.name.toLowerCase() === nameLower ||
+    // Also check for username match (assuming username in the form "curious_reader")
+    comment.author.name.toLowerCase().replace(' ', '_') === nameLower
+  );
 };
