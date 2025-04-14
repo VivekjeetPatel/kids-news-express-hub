@@ -28,6 +28,7 @@ This document serves as a master checklist tracking both completed and pending t
 - [x] Create category-specific styling and icons
 - [x] Implement category navigation in header
 - [x] Build category section components
+- [x] Implement category-specific pages with filtering and sorting
 
 ### ✅ Article System
 - [x] Design article card components
@@ -79,24 +80,24 @@ This document serves as a master checklist tracking both completed and pending t
 
 ## User Management
 
-### 🔲 User Roles
-- [ ] Implement role-based access control (young journalists, moderators, admins, readers)
-- [ ] Create profile pages for journalists
+### ✅ Reader Role System
+- [x] Design reader profile pages
+- [x] Implement reader authentication UI
+- [x] Create profile editing functionality
+- [x] Build comment history section on reader profiles
+- [x] Design profile headers with customizable information
+- [x] Add placeholder UI elements for achievements and badges
+- [x] Create privacy controls interface for reader profiles
+- [x] Implement profile navigation and routing
+
+### 🔲 Journalist & Moderator Roles
+- [ ] Implement role-based access control (young journalists, moderators, admins)
+- [ ] Create journalist-specific profile pages
 - [ ] Build journalist contribution tracking
 - [ ] Implement moderator queue dashboard
 - [ ] Create admin controls for site management
 
-### 🔲 Reader Role System
-- [ ] Create open self-service registration for readers
-- [ ] Build reader profile page with customizable information
-- [ ] Implement profile picture upload and management
-- [ ] Create comment history section on reader profiles
-- [ ] Design reader activity tracking for future gamification
-- [ ] Build placeholder UI elements for achievements and badges
-- [ ] Implement privacy controls for reader profiles
-- [ ] Create reader-specific comment permissions
-
-### 🔲 Authentication
+### 🔲 Authentication Backend
 - [ ] Build secure login system
 - [ ] Implement parent/guardian approval flow for young journalists
 - [ ] Create account creation process with role selection
@@ -144,6 +145,7 @@ This document serves as a master checklist tracking both completed and pending t
 - [x] Implement header and footer components
 - [x] Refactor navigation menu for better maintainability
 - [x] Improve dropdown menu structure with categories and submenu items
+- [x] Create filter and sorting components for content discovery
 
 ### 🔲 Advanced UI Features
 - [ ] Add dark mode support
