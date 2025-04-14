@@ -1,3 +1,4 @@
+
 console.log('App.tsx is rendering');
 
 import { Toaster } from "@/components/ui/toaster";
@@ -15,8 +16,15 @@ import ReaderProfilePage from "./components/Readers/ReaderProfilePage";
 import ReaderAuth from "./pages/ReaderAuth";
 import { AuthProvider } from "./contexts/AuthContext";
 import ReaderProfileEdit from "./components/Readers/ReaderProfileEdit";
+import { useAuth } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
+
+// Create a wrapper component to pass the current user to ReaderProfileEdit
+const ProfileEditWrapper = () => {
+  const { currentUser } = useAuth();
+  return currentUser ? <ReaderProfileEdit profile={currentUser} /> : <NotFound />;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -32,7 +40,7 @@ const App = () => (
             <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
             <Route path="/about" element={<About />} />
             <Route path="/profile/:username" element={<ReaderProfilePage />} />
-            <Route path="/profile/:username/edit" element={<ReaderProfileEdit profile={/* pass current user profile */} />} />
+            <Route path="/profile/:username/edit" element={<ProfileEditWrapper />} />
             <Route path="/reader-auth" element={<ReaderAuth />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
