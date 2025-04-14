@@ -87,55 +87,53 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
   const hasActiveFilters = selectedReadingLevel !== null || sortBy !== 'newest';
 
   return (
-    <MainLayout>
-      <div className="w-full">
-        <div className="max-w-6xl mx-auto px-4">
-          {/* Category Header */}
-          <div className="flex flex-col gap-4 mb-6">
-            <CategoryHeader 
-              displayCategory={displayCategory} 
-              colorName={colorName}
-            />
-            
-            {/* Enhanced Breadcrumb */}
-            <Breadcrumb 
-              items={breadcrumbItems} 
-              className="bg-white/90 backdrop-blur-sm rounded-lg py-2 px-4 shadow-sm"
-            />
-          </div>
-          
-          {/* Filter Controls */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-            <CategoryFilter 
-              sortBy={sortBy}
-              onSortChange={setSortBy}
-              readingLevels={availableReadingLevels}
-              onReadingLevelChange={handleReadingLevelChange}
-              selectedReadingLevel={selectedReadingLevel}
-            />
-          </div>
-
-          {/* Active Filters */}
-          <ActiveFilters 
-            selectedReadingLevel={selectedReadingLevel}
-            sortBy={sortBy}
-            clearFilters={clearFilters}
-            hasActiveFilters={hasActiveFilters}
+    <MainLayout fullWidth={true}>
+      <div className="max-w-6xl mx-auto">
+        {/* Category Header */}
+        <div className="flex flex-col gap-4 mb-6">
+          <CategoryHeader 
+            displayCategory={displayCategory} 
+            colorName={colorName}
           />
           
-          {/* Articles Grid */}
-          <ArticlesGrid 
-            articles={paginatedArticles}
-            hasActiveFilters={hasActiveFilters}
-          />
-          
-          {/* Pagination */}
-          <PaginationControls 
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
+          {/* Enhanced Breadcrumb */}
+          <Breadcrumb 
+            items={breadcrumbItems} 
+            className="bg-white/90 backdrop-blur-sm rounded-lg py-2 px-4 shadow-sm"
           />
         </div>
+        
+        {/* Filter Controls */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+          <CategoryFilter 
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+            readingLevels={availableReadingLevels}
+            onReadingLevelChange={handleReadingLevelChange}
+            selectedReadingLevel={selectedReadingLevel}
+          />
+        </div>
+
+        {/* Active Filters */}
+        <ActiveFilters 
+          selectedReadingLevel={selectedReadingLevel}
+          sortBy={sortBy}
+          clearFilters={clearFilters}
+          hasActiveFilters={hasActiveFilters}
+        />
+        
+        {/* Articles Grid */}
+        <ArticlesGrid 
+          articles={paginatedArticles}
+          hasActiveFilters={hasActiveFilters}
+        />
+        
+        {/* Pagination */}
+        <PaginationControls 
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </MainLayout>
   );

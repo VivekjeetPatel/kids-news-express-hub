@@ -14,7 +14,7 @@ const MainLayout = ({ children, fullWidth = false }: MainLayoutProps) => {
       <ModernHeader />
       <main className="flex-grow w-full">
         {fullWidth ? (
-          <div className="w-full">
+          <div className="w-full px-4 py-6">
             {children}
           </div>
         ) : (
