@@ -5,11 +5,11 @@ import ProfileActivityTab from './ProfileActivityTab';
 import ProfileCommentsTab from './ProfileCommentsTab';
 import ProfileAchievementsTab from './ProfileAchievementsTab';
 import { ReaderProfile } from '@/types/ReaderProfile';
-import { Comment } from '@/data/comments';
+import { CommentProps } from '@/components/Comments/CommentItem';
 
 interface ProfileTabsProps {
   reader: ReaderProfile;
-  readerComments: Comment[];
+  readerComments: CommentProps[];
 }
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({ reader, readerComments }) => {

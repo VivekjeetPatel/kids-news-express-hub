@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import { MessageSquare } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Comment } from '@/data/comments';
+import { CommentProps } from '@/components/Comments/CommentItem';
 
 interface ProfileCommentsTabProps {
-  comments: Comment[];
+  comments: CommentProps[];
 }
 
 const ProfileCommentsTab: React.FC<ProfileCommentsTabProps> = ({ comments }) => {
