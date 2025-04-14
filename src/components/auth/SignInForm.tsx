@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { CardContent, CardFooter } from '@/components/ui/card';
 import { Key, User } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
-import { mockReaderProfiles } from '@/data/readers';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface SignInFormProps {
   onSwitchTab: () => void;
@@ -16,7 +16,9 @@ interface SignInFormProps {
 const SignInForm: React.FC<SignInFormProps> = ({ onSwitchTab }) => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { login } = useAuth();
   
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [signInForm, setSignInForm] = useState({
     username: '',
     password: '',
@@ -27,30 +29,38 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSwitchTab }) => {
     setSignInForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Simulate authentication with mock data
-    const user = mockReaderProfiles.find(
-      u => u.username === signInForm.username
-    );
-    
-    if (user) {
-      toast({
-        title: "Welcome back!",
-        description: `You're now signed in as ${user.displayName}.`,
-      });
+    try {
+      const success = await login(signInForm.username);
       
-      // Redirect to user profile or home
-      setTimeout(() => {
-        navigate(`/profile/${user.username}`);
-      }, 1500);
-    } else {
+      if (success) {
+        toast({
+          title: "Welcome back!",
+          description: "You've successfully signed in.",
+        });
+        
+        // Redirect to home or previous page
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
+      } else {
+        toast({
+          title: "Sign in failed",
+          description: "Invalid username or password. Try 'curious_reader' for demo.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Sign in failed",
-        description: "Invalid username or password. Try 'curious_reader' for demo.",
+        title: "An error occurred",
+        description: "Please try again later.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -68,6 +78,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSwitchTab }) => {
               className="pl-10"
               value={signInForm.username}
               onChange={handleSignInChange}
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -86,6 +97,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSwitchTab }) => {
               className="pl-10"
               value={signInForm.password}
               onChange={handleSignInChange}
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -94,14 +106,15 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSwitchTab }) => {
       </CardContent>
       
       <CardFooter className="flex flex-col gap-4">
-        <Button type="submit" className="w-full">
-          Sign In
+        <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {isSubmitting ? 'Signing in...' : 'Sign In'}
         </Button>
         <Button 
           type="button" 
           variant="link" 
           onClick={onSwitchTab}
           className="text-xs"
+          disabled={isSubmitting}
         >
           Don't have an account? Sign up
         </Button>

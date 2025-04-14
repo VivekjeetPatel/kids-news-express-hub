@@ -7,11 +7,14 @@ import { Label } from '@/components/ui/label';
 import { CardContent, CardFooter } from '@/components/ui/card';
 import { Mail, Key, User } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { login } = useAuth();
   
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [signUpForm, setSignUpForm] = useState({
     username: '',
     displayName: '',
@@ -25,8 +28,9 @@ const SignUpForm = () => {
     setSignUpForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     // Basic validation
     if (signUpForm.password !== signUpForm.confirmPassword) {
@@ -35,19 +39,38 @@ const SignUpForm = () => {
         description: "Please make sure your passwords match.",
         variant: "destructive",
       });
+      setIsSubmitting(false);
       return;
     }
     
     // Here we would typically call an API to create the account
-    toast({
-      title: "Account created!",
-      description: "Welcome to The Flying Bus! You're now a reader.",
-    });
+    // For demo, we'll simulate account creation and log the user in
     
-    // Simulate successful registration
-    setTimeout(() => {
-      navigate('/');
-    }, 1500);
+    setTimeout(async () => {
+      try {
+        // In a real app, we would create the user first, then log them in
+        // For demo, just log them in as "curious_reader"
+        await login("curious_reader");
+        
+        toast({
+          title: "Account created!",
+          description: "Welcome to The Flying Bus! You're now a reader.",
+        });
+        
+        // Redirect to home
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
+      } catch (error) {
+        toast({
+          title: "An error occurred",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
+    }, 1000);
   };
 
   return (
@@ -64,6 +87,7 @@ const SignUpForm = () => {
               className="pl-10"
               value={signUpForm.username}
               onChange={handleSignUpChange}
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -80,6 +104,7 @@ const SignUpForm = () => {
               className="pl-10"
               value={signUpForm.displayName}
               onChange={handleSignUpChange}
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -97,6 +122,7 @@ const SignUpForm = () => {
               className="pl-10"
               value={signUpForm.email}
               onChange={handleSignUpChange}
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -114,6 +140,7 @@ const SignUpForm = () => {
               className="pl-10"
               value={signUpForm.password}
               onChange={handleSignUpChange}
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -131,6 +158,7 @@ const SignUpForm = () => {
               className="pl-10"
               value={signUpForm.confirmPassword}
               onChange={handleSignUpChange}
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -138,8 +166,8 @@ const SignUpForm = () => {
       </CardContent>
       
       <CardFooter>
-        <Button type="submit" className="w-full">
-          Create Account
+        <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {isSubmitting ? 'Creating Account...' : 'Create Account'}
         </Button>
       </CardFooter>
     </form>

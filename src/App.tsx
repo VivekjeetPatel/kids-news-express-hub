@@ -14,28 +14,31 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import ReaderProfilePage from "./components/Readers/ReaderProfilePage";
 import ReaderAuth from "./pages/ReaderAuth";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/article/:id" element={<ArticlePage />} />
-          <Route path="/storyboard/:id" element={<StoryboardPage />} />
-          <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/profile/:username" element={<ReaderProfilePage />} />
-          <Route path="/reader-auth" element={<ReaderAuth />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
+            <Route path="/storyboard/:id" element={<StoryboardPage />} />
+            <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/profile/:username" element={<ReaderProfilePage />} />
+            <Route path="/reader-auth" element={<ReaderAuth />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 

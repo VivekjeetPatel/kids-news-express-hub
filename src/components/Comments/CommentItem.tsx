@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import ReplyForm from './ReplyForm';
 import { useToast } from '@/components/ui/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 export interface CommentProps {
   id: string;
@@ -28,11 +29,9 @@ const CommentItem: React.FC<CommentProps> = ({ id, author, content, createdAt, l
   const [hasLiked, setHasLiked] = useState(false);
   const [localReplies, setLocalReplies] = useState<CommentProps[]>(replies);
   const { toast } = useToast();
+  const { isLoggedIn, currentUser } = useAuth();
   
   const handleLike = () => {
-    // Check if user is logged in (for demo, we'll simulate this)
-    const isLoggedIn = false; // This would be replaced with actual auth state
-    
     if (!isLoggedIn) {
       toast({
         title: "Sign in required",
@@ -52,9 +51,6 @@ const CommentItem: React.FC<CommentProps> = ({ id, author, content, createdAt, l
   };
   
   const handleReplyClick = () => {
-    // Check if user is logged in (for demo, we'll simulate this)
-    const isLoggedIn = false; // This would be replaced with actual auth state
-    
     if (!isLoggedIn) {
       toast({
         title: "Sign in required",
@@ -68,12 +64,14 @@ const CommentItem: React.FC<CommentProps> = ({ id, author, content, createdAt, l
   };
   
   const handleReplySubmit = (replyContent: string) => {
+    if (!currentUser) return;
+    
     const newReply: CommentProps = {
       id: `reply-${Date.now()}`,
       author: {
-        name: 'Kid Reporter',
-        avatar: '/avatar-placeholder.png',
-        badges: ['New Reader']
+        name: currentUser.displayName,
+        avatar: currentUser.avatar,
+        badges: currentUser.badges
       },
       content: replyContent,
       createdAt: new Date(),

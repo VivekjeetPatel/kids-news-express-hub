@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface CommentFormProps {
   onSubmit: (content: string) => void;
@@ -14,7 +15,7 @@ interface CommentFormProps {
 const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = false }) => {
   const [comment, setComment] = useState('');
   const { toast } = useToast();
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // This would be replaced with actual auth state
+  const { isLoggedIn, currentUser } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,10 +38,21 @@ const CommentForm: React.FC<CommentFormProps> = ({ onSubmit, isSubmitting = fals
   return (
     <form onSubmit={handleSubmit} className="flex gap-3 mb-2">
       <Avatar className="h-8 w-8 mt-1">
-        <AvatarImage src="/avatar-placeholder.png" />
-        <AvatarFallback className="bg-neutral-600 text-white text-xs">
-          KR
-        </AvatarFallback>
+        {isLoggedIn && currentUser ? (
+          <>
+            <AvatarImage src={currentUser.avatar} alt={currentUser.displayName} />
+            <AvatarFallback className="bg-neutral-600 text-white text-xs">
+              {currentUser.displayName.split(' ').map(n => n[0]).join('').toUpperCase()}
+            </AvatarFallback>
+          </>
+        ) : (
+          <>
+            <AvatarImage src="/avatar-placeholder.png" />
+            <AvatarFallback className="bg-neutral-600 text-white text-xs">
+              KR
+            </AvatarFallback>
+          </>
+        )}
       </Avatar>
       
       <div className="flex-1 space-y-3">

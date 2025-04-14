@@ -7,6 +7,7 @@ import { MessageCircle, UserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { addComment } from '@/data/comments';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface CommentsSectionProps {
   articleId: string;
@@ -16,18 +17,20 @@ interface CommentsSectionProps {
 const CommentsSection: React.FC<CommentsSectionProps> = ({ articleId, comments }) => {
   const [localComments, setLocalComments] = useState<CommentProps[]>(comments);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // This would be replaced with actual auth state
+  const { isLoggedIn, currentUser } = useAuth();
 
   const handleSubmitComment = (content: string) => {
+    if (!currentUser) return;
+    
     setIsSubmitting(true);
     
     // Simulate API call delay
     setTimeout(() => {
       const newComment: Omit<CommentProps, 'id'> = {
         author: {
-          name: 'Kid Reporter',
-          avatar: '/avatar-placeholder.png',
-          badges: ['New Reader']
+          name: currentUser.displayName,
+          avatar: currentUser.avatar,
+          badges: currentUser.badges
         },
         content,
         createdAt: new Date(),

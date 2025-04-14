@@ -1,12 +1,13 @@
 
 import * as React from "react"
 import { Link } from "react-router-dom"
-import { Menu, X, User, BookOpen } from "lucide-react"
+import { Menu, X, User, BookOpen, LogOut, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { HeaderButtons } from "./header-buttons"
 import { NavButton } from "./nav-button"
 import { RainbowButton } from "./rainbow-button"
 import { NavItem } from "@/components/Layout/menuItems"
+import { useAuth } from "@/contexts/AuthContext"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 interface MobileMenuButtonProps {
   onClick: () => void
@@ -31,7 +32,81 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
+  const { currentUser, isLoggedIn, logout } = useAuth();
+  
   if (!isOpen) return null;
+  
+  const handleLogout = () => {
+    logout();
+  };
+
+  const renderAuthSection = () => {
+    if (isLoggedIn && currentUser) {
+      return (
+        <div className="mt-6 border-t border-gray-100 pt-6">
+          <div className="flex items-center gap-3 px-4 mb-4">
+            <Avatar className="h-10 w-10">
+              <AvatarImage src={currentUser.avatar} alt={currentUser.displayName} />
+              <AvatarFallback className="bg-neutral-700 text-white">
+                {currentUser.displayName.split(' ').map(n => n[0]).join('').toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="font-medium">{currentUser.displayName}</p>
+              <p className="text-sm text-gray-500">@{currentUser.username}</p>
+            </div>
+          </div>
+          
+          <ul className="space-y-2 px-4">
+            <li>
+              <Link 
+                to={`/profile/${currentUser.username}`}
+                className="flex items-center gap-2 py-2 text-gray-700"
+              >
+                <User size={18} />
+                <span>My Profile</span>
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to={`/profile/${currentUser.username}/settings`}
+                className="flex items-center gap-2 py-2 text-gray-700"
+              >
+                <Settings size={18} />
+                <span>Settings</span>
+              </Link>
+            </li>
+            <li>
+              <button 
+                onClick={handleLogout}
+                className="flex items-center gap-2 py-2 text-gray-700 w-full text-left"
+              >
+                <LogOut size={18} />
+                <span>Log out</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      );
+    }
+    
+    return (
+      <div className="mt-6 px-4">
+        <Link to="/reader-auth?tab=sign-in" className="block w-full mb-2">
+          <NavButton variant="outline" className="w-full">
+            <User className="mr-2 h-4 w-4" />
+            Sign In
+          </NavButton>
+        </Link>
+        <Link to="/reader-auth?tab=sign-up" className="block w-full">
+          <RainbowButton className="w-full flex items-center justify-center">
+            <BookOpen className="mr-2 h-4 w-4" />
+            Join Us
+          </RainbowButton>
+        </Link>
+      </div>
+    );
+  };
   
   return (
     <div className="md:hidden fixed inset-0 top-[72px] z-50 bg-white">
@@ -69,20 +144,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
               </li>
             ))}
           </ul>
-          <div className="mt-6 px-4">
-            <Link to="/reader-auth?tab=sign-in" className="block w-full mb-2">
-              <NavButton variant="outline" className="w-full">
-                <User className="mr-2 h-4 w-4" />
-                Sign In
-              </NavButton>
-            </Link>
-            <Link to="/reader-auth?tab=sign-up" className="block w-full">
-              <RainbowButton className="w-full flex items-center justify-center">
-                <BookOpen className="mr-2 h-4 w-4" />
-                Join Us
-              </RainbowButton>
-            </Link>
-          </div>
+          {renderAuthSection()}
         </nav>
       </div>
     </div>
