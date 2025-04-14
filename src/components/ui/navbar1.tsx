@@ -1,5 +1,5 @@
 
-import { Book, Menu, Sunset, Trees, Zap, User, BookOpen, Newspaper, MessagesSquare, FileText, BookText, HomeIcon, Info } from "lucide-react";
+import { Book, Menu, Sunset, Trees, Zap, User, BookOpen, Newspaper, MessagesSquare, FileText, BookText, HomeIcon, Info, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import {
@@ -23,6 +23,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
 } from "@/components/ui/sheet";
 import { useAuth } from "@/contexts/AuthContext";
 import { RainbowButton } from "@/components/ui/rainbow-button";
@@ -79,7 +80,7 @@ const Navbar1 = ({
   return (
     <header className="sticky top-0 z-40 w-full bg-white border-b border-gray-200">
       <div className="w-full px-4 md:px-8 lg:px-12 py-4">
-        <nav className="hidden justify-between md:flex">
+        <nav className="hidden md:flex items-center justify-between">
           <div className="flex items-center gap-6">
             {logo}
             <div className="flex items-center">
@@ -102,61 +103,107 @@ const Navbar1 = ({
                 <Menu className="size-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent className="overflow-y-auto">
-              <SheetHeader>
-                <SheetTitle>
+            <SheetContent className="overflow-y-auto w-full">
+              <SheetHeader className="flex justify-between items-center">
+                <SheetTitle className="flex items-center">
                   {logo}
                 </SheetTitle>
+                <SheetClose className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary absolute right-4 top-4">
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close</span>
+                </SheetClose>
               </SheetHeader>
-              <div className="my-6 flex flex-col gap-6">
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="flex w-full flex-col gap-4"
-                >
-                  {menuItems.map((item) => renderMobileMenuItem(item, getCategoryIcon))}
-                </Accordion>
-                <div className="border-t py-4">
-                  {!isLoggedIn && !isLoading && (
-                    <div className="flex flex-col gap-3">
-                      <Link to="/reader-auth?tab=sign-in" className="w-full">
-                        <Button asChild variant="outline" className="w-full">
-                          <span>
-                            <User className="mr-2 h-4 w-4" />
-                            Sign In
-                          </span>
+              
+              <div className="py-6">
+                <div className="text-xl font-semibold flex items-center mb-6">
+                  <Menu className="mr-2" />
+                  <span>Categories</span>
+                </div>
+                
+                <div className="space-y-6">
+                  {menuItems.map((item) => {
+                    if (item.items && item.items.length > 0) {
+                      return (
+                        <div key={item.text} className="space-y-3">
+                          {item.items.map((subItem) => (
+                            <SheetClose asChild key={subItem.text}>
+                              <Link 
+                                to={subItem.to} 
+                                className="flex items-center text-base py-2"
+                              >
+                                {getCategoryIcon(subItem.text)}
+                                <div>
+                                  <div className="font-medium">{subItem.text}</div>
+                                  {subItem.description && (
+                                    <p className="text-sm text-gray-500">{subItem.description}</p>
+                                  )}
+                                </div>
+                              </Link>
+                            </SheetClose>
+                          ))}
+                        </div>
+                      );
+                    }
+                    
+                    return (
+                      <SheetClose asChild key={item.text}>
+                        <Link 
+                          to={item.to || "#"} 
+                          className="flex items-center text-base py-2 font-medium"
+                        >
+                          {getCategoryIcon(item.text)}
+                          {item.text}
+                        </Link>
+                      </SheetClose>
+                    );
+                  })}
+                </div>
+                
+                <Separator className="my-6" />
+                
+                <div className="text-xl font-semibold mb-6">
+                  Account
+                </div>
+                
+                {isLoggedIn && currentUser ? (
+                  <div className="space-y-3">
+                    <SheetClose asChild>
+                      <Link 
+                        to={`/profile/${currentUser.username}`}
+                        className="flex items-center text-base py-2"
+                      >
+                        <User size={16} className="mr-2" />
+                        <span>My Profile</span>
+                      </Link>
+                    </SheetClose>
+                    <button 
+                      onClick={logout}
+                      className="flex items-center text-base py-2 w-full text-left"
+                    >
+                      <User size={16} className="mr-2" />
+                      <span>Log out</span>
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <SheetClose asChild>
+                      <Link to="/reader-auth?tab=sign-in" className="block w-full mb-3">
+                        <Button variant="outline" className="w-full flex items-center">
+                          <User className="mr-2 h-4 w-4" />
+                          Sign In
                         </Button>
                       </Link>
-                      <Link to="/reader-auth?tab=sign-up" className="w-full">
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link to="/reader-auth?tab=sign-up" className="block w-full">
                         <RainbowButton className="w-full flex items-center justify-center">
                           <BookOpen className="mr-2 h-4 w-4" />
                           Join Us
                         </RainbowButton>
                       </Link>
-                    </div>
-                  )}
-                  
-                  {isLoggedIn && currentUser && (
-                    <div className="space-y-3">
-                      <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">Account</div>
-                      <Separator className="mb-3" />
-                      <Link 
-                        to={`/profile/${currentUser.username}`}
-                        className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900 w-full text-left py-2"
-                      >
-                        <User size={16} className="mr-2" />
-                        <span>My Profile</span>
-                      </Link>
-                      <button 
-                        onClick={logout}
-                        className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900 w-full text-left py-2"
-                      >
-                        <User size={16} className="mr-2" />
-                        <span>Log out</span>
-                      </button>
-                    </div>
-                  )}
-                </div>
+                    </SheetClose>
+                  </div>
+                )}
               </div>
             </SheetContent>
           </Sheet>
@@ -207,49 +254,6 @@ const renderMenuItem = (item: NavItem) => {
       to={item.to || "#"}
     >
       {item.text}
-    </Link>
-  );
-};
-
-const renderMobileMenuItem = (item: NavItem, getIcon: (text: string) => React.ReactNode) => {
-  if (item.items && item.items.length > 0) {
-    return (
-      <AccordionItem key={item.text} value={item.text} className="border-b-0">
-        <AccordionTrigger className="py-0 font-semibold hover:no-underline">
-          <span className="flex items-center">
-            {getIcon(item.text)}
-            {item.text}
-          </span>
-        </AccordionTrigger>
-        <AccordionContent className="mt-2">
-          {item.items.map((subItem) => (
-            <Link
-              key={subItem.text}
-              className="flex select-none rounded-md p-3 leading-none outline-none transition-colors hover:bg-muted hover:text-accent-foreground"
-              to={subItem.to}
-            >
-              <span className="flex items-center text-sm font-semibold">
-                {getIcon(subItem.text)}
-                {subItem.text}
-              </span>
-              {subItem.description && (
-                <p className="ml-6 text-sm leading-snug text-muted-foreground">
-                  {subItem.description}
-                </p>
-              )}
-            </Link>
-          ))}
-        </AccordionContent>
-      </AccordionItem>
-    );
-  }
-
-  return (
-    <Link key={item.text} to={item.to || "#"} className="font-semibold py-3 block">
-      <span className="flex items-center">
-        {getIcon(item.text)}
-        {item.text}
-      </span>
     </Link>
   );
 };
