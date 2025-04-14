@@ -1,4 +1,3 @@
-
 import { Book, Menu, Sunset, Trees, Zap, User, BookOpen, Newspaper, MessagesSquare, FileText, BookText, HomeIcon, Info, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -132,12 +131,7 @@ const Navbar1 = ({
                                 className="flex items-center text-base py-2"
                               >
                                 {getCategoryIcon(subItem.text)}
-                                <div>
-                                  <div className="font-medium">{subItem.text}</div>
-                                  {subItem.description && (
-                                    <p className="text-sm text-gray-500">{subItem.description}</p>
-                                  )}
-                                </div>
+                                <div className="font-medium">{subItem.text}</div>
                               </Link>
                             </SheetClose>
                           ))}
@@ -231,11 +225,6 @@ const renderMenuItem = (item: NavItem) => {
                       <div className="text-sm font-semibold">
                         {subItem.text}
                       </div>
-                      {subItem.description && (
-                        <p className="text-sm leading-snug text-muted-foreground">
-                          {subItem.description}
-                        </p>
-                      )}
                     </div>
                   </Link>
                 </li>
