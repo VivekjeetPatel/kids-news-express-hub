@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { Link } from "react-router-dom"
 import { Menu, X, User, BookOpen, LogOut, Settings, Newspaper, FileText, BookText, MessagesSquare, HomeIcon, Info } from "lucide-react"
@@ -42,7 +41,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
     logout();
   };
 
-  // Function to get the appropriate icon based on category text
   const getCategoryIcon = (text: string) => {
     const categoryIcons: {[key: string]: React.ReactNode} = {
       'Headliners': <Newspaper size={16} />,
@@ -61,7 +59,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
   const renderAuthSection = () => {
     if (isLoggedIn && currentUser) {
       return (
-        <div className="mt-6 pt-6 border-t border-gray-200">
+        <div className="mt-6 pt-6">
           <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">Account</div>
           <Separator className="mb-3" />
           <ul className="space-y-4">
@@ -98,7 +96,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
     }
     
     return (
-      <div className="mt-6 pt-6 border-t border-gray-200">
+      <div className="mt-6 pt-6">
         <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">Account</div>
         <Separator className="mb-3" />
         <Link to="/reader-auth?tab=sign-in" className="block w-full mb-3">
