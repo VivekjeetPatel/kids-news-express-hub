@@ -1,22 +1,26 @@
-
 import * as React from "react"
 import { Link } from "react-router-dom"
 import { NavItem } from "@/components/Layout/menuItems"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { getCategoryIcon } from "@/utils/getCategoryIcon"
+import { getCategoryColor } from "@/utils/categoryColors"
 
 interface HeaderNavigationProps {
   items: NavItem[]
 }
 
 const ChevronIcon = () => (
-  <ChevronDown className="h-4 w-4 opacity-60" />
+  <ChevronDown className="h-3 w-3 opacity-60" />
 )
 
 const HeaderNavigation: React.FC<HeaderNavigationProps> = ({ items }) => (
   <nav>
-    <ul className="flex gap-x-6 xl:gap-x-8 md:flex hidden">
+    <ul className="flex gap-x-4 xl:gap-x-6 md:flex hidden">
       {items.map(({ to, text, items }, index) => {
+        const colorClasses = text ? getCategoryColor(text).split(' ')[0] : '';
+        const hoverBgClass = colorClasses ? `hover:${colorClasses} hover:bg-opacity-10` : 'hover:bg-gray-100';
+        
         return (
           <li
             className={cn('relative [perspective:2000px]', items?.length && items.length > 0 ? 'group' : '')}
@@ -25,19 +29,23 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = ({ items }) => (
             {to ? (
               <Link
                 className={cn(
-                  'flex items-center gap-x-1 whitespace-pre text-sm font-medium text-gray-700 hover:text-gray-900',
+                  'flex items-center gap-x-1 whitespace-pre text-xs font-medium text-gray-700 hover:text-gray-900 py-1.5 px-2 rounded-md transition-colors',
+                  hoverBgClass
                 )}
                 to={to}
               >
-                {text}
+                {text && getCategoryIcon(text)}
+                <span>{text}</span>
               </Link>
             ) : (
               <button
                 className={cn(
-                  'flex items-center gap-x-1 whitespace-pre text-sm font-medium text-gray-700 hover:text-gray-900',
+                  'flex items-center gap-x-1 whitespace-pre text-xs font-medium text-gray-700 hover:text-gray-900 py-1.5 px-2 rounded-md transition-colors',
+                  hoverBgClass
                 )}
               >
-                {text}
+                {text && getCategoryIcon(text)}
+                <span>{text}</span>
                 {items?.length && items.length > 0 && <ChevronIcon />}
               </button>
             )}

@@ -4,17 +4,17 @@ import { Newspaper, MessagesSquare, FileText, BookText, HomeIcon, BookOpen, Info
 
 export const getCategoryIcon = (text: string) => {
   const categoryIcons: {[key: string]: React.ReactNode} = {
-    'Headliners': <Newspaper size={16} className="mr-2" />,
-    'Debates': <MessagesSquare size={16} className="mr-2" />,
-    'Spice It Up': <FileText size={16} className="mr-2" />,
-    'Storyboard': <BookText size={16} className="mr-2" />,
-    'In the Neighborhood': <HomeIcon size={16} className="mr-2" />,
-    'Learning Resources': <BookOpen size={16} className="mr-2" />,
-    'School News': <Newspaper size={16} className="mr-2" />,
-    'About': <Info size={16} className="mr-2" />,
-    'Categories': <Menu size={16} className="mr-2" />,
-    'Learning': <Book size={16} className="mr-2" />
+    'Headliners': <Newspaper size={14} className="mr-1.5" />,
+    'Debates': <MessagesSquare size={14} className="mr-1.5" />,
+    'Spice It Up': <FileText size={14} className="mr-1.5" />,
+    'Storyboard': <BookText size={14} className="mr-1.5" />,
+    'In the Neighborhood': <HomeIcon size={14} className="mr-1.5" />,
+    'Learning Resources': <BookOpen size={14} className="mr-1.5" />,
+    'School News': <Newspaper size={14} className="mr-1.5" />,
+    'About': <Info size={14} className="mr-1.5" />,
+    'Categories': <Menu size={14} className="mr-1.5" />,
+    'Learning': <Book size={14} className="mr-1.5" />
   };
   
-  return categoryIcons[text] || <FileText size={16} className="mr-2" />;
+  return categoryIcons[text] || <FileText size={14} className="mr-1.5" />;
 };

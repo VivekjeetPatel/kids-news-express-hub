@@ -8,13 +8,13 @@ interface LogoProps {
 }
 
 const Logo = ({ className = '', size = 'xl' }: LogoProps) => {
-  // Updated size classes with 'xl' as the new default
+  // Updated size classes with larger default sizes
   const sizeClasses = {
-    sm: 'w-24',
-    md: 'w-32',
-    lg: 'w-40',
-    xl: 'w-48',  // Increased from previous mobile size
-    xxl: 'w-64'
+    sm: 'w-28',
+    md: 'w-36',
+    lg: 'w-44',
+    xl: 'w-52',  // Increased from previous
+    xxl: 'w-72'  // Increased from previous
   };
 
   return (
