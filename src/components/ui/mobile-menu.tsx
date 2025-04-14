@@ -122,7 +122,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
   
   return (
     <div className="md:hidden fixed inset-0 top-[72px] z-50 bg-white">
-      <div className="container h-full overflow-y-auto">
+      <div className="w-full h-full overflow-y-auto px-4">
         <nav className="py-6">
           <ul className="flex flex-col space-y-4">
             {items.map((item, index) => (
