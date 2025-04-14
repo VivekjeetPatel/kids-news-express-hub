@@ -1,6 +1,7 @@
+
 import * as React from "react"
 import { Link } from "react-router-dom"
-import { Menu, X, User, BookOpen, LogOut, Settings, CircleDot } from "lucide-react"
+import { Menu, X, User, BookOpen, LogOut, Settings, Circle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { NavButton } from "./nav-button"
 import { RainbowButton } from "./rainbow-button"
@@ -8,6 +9,7 @@ import { NavItem } from "@/components/Layout/menuItems"
 import { useAuth } from "@/contexts/AuthContext"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { getCategoryColor } from "@/utils/categoryColors"
+import { Separator } from "@/components/ui/separator"
 
 interface MobileMenuButtonProps {
   onClick: () => void
@@ -55,8 +57,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
   const renderAuthSection = () => {
     if (isLoggedIn && currentUser) {
       return (
-        <div className="mt-8 border-t border-gray-100 pt-8">
-          <div className="flex items-center gap-4 px-5 mb-6">
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <div className="flex items-center gap-4 mb-6">
             <Avatar className="h-12 w-12">
               <AvatarImage src={currentUser.avatar} alt={currentUser.displayName} />
               <AvatarFallback className="bg-neutral-700 text-white">
@@ -69,7 +71,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
             </div>
           </div>
           
-          <ul className="space-y-4 px-5">
+          <ul className="space-y-4">
             <li>
               <Link 
                 to={`/profile/${currentUser.username}`}
@@ -103,7 +105,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
     }
     
     return (
-      <div className="mt-8 px-5">
+      <div className="mt-6 pt-6 border-t border-gray-200">
         <Link to="/reader-auth?tab=sign-in" className="block w-full mb-3">
           <NavButton variant="outline" className="w-full">
             <User className="mr-2 h-4 w-4" />
@@ -124,32 +126,33 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
     <div className="md:hidden fixed inset-0 top-[72px] z-50 bg-white">
       <div className="w-full h-full overflow-y-auto px-4">
         <nav className="py-6">
-          <ul className="flex flex-col space-y-4">
+          <ul className="flex flex-col">
             {items.map((item, index) => (
-              <li key={index}>
+              <li key={index} className="mb-5">
                 {item.to ? (
                   <Link 
                     to={item.to} 
-                    className="flex items-center px-3 text-base font-medium text-gray-800 hover:text-gray-900"
+                    className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900"
                   >
                     {getCategoryDotColor(item.text) && (
-                      <CircleDot className={`mr-2 h-4 w-4 ${getCategoryDotColor(item.text)}`} />
+                      <Circle className={`mr-2 h-3 w-3 fill-current ${getCategoryDotColor(item.text)}`} />
                     )}
                     <span>{item.text}</span>
                   </Link>
                 ) : (
-                  <div className="px-3">
-                    <div className="text-sm uppercase tracking-wider font-semibold text-gray-500 mb-3">{item.text}</div>
+                  <div>
+                    <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">{item.text}</div>
+                    <Separator className="mb-3" />
                     {item.items && item.items.length > 0 && (
                       <ul className="space-y-3 pl-0">
                         {item.items.map((subItem, subIndex) => (
                           <li key={subIndex}>
                             <Link 
                               to={subItem.to} 
-                              className="flex items-center text-base font-medium text-gray-800 hover:text-gray-900"
+                              className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900"
                             >
                               {getCategoryDotColor(subItem.text) && (
-                                <CircleDot className={`mr-2 h-4 w-4 ${getCategoryDotColor(subItem.text)}`} />
+                                <Circle className={`mr-2 h-3 w-3 fill-current ${getCategoryDotColor(subItem.text)}`} />
                               )}
                               <span>{subItem.text}</span>
                             </Link>
