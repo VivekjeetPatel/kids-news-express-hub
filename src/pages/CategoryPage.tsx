@@ -9,7 +9,7 @@ import {
   BookOpen, 
   MessageCircle, 
   Sparkles, 
-  Home, 
+  Home as HomeIcon, 
   GraduationCap, 
   School, 
   Newspaper,
@@ -19,7 +19,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink } from '@/components/ui/pagination';
-import { NavLink } from '@/components/ui/nav-link';
+import Breadcrumb from '@/components/Navigation/Breadcrumb';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface CategoryPageProps {
   category?: string;
@@ -31,6 +32,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
   // State for sorting and pagination
   const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'a-z'>('newest');
   const [currentPage, setCurrentPage] = useState(1);
+  const isMobile = useIsMobile();
   
   // Get path from location to determine category if not provided via props
   const location = useLocation();
@@ -85,7 +87,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
       case 'Spice It Up':
         return <Sparkles size={32} className={`text-flyingbus-${colorName}`} />;
       case 'In the Neighborhood':
-        return <Home size={32} className={`text-flyingbus-${colorName}`} />;
+        return <HomeIcon size={32} className={`text-flyingbus-${colorName}`} />;
       case 'Learning Resources':
         return <GraduationCap size={32} className={`text-flyingbus-${colorName}`} />;
       case 'School News':
@@ -94,6 +96,12 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
         return <BookOpen size={32} className={`text-flyingbus-${colorName}`} />;
     }
   };
+
+  // Breadcrumb items
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: displayCategory, active: true }
+  ];
 
   return (
     <MainLayout>
@@ -136,11 +144,12 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category: propCategory }) =
           </Card>
         </div>
         
-        {/* Breadcrumb */}
-        <div className="mb-6 flex items-center text-sm text-gray-500">
-          <NavLink to="/" text="Home" />
-          <span className="mx-2">/</span>
-          <span className="font-medium text-gray-700">{displayCategory}</span>
+        {/* Enhanced Breadcrumb */}
+        <div className="mb-6">
+          <Breadcrumb 
+            items={breadcrumbItems} 
+            className="bg-white/90 backdrop-blur-sm rounded-lg py-2 px-4 shadow-sm"
+          />
         </div>
         
         {/* Articles Grid */}
