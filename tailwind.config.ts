@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -107,8 +106,8 @@ export default {
         'rainbow': 'rainbow 6s linear infinite'
       },
       fontFamily: {
-        display: ['Open Sauce Two', 'system-ui', 'sans-serif'],
-        body: ['Open Sauce Two', 'system-ui', 'sans-serif'],
+        display: ['Open Sauce Sans', 'system-ui', 'sans-serif'],
+        body: ['Open Sauce Sans', 'system-ui', 'sans-serif'],
       },
     }
   },

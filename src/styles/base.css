@@ -34,8 +34,8 @@
 
     --radius: 0.5rem;
 
-    --font-display: 'Open Sauce Two', system-ui, sans-serif;
-    --font-body: 'Open Sauce Two', system-ui, sans-serif;
+    --font-display: 'Open Sauce Sans', system-ui, sans-serif;
+    --font-body: 'Open Sauce Sans', system-ui, sans-serif;
 
     /* Rainbow Button Colors */
     --color-1: 270 50% 60%;  /* Purple */
@@ -98,19 +98,19 @@
 
 /* Font face declarations */
 @font-face {
-  font-family: 'Open Sauce Two';
-  src: url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucetwo-regular.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucetwo-regular.woff') format('woff');
+  font-family: 'Open Sauce Sans';
+  src: url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucesans-regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucesans-regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Open Sauce Two';
-  src: url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucetwo-bold.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucetwo-bold.woff') format('woff');
-  font-weight: 700;
+  font-family: 'Open Sauce Sans';
+  src: url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucesans-semibold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucesans-semibold.woff') format('woff');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
