@@ -21,7 +21,9 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({ className }) => {
   if (isLoggedIn) {
     return (
       <div className={`flex items-center space-x-3 ${className}`}>
-        <UserMenu />
+        <div className="hidden md:block">
+          <UserMenu />
+        </div>
       </div>
     );
   }
