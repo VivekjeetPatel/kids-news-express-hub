@@ -55,7 +55,7 @@ const ArticleCard = ({
         </div>
         
         <div className="p-4">
-          <h3 className="text-lg font-medium text-gray-900 mb-2 line-clamp-2 group-hover:text-flyingbus-purple transition-colors">
+          <h3 className="text-lg font-medium text-gray-900 mb-2 line-clamp-2 group-hover:text-flyingbus-purple transition-colors text-balance">
             {title}
           </h3>
           <p className="text-gray-600 text-sm mb-3 line-clamp-2">
@@ -84,3 +84,4 @@ const ArticleCard = ({
 };
 
 export default ArticleCard;
+
