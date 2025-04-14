@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import DebateVote from '@/components/Articles/DebateVote';
@@ -17,15 +16,11 @@ interface ArticleContentProps {
 }
 
 const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent, debateSettings }) => {
-  // Check if this is a debate article - use case-insensitive comparison
   const isDebate = article.category.toLowerCase() === 'debate' || article.category.toLowerCase() === 'debates';
-  
-  // Check if this is a Spice It Up article with video
   const isSpiceItUpWithVideo = article.category === 'Spice It Up' && article.videoUrl;
   
   return (
     <div className="lg:col-span-8">
-      {/* Show video for Spice It Up articles that have a video URL */}
       {isSpiceItUpWithVideo && (
         <VideoPlayer 
           videoUrl={article.videoUrl!} 
@@ -34,8 +29,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
         />
       )}
       
-      {/* Reduce margin-top and bottom for image */}
-      <div className={`mb-4 rounded-xl overflow-hidden ${isSpiceItUpWithVideo ? 'mt-4' : ''}`}>
+      <div className={`mb-2 rounded-xl overflow-hidden ${isSpiceItUpWithVideo ? 'mt-2' : ''}`}>
         <AspectRatio ratio={16/9} className="bg-gray-100">
           <img 
             src={article.imageUrl} 
@@ -46,7 +40,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
       </div>
       
       <div 
-        className="article-content prose prose-lg max-w-none mb-12 
+        className="article-content prose prose-lg max-w-none mt-6 mb-12 
           prose-headings:font-display prose-headings:text-gray-900
           prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-6 prose-h1:leading-tight
           prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-10 prose-h2:mb-4
@@ -66,7 +60,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ article, articleContent
       />
       
       {isDebate && debateSettings && (
-        <div className="my-12">
+        <div className="my-8">
           <h3 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
             <span className="inline-block w-10 h-0.5 bg-flyingbus-purple mr-4"></span>
             Join the debate
