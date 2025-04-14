@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Link } from "react-router-dom"
 import { Menu, X, User, BookOpen } from "lucide-react"
@@ -69,14 +70,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items }) => {
             ))}
           </ul>
           <div className="mt-6 px-4">
-            <NavButton variant="outline" className="w-full mb-2">
-              <User className="mr-2 h-4 w-4" />
-              Sign In
-            </NavButton>
-            <RainbowButton className="w-full flex items-center justify-center">
-              <BookOpen className="mr-2 h-4 w-4" />
-              Join Us
-            </RainbowButton>
+            <Link to="/reader-auth?tab=sign-in" className="block w-full mb-2">
+              <NavButton variant="outline" className="w-full">
+                <User className="mr-2 h-4 w-4" />
+                Sign In
+              </NavButton>
+            </Link>
+            <Link to="/reader-auth?tab=sign-up" className="block w-full">
+              <RainbowButton className="w-full flex items-center justify-center">
+                <BookOpen className="mr-2 h-4 w-4" />
+                Join Us
+              </RainbowButton>
+            </Link>
           </div>
         </nav>
       </div>
