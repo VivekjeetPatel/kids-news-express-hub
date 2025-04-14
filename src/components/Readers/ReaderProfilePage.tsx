@@ -1,21 +1,23 @@
-
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { formatDistanceToNow } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
-import { MessageSquare, Award, Flame, Share2 } from 'lucide-react';
+import { MessageSquare, Award, Flame, Share2, Edit } from 'lucide-react';
 import { getReaderByUsername } from '@/data/readers';
 import { getCommentsByAuthor } from '@/data/comments';
 import MainLayout from '@/components/Layout/MainLayout';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
 
 const ReaderProfilePage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
   const reader = username ? getReaderByUsername(username) : undefined;
+  const { currentUser } = useAuth();
+  const isOwnProfile = currentUser?.username === username;
   
   // Get comments by reader (mock)
   const readerComments = username ? getCommentsByAuthor(username) : [];
@@ -35,20 +37,19 @@ const ReaderProfilePage: React.FC = () => {
   return (
     <MainLayout>
       <div className="container mx-auto py-8 px-4">
-        <div className="relative mb-6 overflow-hidden rounded-lg">
-          {/* Pastel gradient background - peach to pink */}
-          <div className="h-40 bg-gradient-to-r from-[#FDE1D3] to-[#FFDEE2]"></div>
+        <div className="relative mb-24 md:mb-16 overflow-hidden rounded-lg">
+          <div className="h-48 bg-gradient-to-r from-[#FDE1D3] to-[#FFDEE2]"></div>
           
-          <div className="relative px-6 -mt-16 pb-6">
-            <div className="flex flex-col md:flex-row gap-6 items-center md:items-end">
-              <Avatar className="h-32 w-32 ring-4 ring-white">
+          <div className="absolute left-0 right-0 -bottom-16 px-6">
+            <div className="flex flex-col md:flex-row md:items-end gap-6">
+              <Avatar className="h-32 w-32 border-4 border-white bg-white self-center md:self-start">
                 <AvatarImage src={reader.avatar} alt={reader.displayName} />
                 <AvatarFallback className="text-2xl">
                   {reader.displayName.substring(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               
-              <div className="text-center md:text-left mt-4 md:mt-0">
+              <div className="text-center md:text-left mt-2 md:mt-0 md:pb-2">
                 <h1 className="text-2xl font-bold">{reader.displayName}</h1>
                 <p className="text-gray-500">@{reader.username}</p>
                 <p className="text-sm text-gray-600 mt-1">
@@ -56,30 +57,43 @@ const ReaderProfilePage: React.FC = () => {
                 </p>
               </div>
               
-              <div className="md:ml-auto mt-4 md:mt-0">
+              <div className="md:ml-auto flex justify-center md:justify-end gap-2 mt-2 md:mt-0 md:pb-2">
+                {isOwnProfile && (
+                  <Link to={`/profile/${reader.username}/edit`}>
+                    <Button 
+                      variant="outline"
+                      className="flex items-center gap-2 bg-white border-gray-200"
+                    >
+                      <Edit className="h-4 w-4" />
+                      Edit Profile
+                    </Button>
+                  </Link>
+                )}
                 <Button 
                   variant="outline"
-                  className="flex items-center gap-2 bg-white"
+                  className="flex items-center gap-2 bg-white border-gray-200"
                 >
                   <Share2 className="h-4 w-4" />
                   Share Profile
                 </Button>
               </div>
             </div>
-            
-            {reader.bio && (
-              <div className="mt-6">
-                <p className="text-gray-700">{reader.bio}</p>
-              </div>
-            )}
-            
-            <div className="flex flex-wrap gap-2 mt-6">
-              {reader.badges?.map((badge, index) => (
-                <Badge key={index} variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
-                  {badge}
-                </Badge>
-              ))}
+          </div>
+        </div>
+        
+        <div className="mt-20 md:mt-12 mb-8">
+          {reader.bio && (
+            <div className="mb-4">
+              <p className="text-gray-700">{reader.bio}</p>
             </div>
+          )}
+          
+          <div className="flex flex-wrap gap-2 mt-4">
+            {reader.badges?.map((badge, index) => (
+              <Badge key={index} variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+                {badge}
+              </Badge>
+            ))}
           </div>
         </div>
         

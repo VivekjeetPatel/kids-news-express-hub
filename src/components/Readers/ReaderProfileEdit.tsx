@@ -64,7 +64,7 @@ const ReaderProfileEdit: React.FC<ReaderProfileEditProps> = ({
   return (
     <MainLayout>
       <div className="container mx-auto py-8 px-4">
-        <div className="mb-6">
+        <div className="mb-8">
           <Link 
             to={`/profile/${profile.username}`}
             className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
@@ -74,16 +74,17 @@ const ReaderProfileEdit: React.FC<ReaderProfileEditProps> = ({
           </Link>
         </div>
         
-        <div className="relative mb-6 overflow-hidden rounded-lg">
-          {/* Pastel gradient background - soft blue to soft purple */}
-          <div className="h-32 bg-gradient-to-r from-[#D3E4FD] to-[#E5DEFF]"></div>
+        {/* Gradient background with proper spacing */}
+        <div className="relative mb-20 overflow-hidden rounded-lg">
+          {/* Soft blue to soft purple gradient */}
+          <div className="h-48 bg-gradient-to-r from-[#D3E4FD] to-[#E5DEFF]"></div>
         </div>
         
         <form onSubmit={handleSubmit}>
-          <Card className="-mt-16 relative z-10 border-0 shadow-lg">
-            <CardHeader className="flex flex-row items-center gap-4 relative">
+          <Card className="absolute -mt-40 relative z-10 mx-auto max-w-4xl border-0 shadow-lg">
+            <CardHeader className="flex flex-row items-center gap-4 relative pt-8">
               <div className="relative">
-                <Avatar className="h-24 w-24 ring-4 ring-white">
+                <Avatar className="h-24 w-24 border-4 border-white bg-white">
                   <AvatarImage src={editedProfile.avatar} alt={editedProfile.displayName} />
                   <AvatarFallback className="text-xl">
                     {editedProfile.displayName.substring(0, 2).toUpperCase()}
