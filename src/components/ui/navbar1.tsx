@@ -1,5 +1,5 @@
 
-import { Book, Menu, Sunset, Trees, Zap, User, BookOpen } from "lucide-react";
+import { Book, Menu, Sunset, Trees, Zap, User, BookOpen, Newspaper, MessagesSquare, FileText, BookText, HomeIcon, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import {
@@ -28,6 +28,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import UserMenu from "@/components/auth/UserMenu";
 import { NavItem } from "@/components/Layout/menuItems";
+import { Separator } from "@/components/ui/separator";
 
 interface MenuItem {
   text: string;
@@ -56,7 +57,24 @@ const Navbar1 = ({
   menuItems = [],
   rightContent,
 }: Navbar1Props) => {
-  const { isLoggedIn, isLoading } = useAuth();
+  const { isLoggedIn, isLoading, currentUser, logout } = useAuth();
+  
+  const getCategoryIcon = (text: string) => {
+    const categoryIcons: {[key: string]: React.ReactNode} = {
+      'Headliners': <Newspaper size={16} className="mr-2" />,
+      'Debates': <MessagesSquare size={16} className="mr-2" />,
+      'Spice It Up': <FileText size={16} className="mr-2" />,
+      'Storyboard': <BookText size={16} className="mr-2" />,
+      'In the Neighborhood': <HomeIcon size={16} className="mr-2" />,
+      'Learning Resources': <BookOpen size={16} className="mr-2" />,
+      'School News': <Newspaper size={16} className="mr-2" />,
+      'About': <Info size={16} className="mr-2" />,
+      'Categories': <Menu size={16} className="mr-2" />,
+      'Learning': <Book size={16} className="mr-2" />
+    };
+    
+    return categoryIcons[text] || <FileText size={16} className="mr-2" />;
+  };
   
   return (
     <header className="sticky top-0 z-40 w-full bg-white border-b border-gray-200">
@@ -96,7 +114,7 @@ const Navbar1 = ({
                   collapsible
                   className="flex w-full flex-col gap-4"
                 >
-                  {menuItems.map((item) => renderMobileMenuItem(item))}
+                  {menuItems.map((item) => renderMobileMenuItem(item, getCategoryIcon))}
                 </Accordion>
                 <div className="border-t py-4">
                   {!isLoggedIn && !isLoading && (
@@ -115,6 +133,27 @@ const Navbar1 = ({
                           Join Us
                         </RainbowButton>
                       </Link>
+                    </div>
+                  )}
+                  
+                  {isLoggedIn && currentUser && (
+                    <div className="space-y-3">
+                      <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-2">Account</div>
+                      <Separator className="mb-3" />
+                      <Link 
+                        to={`/profile/${currentUser.username}`}
+                        className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900 w-full text-left py-2"
+                      >
+                        <User size={16} className="mr-2" />
+                        <span>My Profile</span>
+                      </Link>
+                      <button 
+                        onClick={logout}
+                        className="flex items-center text-sm font-medium text-gray-800 hover:text-gray-900 w-full text-left py-2"
+                      >
+                        <User size={16} className="mr-2" />
+                        <span>Log out</span>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -172,28 +211,32 @@ const renderMenuItem = (item: NavItem) => {
   );
 };
 
-const renderMobileMenuItem = (item: NavItem) => {
+const renderMobileMenuItem = (item: NavItem, getIcon: (text: string) => React.ReactNode) => {
   if (item.items && item.items.length > 0) {
     return (
       <AccordionItem key={item.text} value={item.text} className="border-b-0">
         <AccordionTrigger className="py-0 font-semibold hover:no-underline">
-          {item.text}
+          <span className="flex items-center">
+            {getIcon(item.text)}
+            {item.text}
+          </span>
         </AccordionTrigger>
         <AccordionContent className="mt-2">
           {item.items.map((subItem) => (
             <Link
               key={subItem.text}
-              className="flex select-none gap-4 rounded-md p-3 leading-none outline-none transition-colors hover:bg-muted hover:text-accent-foreground"
+              className="flex select-none rounded-md p-3 leading-none outline-none transition-colors hover:bg-muted hover:text-accent-foreground"
               to={subItem.to}
             >
-              <div>
-                <div className="text-sm font-semibold">{subItem.text}</div>
-                {subItem.description && (
-                  <p className="text-sm leading-snug text-muted-foreground">
-                    {subItem.description}
-                  </p>
-                )}
-              </div>
+              <span className="flex items-center text-sm font-semibold">
+                {getIcon(subItem.text)}
+                {subItem.text}
+              </span>
+              {subItem.description && (
+                <p className="ml-6 text-sm leading-snug text-muted-foreground">
+                  {subItem.description}
+                </p>
+              )}
             </Link>
           ))}
         </AccordionContent>
@@ -203,7 +246,10 @@ const renderMobileMenuItem = (item: NavItem) => {
 
   return (
     <Link key={item.text} to={item.to || "#"} className="font-semibold py-3 block">
-      {item.text}
+      <span className="flex items-center">
+        {getIcon(item.text)}
+        {item.text}
+      </span>
     </Link>
   );
 };
