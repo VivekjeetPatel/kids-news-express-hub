@@ -3,9 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { formatDistanceToNow } from 'date-fns';
-import { Edit, ArrowLeft, Share2 } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { Share2, Edit, ArrowLeft } from 'lucide-react';
 import { ReaderProfile } from '@/types/ReaderProfile';
 
 interface ProfileHeaderProps {
@@ -15,9 +13,9 @@ interface ProfileHeaderProps {
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({ reader, isOwnProfile }) => {
   return (
-    <div className="relative">
+    <div className="relative mb-16">
       {/* Gradient background */}
-      <div className="h-52 rounded-b-3xl bg-gradient-to-r from-[#FDE1D3] to-[#FFDEE2] overflow-hidden">
+      <div className="h-52 rounded-b-3xl bg-gradient-to-r from-[#FDE1D3] to-[#FFDEE2]">
         {/* Navigation */}
         <div className="absolute top-4 left-4">
           <Link 
@@ -54,8 +52,8 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ reader, isOwnProfile }) =
         </div>
       </div>
       
-      {/* Profile Picture - positioned to overlap with the bottom of the background */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ top: "calc(100% - 64px)" }}>
+      {/* Profile container with negative margin to create overlap */}
+      <div className="absolute left-0 right-0 -mt-16 flex flex-col items-center">
         <Avatar className="h-32 w-32 border-4 border-white bg-white shadow-md">
           <AvatarImage src={reader.avatar} alt={reader.displayName} />
           <AvatarFallback className="text-3xl bg-purple-50 text-purple-700">
@@ -68,4 +66,3 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ reader, isOwnProfile }) =
 };
 
 export default ProfileHeader;
-
