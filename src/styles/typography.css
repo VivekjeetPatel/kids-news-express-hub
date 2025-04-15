@@ -1,4 +1,3 @@
-
 /* Base typography styles */
 h1, h2, h3, h4, h5, h6 {
   @apply font-display font-medium text-gray-900;
@@ -14,7 +13,7 @@ p, span, div, a, button, input, textarea {
 }
 
 .category-title {
-  @apply font-young-serif text-2xl md:text-3xl font-normal pb-2 mb-0 text-gray-900;
+  @apply font-young-serif text-2xl md:text-3xl font-medium pb-2 mb-0 text-gray-900;
 }
 
 .feature-article-title {
