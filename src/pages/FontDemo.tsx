@@ -31,6 +31,13 @@ const FontDemo = () => {
     { name: 'EB Garamond', class: 'font-eb-garamond' },
   ];
 
+  const fontWeights = [
+    { name: 'Normal', class: 'font-normal' },
+    { name: 'Medium', class: 'font-medium' },
+    { name: 'Semibold', class: 'font-semibold' },
+    { name: 'Bold', class: 'font-bold' },
+  ];
+
   const categories = [
     'Headliners', 
     'Debates', 
@@ -44,6 +51,31 @@ const FontDemo = () => {
     <MainLayout>
       <div className="max-w-5xl mx-auto">
         <h1 className="newspaper-title mb-8">Font Demo Page</h1>
+        
+        <section className="mb-12">
+          <h2 className="category-title mb-4">Font Weights Demo</h2>
+          <div className="grid grid-cols-1 gap-8">
+            {fontFamilies.map((font) => (
+              <Card key={`weights-${font.name}`} className="overflow-hidden">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-4">{font.name}</h3>
+                  <div className="grid gap-6">
+                    {fontWeights.map((weight) => (
+                      <div key={`${font.name}-${weight.name}`} className="mb-4">
+                        <h4 className="text-sm text-gray-500 mb-2">{weight.name}</h4>
+                        <p className={`text-3xl ${font.class} ${weight.class}`}>
+                          The Flying Bus: News for Kids, By Kids
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-12" />
         
         <section className="mb-12">
           <h2 className="category-title mb-4">Category Title Fonts (Standard Background)</h2>
