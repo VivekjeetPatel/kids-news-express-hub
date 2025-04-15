@@ -1,3 +1,4 @@
+
 /* Base typography styles */
 h1, h2, h3, h4, h5, h6 {
   @apply font-display font-medium text-[#1B344C];
@@ -28,7 +29,7 @@ p, span, div, a, button, input, textarea {
 }
 
 .instrument-serif-title {
-  @apply font-instrument-serif text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 mb-4;
+  @apply font-instrument-serif text-4xl md:text-5xl lg:text-7xl font-bold text-[#1B344C] mb-4;
 }
 
 .instrument-serif-quote {

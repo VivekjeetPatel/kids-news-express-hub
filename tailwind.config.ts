@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -80,6 +81,9 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
+      },
+      boxShadow: {
+        'category-icon': '5px 4px 14px 0px #0000001A, 20px 18px 26px 0px #00000017, 44px 39px 35px 0px #0000000D, 78px 70px 42px 0px #00000003, 122px 109px 46px 0px #00000000',
       },
       keyframes: {
         'accordion-down': {

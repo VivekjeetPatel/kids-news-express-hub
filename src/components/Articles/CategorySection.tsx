@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ArticleCard, { ArticleProps } from './ArticleCard';
-import { ArrowRight, BookOpen, MessageCircle, Sparkles, BookMarked, Home, GraduationCap, School } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { 
   Carousel, 
   CarouselContent, 
@@ -26,41 +26,35 @@ const CategorySection = ({ title, slug, articles, color }: CategorySectionProps)
     
     return {
       border: `border-flyingbus-${colorName}`,
-      text: `text-flyingbus-${colorName}`
+      text: `text-flyingbus-${colorName}`,
+      bg: `bg-flyingbus-${colorName}`
     };
   };
 
   const colorClasses = getColorClass();
 
-  // Map category to icon
-  const getCategoryIcon = () => {
-    switch (title) {
-      case 'Headliners':
-        return <BookOpen className={colorClasses.text} size={24} />;
-      case 'Debates':
-        return <MessageCircle className={colorClasses.text} size={24} />;
-      case 'Spice It Up':
-        return <Sparkles className={colorClasses.text} size={24} />;
-      case 'Storyboard':
-        return <BookMarked className={colorClasses.text} size={24} />;
-      case 'In the Neighborhood':
-        return <Home className={colorClasses.text} size={24} />;
-      case 'Learning':
-        return <GraduationCap className={colorClasses.text} size={24} />;
-      case 'School News':
-        return <School className={colorClasses.text} size={24} />;
-      default:
-        return <BookOpen className={colorClasses.text} size={24} />;
-    }
-  };
-
   return (
     <section className="py-8">
       <div className="flex justify-between items-center mb-6">
-        <div className="flex items-center gap-2">
-          {getCategoryIcon()}
-          <h2 className={`category-title border-b-2 ${colorClasses.border} self-center`}>{title}</h2>
+        <div className="flex items-center gap-6">
+          {/* Image frame with placeholder */}
+          <div className="relative">
+            <div 
+              className="w-16 h-16 md:w-20 md:h-20 bg-white p-2.5 rounded-md shadow-category-icon overflow-hidden"
+            >
+              <div className={`w-full h-full ${colorClasses.bg} flex items-center justify-center rounded`}>
+                <img 
+                  src="/placeholder.svg" 
+                  alt={`${title} icon`} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <h2 className="category-title">{title}</h2>
         </div>
+        
         <Link 
           to={`/${slug}`} 
           className="flex items-center text-sm font-medium hover:text-gray-800 hover:underline"

@@ -1,14 +1,5 @@
 
 import React from 'react';
-import { 
-  BookOpen, 
-  MessageCircle, 
-  Sparkles, 
-  Home as HomeIcon, 
-  GraduationCap, 
-  School, 
-  Newspaper
-} from 'lucide-react';
 
 interface CategoryHeaderProps {
   displayCategory: string;
@@ -19,29 +10,25 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({
   displayCategory,
   colorName
 }) => {
-  const getCategoryIcon = () => {
-    switch (displayCategory) {
-      case 'Headliners':
-        return <Newspaper size={32} className={`text-flyingbus-${colorName}`} />;
-      case 'Debates':
-        return <MessageCircle size={32} className={`text-flyingbus-${colorName}`} />;
-      case 'Spice It Up':
-        return <Sparkles size={32} className={`text-flyingbus-${colorName}`} />;
-      case 'In the Neighborhood':
-        return <HomeIcon size={32} className={`text-flyingbus-${colorName}`} />;
-      case 'Learning Resources':
-        return <GraduationCap size={32} className={`text-flyingbus-${colorName}`} />;
-      case 'School News':
-        return <School size={32} className={`text-flyingbus-${colorName}`} />;
-      default:
-        return <BookOpen size={32} className={`text-flyingbus-${colorName}`} />;
-    }
-  };
-
   return (
-    <div className="flex items-center gap-3">
-      {getCategoryIcon()}
-      <h1 className={`text-3xl font-bold border-b-2 border-flyingbus-${colorName} pb-1`}>
+    <div className="flex items-center gap-6">
+      {/* Image frame with placeholder */}
+      <div className="relative">
+        <div 
+          className="w-20 h-20 md:w-24 md:h-24 bg-white p-2.5 rounded-md shadow-category-icon overflow-hidden"
+        >
+          <div className={`w-full h-full bg-flyingbus-${colorName} flex items-center justify-center rounded`}>
+            <img 
+              src="/placeholder.svg" 
+              alt={`${displayCategory} icon`} 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+      
+      {/* Category title */}
+      <h1 className="category-title">
         {displayCategory}
       </h1>
     </div>
