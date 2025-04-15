@@ -36,13 +36,13 @@ const CategorySection = ({ title, slug, articles, color }: CategorySectionProps)
   return (
     <section className="py-8">
       <div className="flex justify-between items-center mb-6">
-        <div className="flex items-center gap-6">
-          {/* Image frame with placeholder */}
-          <div className="relative">
+        <div className="flex items-center gap-10">
+          {/* Image frame with placeholder - rotated 30 degrees clockwise */}
+          <div className="relative transform rotate-[30deg]">
             <div 
-              className="w-16 h-16 md:w-20 md:h-20 bg-white p-2.5 rounded-md shadow-category-icon overflow-hidden"
+              className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-md shadow-category-icon overflow-hidden"
             >
-              <div className={`w-full h-full ${colorClasses.bg} flex items-center justify-center rounded`}>
+              <div className={`w-full h-full ${colorClasses.bg} flex items-center justify-center`}>
                 <img 
                   src="/placeholder.svg" 
                   alt={`${title} icon`} 

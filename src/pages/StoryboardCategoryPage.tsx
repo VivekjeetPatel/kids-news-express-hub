@@ -92,7 +92,7 @@ const StoryboardCategoryPage = () => {
               </Link>
               
               <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2 line-clamp-1">
+                <h3 className="text-xl font-semibold mb-2 line-clamp-1" style={{ textWrap: 'balance' }}>
                   {series.title}
                 </h3>
                 <div className="flex items-center text-sm text-gray-500 mb-3">
