@@ -33,7 +33,11 @@ const ModernHeader = () => {
             <HeaderButtons />
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="h-9 w-9">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="h-9 w-9 hover:bg-transparent hover:scale-105 active:scale-95 transition-transform"
+                >
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
@@ -49,3 +53,4 @@ const ModernHeader = () => {
 };
 
 export default ModernHeader;
+
