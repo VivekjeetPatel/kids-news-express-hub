@@ -70,7 +70,7 @@ export default {
           green: '#10B981',
           orange: '#F97316',
           pink: '#D946EF',
-          background: '#F9FAFB',
+          background: '#F6F4F0',
           'card-bg': '#FFFFFF',
           'muted-text': '#64748B',
         },
