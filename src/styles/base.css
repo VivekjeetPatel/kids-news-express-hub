@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,6 +38,7 @@
     --font-display: 'Open Sauce Sans', system-ui, sans-serif;
     --font-body: 'Open Sauce Sans', system-ui, sans-serif;
     --font-eb-garamond: 'EB Garamond', Georgia, serif;
+    --font-young-serif: 'YoungSerif', Georgia, serif;
 
     /* Rainbow Button Colors */
     --color-1: 270 50% 60%;  /* Purple */

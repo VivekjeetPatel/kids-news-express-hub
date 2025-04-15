@@ -1,3 +1,4 @@
+
 /* Base typography styles */
 h1, h2, h3, h4, h5, h6 {
   @apply font-display font-medium text-gray-900;
@@ -13,7 +14,7 @@ p, span, div, a, button, input, textarea {
 }
 
 .category-title {
-  @apply font-eb-garamond text-2xl md:text-3xl font-medium pb-2 mb-0 text-gray-900;
+  @apply font-young-serif text-2xl md:text-3xl font-normal pb-2 mb-0 text-gray-900;
 }
 
 .feature-article-title {
@@ -32,4 +33,13 @@ p, span, div, a, button, input, textarea {
 
 .eb-garamond-quote {
   @apply font-eb-garamond text-xl md:text-2xl italic text-gray-700 border-l-4 border-flyingbus-green pl-4 py-2 my-6;
+}
+
+/* YoungSerif font utility classes */
+.font-young-serif {
+  font-family: var(--font-young-serif);
+}
+
+.young-serif-title {
+  @apply font-young-serif text-2xl md:text-3xl lg:text-4xl font-normal text-gray-900 mb-4;
 }

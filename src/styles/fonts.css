@@ -63,3 +63,13 @@
   font-style: italic;
   font-display: swap;
 }
+
+/* YoungSerif font */
+@font-face {
+  font-family: 'YoungSerif';
+  src: url('https://cdn.jsdelivr.net/gh/noirblancrouge/YoungSerif@main/fonts/webfonts/YoungSerif-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/noirblancrouge/YoungSerif@main/fonts/webfonts/YoungSerif-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
