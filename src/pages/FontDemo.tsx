@@ -25,18 +25,18 @@ const FontDemo = () => {
   };
 
   const fontFamilies = [
-    { name: 'Default (Open Sauce Sans)', class: '' },
-    { name: 'Source Serif 4', class: 'font-serif' },
-    { name: 'Junicode', class: 'font-junicode' },
-    { name: 'EB Garamond', class: 'font-eb-garamond' },
+    { name: 'Default (Open Sauce Sans)', class: '', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
+    { name: 'Source Serif 4', class: 'font-serif', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
+    { name: 'Junicode', class: 'font-junicode', weights: ['Normal', 'Bold'] },
+    { name: 'EB Garamond', class: 'font-eb-garamond', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
   ];
 
-  const fontWeights = [
-    { name: 'Normal', class: 'font-normal' },
-    { name: 'Medium', class: 'font-medium' },
-    { name: 'Semibold', class: 'font-semibold' },
-    { name: 'Bold', class: 'font-bold' },
-  ];
+  const fontWeightClasses = {
+    'Normal': 'font-normal',
+    'Medium': 'font-medium',
+    'Semibold': 'font-semibold',
+    'Bold': 'font-bold',
+  };
 
   const categories = [
     'Headliners', 
@@ -54,16 +54,17 @@ const FontDemo = () => {
         
         <section className="mb-12">
           <h2 className="category-title mb-4">Font Weights Demo</h2>
+          <p className="text-gray-600 mb-6">Note: Some fonts like Junicode only have certain weights available.</p>
           <div className="grid grid-cols-1 gap-8">
             {fontFamilies.map((font) => (
               <Card key={`weights-${font.name}`} className="overflow-hidden">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold mb-4">{font.name}</h3>
                   <div className="grid gap-6">
-                    {fontWeights.map((weight) => (
-                      <div key={`${font.name}-${weight.name}`} className="mb-4">
-                        <h4 className="text-sm text-gray-500 mb-2">{weight.name}</h4>
-                        <p className={`text-3xl ${font.class} ${weight.class}`}>
+                    {font.weights.map((weight) => (
+                      <div key={`${font.name}-${weight}`} className="mb-4">
+                        <h4 className="text-sm text-gray-500 mb-2">{weight}</h4>
+                        <p className={`text-3xl ${font.class} ${fontWeightClasses[weight]}`}>
                           The Flying Bus: News for Kids, By Kids
                         </p>
                       </div>
