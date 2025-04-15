@@ -21,45 +21,6 @@ p, span, div, a, button, input, textarea {
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-/* Serif font utility classes */
-.font-serif {
-  font-family: var(--font-serif);
-}
-
-.article-serif-title {
-  @apply font-serif text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4;
-}
-
-.article-serif-quote {
-  @apply font-serif text-xl md:text-2xl italic text-gray-700 border-l-4 border-flyingbus-blue pl-4 py-2 my-6;
-}
-
-/* Junicode font utility classes */
-.font-junicode {
-  font-family: var(--font-junicode);
-}
-
-.junicode-title {
-  @apply font-junicode text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4;
-}
-
-.junicode-quote {
-  @apply font-junicode text-xl md:text-2xl italic text-gray-700 border-l-4 border-flyingbus-red pl-4 py-2 my-6;
-}
-
-/* Junicode Condensed font utility classes */
-.font-junicode-condensed {
-  font-family: var(--font-junicode-condensed);
-}
-
-.junicode-condensed-title {
-  @apply font-junicode-condensed text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4;
-}
-
-.junicode-condensed-quote {
-  @apply font-junicode-condensed text-xl md:text-2xl italic text-gray-700 border-l-4 border-flyingbus-orange pl-4 py-2 my-6;
-}
-
 /* EB Garamond font utility classes */
 .font-eb-garamond {
   font-family: var(--font-eb-garamond);

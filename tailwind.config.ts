@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -109,9 +108,6 @@ export default {
       fontFamily: {
         display: ['Open Sauce Sans', 'system-ui', 'sans-serif'],
         body: ['Open Sauce Sans', 'system-ui', 'sans-serif'],
-        serif: ['Source Serif 4', 'Georgia', 'serif'],
-        junicode: ['Junicode', 'Times New Roman', 'serif'],
-        'junicode-condensed': ['Junicode Condensed', 'Times New Roman', 'serif'],
         'eb-garamond': ['EB Garamond', 'Georgia', 'serif'],
       },
     }

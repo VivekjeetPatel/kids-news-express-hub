@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,9 +36,6 @@
 
     --font-display: 'Open Sauce Sans', system-ui, sans-serif;
     --font-body: 'Open Sauce Sans', system-ui, sans-serif;
-    --font-serif: 'Source Serif 4', Georgia, serif;
-    --font-junicode: 'Junicode', 'Times New Roman', serif;
-    --font-junicode-condensed: 'Junicode Condensed', 'Times New Roman', serif;
     --font-eb-garamond: 'EB Garamond', Georgia, serif;
 
     /* Rainbow Button Colors */

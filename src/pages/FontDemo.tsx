@@ -35,36 +35,6 @@ const FontDemo = () => {
       ] 
     },
     { 
-      name: 'Source Serif 4', 
-      class: 'font-serif', 
-      weights: [
-        { name: 'Normal', className: 'font-normal' },
-        { name: 'Normal Italic', className: 'font-normal italic' },
-        { name: 'Semibold', className: 'font-semibold' },
-        { name: 'Semibold Italic', className: 'font-semibold italic' }
-      ] 
-    },
-    { 
-      name: 'Junicode', 
-      class: 'font-junicode', 
-      weights: [
-        { name: 'Normal', className: 'font-normal' },
-        { name: 'Normal Italic', className: 'font-normal italic' },
-        { name: 'Bold', className: 'font-bold' },
-        { name: 'Bold Italic', className: 'font-bold italic' }
-      ] 
-    },
-    { 
-      name: 'Junicode Condensed', 
-      class: 'font-junicode-condensed', 
-      weights: [
-        { name: 'Normal', className: 'font-normal' },
-        { name: 'Normal Italic', className: 'font-normal italic' },
-        { name: 'Bold', className: 'font-bold' },
-        { name: 'Bold Italic', className: 'font-bold italic' }
-      ] 
-    },
-    { 
       name: 'EB Garamond', 
       class: 'font-eb-garamond', 
       weights: [
