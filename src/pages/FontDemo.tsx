@@ -1,4 +1,3 @@
-
 import React from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import { 
@@ -25,11 +24,56 @@ const FontDemo = () => {
   };
 
   const fontFamilies = [
-    { name: 'Default (Open Sauce Sans)', class: '', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
-    { name: 'Source Serif 4', class: 'font-serif', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
-    { name: 'Junicode', class: 'font-junicode', weights: ['Normal', 'Bold'] },
-    { name: 'Junicode Condensed', class: 'font-junicode-condensed', weights: ['Normal', 'Bold'] },
-    { name: 'EB Garamond', class: 'font-eb-garamond', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
+    { 
+      name: 'Default (Open Sauce Sans)', 
+      class: '', 
+      weights: [
+        { name: 'Normal', className: 'font-normal' },
+        { name: 'Normal Italic', className: 'font-normal italic' },
+        { name: 'Semibold', className: 'font-semibold' },
+        { name: 'Semibold Italic', className: 'font-semibold italic' }
+      ] 
+    },
+    { 
+      name: 'Source Serif 4', 
+      class: 'font-serif', 
+      weights: [
+        { name: 'Normal', className: 'font-normal' },
+        { name: 'Normal Italic', className: 'font-normal italic' },
+        { name: 'Semibold', className: 'font-semibold' },
+        { name: 'Semibold Italic', className: 'font-semibold italic' }
+      ] 
+    },
+    { 
+      name: 'Junicode', 
+      class: 'font-junicode', 
+      weights: [
+        { name: 'Normal', className: 'font-normal' },
+        { name: 'Normal Italic', className: 'font-normal italic' },
+        { name: 'Bold', className: 'font-bold' },
+        { name: 'Bold Italic', className: 'font-bold italic' }
+      ] 
+    },
+    { 
+      name: 'Junicode Condensed', 
+      class: 'font-junicode-condensed', 
+      weights: [
+        { name: 'Normal', className: 'font-normal' },
+        { name: 'Normal Italic', className: 'font-normal italic' },
+        { name: 'Bold', className: 'font-bold' },
+        { name: 'Bold Italic', className: 'font-bold italic' }
+      ] 
+    },
+    { 
+      name: 'EB Garamond', 
+      class: 'font-eb-garamond', 
+      weights: [
+        { name: 'Normal', className: 'font-normal' },
+        { name: 'Normal Italic', className: 'font-normal italic' },
+        { name: 'Semibold', className: 'font-semibold' },
+        { name: 'Semibold Italic', className: 'font-semibold italic' }
+      ] 
+    },
   ];
 
   const fontWeightClasses = {
@@ -54,8 +98,8 @@ const FontDemo = () => {
         <h1 className="newspaper-title mb-8">Font Demo Page</h1>
         
         <section className="mb-12">
-          <h2 className="category-title mb-4">Font Weights Demo</h2>
-          <p className="text-gray-600 mb-6">Note: Some fonts like Junicode only have certain weights available.</p>
+          <h2 className="category-title mb-4">Font Weights & Italics Demo</h2>
+          <p className="text-gray-600 mb-6">Note: Availability of weights and italics varies by font.</p>
           <div className="grid grid-cols-1 gap-8">
             {fontFamilies.map((font) => (
               <Card key={`weights-${font.name}`} className="overflow-hidden">
@@ -63,9 +107,9 @@ const FontDemo = () => {
                   <h3 className="text-xl font-semibold mb-4">{font.name}</h3>
                   <div className="grid gap-6">
                     {font.weights.map((weight) => (
-                      <div key={`${font.name}-${weight}`} className="mb-4">
-                        <h4 className="text-sm text-gray-500 mb-2">{weight}</h4>
-                        <p className={`text-3xl ${font.class} ${fontWeightClasses[weight]}`}>
+                      <div key={`${font.name}-${weight.name}`} className="mb-4">
+                        <h4 className="text-sm text-gray-500 mb-2">{weight.name}</h4>
+                        <p className={`text-3xl ${font.class} ${weight.className}`}>
                           The Flying Bus: News for Kids, By Kids
                         </p>
                       </div>
