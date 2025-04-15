@@ -46,6 +46,8 @@
     --color-5: 140 100% 60%; /* Green */
 
     --header-height: 80px; /* Default value, will be updated by JS */
+
+    --headline-text: #1B344C;
   }
 
   .dark {

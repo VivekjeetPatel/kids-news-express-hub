@@ -73,6 +73,7 @@ export default {
           background: '#F6F4F0',
           'card-bg': '#FFFFFF',
           'muted-text': '#64748B',
+          'headline-text': '#1B344C',
         },
       },
       borderRadius: {
