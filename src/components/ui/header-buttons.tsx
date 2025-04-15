@@ -37,7 +37,7 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({ className }) => {
         </NavButton>
       </Link>
       <Link to="/reader-auth?tab=sign-up">
-        <RainbowButton className="hidden md:flex items-center">
+        <RainbowButton className="hidden md:flex items-center hover:scale-105 active:scale-95 transition-transform">
           <BookOpen className="mr-2 h-4 w-4" />
           Join Us
         </RainbowButton>

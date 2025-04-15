@@ -23,7 +23,7 @@ export const NavLink = ({
       to={to} 
       onClick={onClick}
       className={cn(
-        "flex items-center text-sm font-medium text-gray-800 hover:text-gray-900",
+        "flex items-center text-sm font-medium text-gray-800 hover:text-gray-900 transition-all hover:scale-105 active:scale-95",
         className
       )}
     >

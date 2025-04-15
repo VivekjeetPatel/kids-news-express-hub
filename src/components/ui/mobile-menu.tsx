@@ -18,7 +18,7 @@ export const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({
       onClick={onClick}
       className={cn(
         "md:hidden p-2 rounded-md text-gray-700 transition-all duration-200 ease-in-out",
-        "hover:bg-gray-100 hover:scale-105 active:scale-95", // Subtle scale animation
+        "hover:bg-gray-100/50 hover:scale-105 active:scale-95", // Subtle scale animation
         "focus:outline-none focus:ring-2 focus:ring-gray-200"
       )}
       aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -49,7 +49,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
               <li key={index} className="py-2">
                 <a 
                   href={item.to} 
-                  className="text-lg font-medium text-gray-900 hover:text-gray-700"
+                  className="text-lg font-medium text-gray-900 hover:text-gray-700 transition-all hover:scale-105 active:scale-95"
                 >
                   {item.text}
                 </a>

@@ -31,7 +31,7 @@ const VoteButtons: React.FC<VoteButtonsProps> = ({
         } ${
           userChoice === 'yes'
             ? 'border-green-600 bg-green-50 shadow-inner shadow-green-100'
-            : 'hover:border-green-600 hover:bg-green-50/30 hover:shadow-md'
+            : 'hover:border-green-600 hover:bg-green-50/30 hover:scale-105 active:scale-95 hover:shadow-md'
         }`}
       >
         <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-colors ${
@@ -62,7 +62,7 @@ const VoteButtons: React.FC<VoteButtonsProps> = ({
         } ${
           userChoice === 'no'
             ? 'border-red-600 bg-red-50 shadow-inner shadow-red-100'
-            : 'hover:border-red-600 hover:bg-red-50/30 hover:shadow-md'
+            : 'hover:border-red-600 hover:bg-red-50/30 hover:scale-105 active:scale-95 hover:shadow-md'
         }`}
       >
         <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-colors ${
