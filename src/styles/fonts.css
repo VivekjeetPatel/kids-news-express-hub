@@ -1,75 +1,10 @@
 
-/* Open Sauce Sans font */
-@font-face {
-  font-family: 'Open Sauce Sans';
-  src: url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucesans-regular.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucesans-regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Open Sauce Sans';
-  src: url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucesans-semibold.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/marcologous/Open-Sauce-Fonts@master/fonts/opensaucesans-semibold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* EB Garamond font */
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-Regular.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-Medium.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-SemiBold.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-Bold.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-Italic.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-Italic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
 /* YoungSerif font */
 @font-face {
   font-family: 'YoungSerif';
-  src: url('https://cdn.jsdelivr.net/gh/noirblancrouge/YoungSerif@main/fonts/webfonts/YoungSerif-Medium.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/noirblancrouge/YoungSerif@main/fonts/webfonts/YoungSerif-Medium.woff') format('woff');
-  font-weight: 500;
+  src: url('https://cdn.jsdelivr.net/gh/noirblancrouge/YoungSerif@main/fonts/webfonts/YoungSerif-Bold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/noirblancrouge/YoungSerif@main/fonts/webfonts/YoungSerif-Bold.woff') format('woff');
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
