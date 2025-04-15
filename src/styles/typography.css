@@ -15,32 +15,23 @@ p, span, div, a, button, input, textarea {
 }
 
 .category-title {
-  @apply font-young-serif text-2xl md:text-3xl font-bold pb-2 mb-0 text-gray-900;
+  @apply font-instrument-serif text-2xl md:text-3xl font-bold pb-2 mb-0 text-gray-900;
 }
 
 .feature-article-title {
-  @apply text-white text-xl md:text-3xl font-bold mb-2 md:mb-3 font-young-serif;
+  @apply text-white text-xl md:text-3xl font-bold mb-2 md:mb-3 font-instrument-serif;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-/* EB Garamond font utility classes */
-.font-eb-garamond {
-  font-family: var(--font-eb-garamond);
+/* Instrument Serif font utility classes */
+.font-instrument-serif {
+  font-family: var(--font-instrument-serif);
 }
 
-.eb-garamond-title {
-  @apply font-eb-garamond text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4;
+.instrument-serif-title {
+  @apply font-instrument-serif text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4;
 }
 
-.eb-garamond-quote {
-  @apply font-eb-garamond text-xl md:text-2xl italic text-gray-700 border-l-4 border-flyingbus-green pl-4 py-2 my-6;
-}
-
-/* YoungSerif font utility classes */
-.font-young-serif {
-  font-family: var(--font-young-serif);
-}
-
-.young-serif-title {
-  @apply font-young-serif text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4;
+.instrument-serif-quote {
+  @apply font-instrument-serif text-xl md:text-2xl italic text-gray-700 border-l-4 border-flyingbus-green pl-4 py-2 my-6;
 }

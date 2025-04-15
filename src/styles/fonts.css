@@ -1,10 +1,2 @@
 
-/* YoungSerif font */
-@font-face {
-  font-family: 'YoungSerif';
-  src: url('https://cdn.jsdelivr.net/gh/noirblancrouge/YoungSerif@main/fonts/webfonts/YoungSerif-Bold.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/noirblancrouge/YoungSerif@main/fonts/webfonts/YoungSerif-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+/* This file is intentionally empty as we're importing all fonts from Google Fonts via index.html */
