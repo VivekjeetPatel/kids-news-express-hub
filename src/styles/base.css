@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -153,6 +152,43 @@
   font-family: 'Junicode';
   src: url('/fonts/junicode/Junicode-BoldItalic.woff2') format('woff2'),
        url('/fonts/junicode/Junicode-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Junicode Condensed font */
+@font-face {
+  font-family: 'Junicode Condensed';
+  src: url('/fonts/junicode/Junicode-Condensed.woff2') format('woff2'),
+       url('/fonts/junicode/Junicode-Condensed.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Junicode Condensed';
+  src: url('/fonts/junicode/Junicode-CondensedBold.woff2') format('woff2'),
+       url('/fonts/junicode/Junicode-CondensedBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Junicode Condensed';
+  src: url('/fonts/junicode/Junicode-CondensedItalic.woff2') format('woff2'),
+       url('/fonts/junicode/Junicode-CondensedItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Junicode Condensed';
+  src: url('/fonts/junicode/Junicode-CondensedBoldItalic.woff2') format('woff2'),
+       url('/fonts/junicode/Junicode-CondensedBoldItalic.woff') format('woff');
   font-weight: bold;
   font-style: italic;
   font-display: swap;

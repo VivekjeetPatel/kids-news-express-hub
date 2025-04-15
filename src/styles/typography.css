@@ -1,4 +1,3 @@
-
 /* Base typography styles */
 h1, h2, h3, h4, h5, h6 {
   @apply font-display font-medium text-gray-900;
@@ -46,6 +45,19 @@ p, span, div, a, button, input, textarea {
 
 .junicode-quote {
   @apply font-junicode text-xl md:text-2xl italic text-gray-700 border-l-4 border-flyingbus-red pl-4 py-2 my-6;
+}
+
+/* Junicode Condensed font utility classes */
+.font-junicode-condensed {
+  font-family: var(--font-junicode-condensed);
+}
+
+.junicode-condensed-title {
+  @apply font-junicode-condensed text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4;
+}
+
+.junicode-condensed-quote {
+  @apply font-junicode-condensed text-xl md:text-2xl italic text-gray-700 border-l-4 border-flyingbus-orange pl-4 py-2 my-6;
 }
 
 /* EB Garamond font utility classes */

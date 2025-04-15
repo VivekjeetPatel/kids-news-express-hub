@@ -28,6 +28,7 @@ const FontDemo = () => {
     { name: 'Default (Open Sauce Sans)', class: '', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
     { name: 'Source Serif 4', class: 'font-serif', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
     { name: 'Junicode', class: 'font-junicode', weights: ['Normal', 'Bold'] },
+    { name: 'Junicode Condensed', class: 'font-junicode-condensed', weights: ['Normal', 'Bold'] },
     { name: 'EB Garamond', class: 'font-eb-garamond', weights: ['Normal', 'Medium', 'Semibold', 'Bold'] },
   ];
 
@@ -169,6 +170,16 @@ const FontDemo = () => {
                 <h4 className="junicode-title">Junicode Title: The Flying Bus Latest</h4>
                 <blockquote className="junicode-quote">
                   "Junicode Quote: This is an example of the junicode-quote class that uses Junicode with italic styling and a red left border."
+                </blockquote>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-semibold mb-6">Junicode Condensed Classes</h3>
+                <h4 className="junicode-condensed-title">Junicode Condensed Title: The Flying Bus Latest</h4>
+                <blockquote className="junicode-condensed-quote">
+                  "Junicode Condensed Quote: This is an example of the junicode-condensed-quote class that uses Junicode Condensed with italic styling and an orange left border."
                 </blockquote>
               </CardContent>
             </Card>
