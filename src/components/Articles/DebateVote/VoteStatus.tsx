@@ -15,7 +15,7 @@ const VoteStatus: React.FC<VoteStatusProps> = ({ hasVoted, isVoting, isLoggedIn 
   if (!isLoggedIn && !hasVoted) {
     return (
       <div className="text-center mt-4">
-        <Button variant="outline" size="sm" asChild className="flex items-center gap-2">
+        <Button variant="outline" size="sm" asChild className="flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform">
           <Link to="/reader-auth?tab=sign-in">
             <LogIn size={14} />
             <span>Sign in to vote</span>

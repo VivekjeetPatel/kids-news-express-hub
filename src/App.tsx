@@ -18,7 +18,7 @@ function App() {
       <Route path="/" element={<Index />} />
       <Route path="/article/:id" element={<ArticlePage />} />
       <Route path="/about" element={<About />} />
-      <Route path="/auth/:mode" element={<ReaderAuth />} />
+      <Route path="/reader-auth" element={<ReaderAuth />} />
       <Route path="/storyboard" element={<StoryboardCategoryPage />} />
       <Route path="/storyboard/:id" element={<StoryboardPage />} />
       <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
