@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,6 +37,7 @@
 
     --font-display: 'Open Sauce Sans', system-ui, sans-serif;
     --font-body: 'Open Sauce Sans', system-ui, sans-serif;
+    --font-serif: 'Source Serif 4', Georgia, serif;
 
     /* Rainbow Button Colors */
     --color-1: 270 50% 60%;  /* Purple */
@@ -114,3 +116,5 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Source Serif 4 is loaded from Google Fonts via the link in index.html */
