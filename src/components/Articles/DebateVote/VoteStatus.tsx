@@ -2,8 +2,9 @@
 import React from 'react';
 import { Info, LoaderCircle, LogIn } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { DrawerAuth } from '@/components/ui/drawer-auth';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface VoteStatusProps {
   hasVoted: boolean;
@@ -15,12 +16,15 @@ const VoteStatus: React.FC<VoteStatusProps> = ({ hasVoted, isVoting, isLoggedIn 
   if (!isLoggedIn && !hasVoted) {
     return (
       <div className="text-center mt-4">
-        <Button variant="outline" size="sm" asChild className="flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform">
-          <Link to="/reader-auth?tab=sign-in">
-            <LogIn size={14} />
-            <span>Sign in to vote</span>
-          </Link>
-        </Button>
+        <DrawerAuth 
+          triggerComponent={
+            <Button variant="outline" size="sm" className="flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform">
+              <LogIn size={14} />
+              <span>Sign in to vote</span>
+            </Button>
+          }
+          defaultTab="sign-in"
+        />
       </div>
     );
   }

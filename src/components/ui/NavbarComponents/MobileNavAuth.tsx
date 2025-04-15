@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LogOut, User } from 'lucide-react';
+import { LogOut, User, BookOpen } from 'lucide-react';
 import { SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { RainbowButton } from '@/components/ui/rainbow-button';
-import { BookOpen } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { DrawerAuth } from '@/components/ui/drawer-auth';
 
 const MobileNavAuth: React.FC = () => {
   const { isLoggedIn, currentUser, logout } = useAuth();
@@ -36,22 +36,25 @@ const MobileNavAuth: React.FC = () => {
 
   return (
     <div className="space-y-3">
-      <SheetClose asChild>
-        <Link to="/reader-auth?tab=sign-in" className="block w-full mb-3">
+      <DrawerAuth 
+        triggerComponent={
           <Button variant="outline" className="w-full flex items-center">
             <User className="mr-2 h-4 w-4" />
             Sign In
           </Button>
-        </Link>
-      </SheetClose>
-      <SheetClose asChild>
-        <Link to="/reader-auth?tab=sign-up" className="block w-full">
+        }
+        defaultTab="sign-in"
+      />
+      
+      <DrawerAuth 
+        triggerComponent={
           <RainbowButton className="w-full flex items-center justify-center">
             <BookOpen className="mr-2 h-4 w-4" />
             Join Us
           </RainbowButton>
-        </Link>
-      </SheetClose>
+        }
+        defaultTab="sign-up"
+      />
     </div>
   );
 };
