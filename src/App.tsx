@@ -10,7 +10,6 @@ import ReaderAuth from '@/pages/ReaderAuth';
 import StoryboardPage from '@/pages/StoryboardPage';
 import StoryboardEpisodePage from '@/pages/StoryboardEpisodePage';
 import StoryboardCategoryPage from '@/pages/StoryboardCategoryPage';
-import FontDemo from '@/pages/FontDemo';
 import './App.css';
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
       <Route path="/storyboard" element={<StoryboardCategoryPage />} />
       <Route path="/storyboard/:id" element={<StoryboardPage />} />
       <Route path="/storyboard/:seriesId/episode/:episodeId" element={<StoryboardEpisodePage />} />
-      <Route path="/fonts" element={<FontDemo />} />
       <Route path="/:category" element={<CategoryPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
