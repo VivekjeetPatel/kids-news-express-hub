@@ -2,6 +2,7 @@
 import * as React from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { NavItem } from "@/components/Layout/menuItems"
 
 interface MobileMenuButtonProps {
   isOpen: boolean
@@ -27,4 +28,36 @@ export const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({
   )
 }
 
-export const MobileMenuButton = React.memo(MobileMenuButton)
+// Adding the missing MobileMenu component
+interface MobileMenuProps {
+  isOpen: boolean
+  items?: NavItem[]
+}
+
+export const MobileMenu: React.FC<MobileMenuProps> = ({ 
+  isOpen,
+  items = []
+}) => {
+  if (!isOpen) return null
+  
+  return (
+    <div className="md:hidden fixed inset-0 z-30 bg-white border-t border-gray-200 overflow-y-auto">
+      <div className="p-4">
+        <nav>
+          <ul className="space-y-4">
+            {items.map((item, index) => (
+              <li key={index} className="py-2">
+                <a 
+                  href={item.to} 
+                  className="text-lg font-medium text-gray-900 hover:text-gray-700"
+                >
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  )
+}
